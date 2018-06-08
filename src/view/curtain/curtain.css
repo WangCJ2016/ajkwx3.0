@@ -1,0 +1,85 @@
+.curtain_bg{
+  height: 100%;
+  background: url(../../assets/imgs/curtain/curtain_bg.png);
+  background-size: 100% 100%;
+
+}
+@media screen and (min-width: 500px)
+{
+    .curtain_bg
+    {
+        
+        height: 12.05rem;
+    }
+}
+.curtain_wrap,.curtainwrap{
+  height: 100%;
+  transition: transform 1s ease-in;
+  overflow: hidden;
+}
+.curtain_wrap{
+  float: left;
+}
+.curtain_wrap{}
+.curtain_group{
+  padding: 0.4rem 0.5rem 0;
+  font-size: 0.36rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.0rem;
+}
+.curtain_name{
+  padding-top: .5rem;
+  line-height: 0.76rem;
+  text-align: center;
+  color: #6095f0;
+  margin: 0 auto;
+  font-size: 0.4rem;
+}
+.curtain_btn{
+  width: 1.3rem;
+  height: 1.3rem;
+  line-height: 1.3rem;
+  border-radius: 50%;
+  text-align: center;
+  background-color: transparent;
+  position: relative;
+  border:0.04rem solid #6095f0;
+  box-sizing: border-box;
+  font-weight: 200;
+  color: #6095f0;
+  font-size: 0.36rem;
+}
+.curtain_btn:after{
+  content: "";
+  position: absolute;
+  left: 0;
+  top:0;
+  color: #6095f0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  z-index: -1;
+  border-radius: 50%;
+  transition: transform .2s ease-in;
+}
+
+.curtain_btn.active{
+  color: #fff;
+  border:0.04rem solid #6095f0
+}
+
+.curtain_btn.active:after{
+  transform: scale(.9,.9);
+  transform-origin: 50% 50%;
+  background-color: #6095f0;
+  color: #fff
+}
+
+.clearfix:after {
+    content: '';
+    display: block;
+    line-height: 0;
+    clear: both;
+}

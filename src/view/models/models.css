@@ -1,0 +1,166 @@
+.models_bg{
+  min-height: 100%;
+  background: url(../../assets/imgs/models/models_bg.png);
+  background-size: 100% 100%;
+
+}
+@media screen and (min-width: 500px)
+{
+    .models_bg
+    {
+        height: auto;
+    }
+}
+.model_item{
+  width: 5.7rem;
+  margin: 0 auto;
+}
+.figure{
+  width: 2.22rem;
+  display: inline-block;
+}
+.img_wrap{
+  width: 2.22rem;
+  height: 2.22rem;
+  border-radius: 0.3rem;
+  text-align: center;
+  line-height:2.22rem;
+  border: 0.04rem solid #8b1734;
+  transition: all 1s;
+}
+.img{
+  width: 1.28rem;
+}
+.img_getup{
+  width: 1.28rem;
+  vertical-align: middle;
+}
+.img_wrap > div {
+  width: 100%;
+  height: 100%;
+  background: url('../../assets/imgs/models/common.png') no-repeat center center;
+  background-size: 1.22rem 1.22rem;
+}
+.figcaption{
+  width: 100%;
+  font-size: 0.38rem;
+  text-align: center;
+  margin-top: 0.2rem;
+  color: #fff;
+}
+.起床{
+  border: 0.04rem solid #ea7f4c;
+  margin-top: 0.5rem;
+}
+.起床 > div{
+  width: 100%;
+  height: 100%;
+  background: url('../../assets/imgs/models/getup.png') no-repeat center center;
+  background-size: 1.28rem 1.2rem;
+}
+.起床.active{
+  background-color: #ea7f4c;
+}
+.睡眠,.sleep{
+  border: 0.04rem solid #db4e79;
+  margin-top: 0.5rem;
+}
+.睡眠 > div{
+  width: 100%;
+  height: 100%;
+  background: url('../../assets/imgs/models/睡眠.png') no-repeat center center;
+  background-size: 1.24rem 1.46rem;
+}
+.睡眠.active,.sleep.active{
+  background-color: #db4e79;
+}
+.sleep+figcaption{
+   margin-left: 1.26rem;
+}
+.阅读{
+  border: 0.04rem solid #25b394;
+   margin-top: 1rem;
+}
+.阅读 > div{
+  width: 100%;
+  height: 100%;
+  background: url('../../assets/imgs/models/reading.png') no-repeat center center;
+  background-size: 1.48rem 1.16rem;
+}
+
+.阅读.active{
+  background-color: #25b394;
+}
+.外出,.checkout{
+  border: 0.04rem solid #e89544;
+  margin-top: 1rem;
+}
+.外出 > div{
+  width: 100%;
+  height: 100%;
+  background: url('../../assets/imgs/models/外出.png') no-repeat center center;
+  background-size: 1.08rem 1.2rem;
+}
+.外出.active,.checkout.active{
+  background-color: #e89544;
+}
+
+.影视,.movie{
+  border: 0.04rem solid #61bb7b;
+  margin-top: 1rem;
+}
+.影视 > div{
+  width: 100%;
+  height: 100%;
+  background: url('../../assets/imgs/models/影视.png') no-repeat center center;
+  background-size: 1.4rem 1.24rem;
+}
+.影视.active,.movie.active{
+  background-color: #61bb7b;
+}
+.会客,.meeting{
+  border: 0.04rem solid #367da3;
+  margin-top: 1rem;
+}
+.会客 > div{
+  width: 100%;
+  height: 100%;
+  background: url('../../assets/imgs/models/会客.png') no-repeat center center;
+  background-size: 1.44rem 1.18rem;
+}
+.会客.active,.meeting.active{
+  background-color: #367da3;
+}
+
+.用餐{
+  border: 0.04rem solid #ea7f4c;
+  margin-top: 0.5rem;
+}
+.用餐 > div{
+  width: 100%;
+  height: 100%;
+  background: url('../../assets/imgs/models/用餐.png') no-repeat center center;
+  background-size: 1.26rem 1.26rem;
+}
+.用餐.active{
+  background-color: #ea7f4c;
+}
+.迎宾{
+  border: 0.04rem solid #25b394;
+   margin-top: 1rem;
+}
+.迎宾 > div{
+  width: 100%;
+  height: 100%;
+  background: url('../../assets/imgs/models/迎宾.png') no-repeat center center;
+  background-size: 1.26rem 1.26rem;
+}
+.迎宾.active{
+  background-color: #25b394;
+}
+.second {
+  margin-left: 1.26rem;
+}
+.second + figcaption {
+  margin-left: 1.26rem;
+}

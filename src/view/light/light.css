@@ -1,0 +1,170 @@
+.light_bg
+{
+    width: 100%;
+    height: 100%;
+    background: url('../../assets/imgs/light/light_bg.png')no-repeat;
+    background-size: 100% 100%;
+    overflow: hidden;
+}
+@media screen and (min-width: 500px)
+{
+    .light_bg
+    {
+        height: auto;
+    }
+}
+.tabs{
+   display: flex;
+   margin-left: 96px;
+   padding: 0;
+   margin-right: 96px;
+   justify-content: space-between;
+   margin-top: 100px;
+}
+.tabs > li{
+  width: 110px;
+  line-height: 40px;
+  list-style: none;
+  text-align: center;
+  border-radius: 20px;
+  font-size: 28px;
+  color: #fff;
+}
+.type_active{
+    color: #fb7346!important;
+    background-color: #fff
+}
+.light_card{
+    width: 480px;
+    padding: 40px;
+    margin: 160px auto;
+    border-radius: 10px;
+    background-color: #fff;
+}
+.switch_toggle{
+    display: flex;
+    justify-content: space-around;
+    align-items: center
+}
+.switch_toggle>span{
+    color: #666;
+    font-size: 28px;
+}
+
+.ligths_wrap{
+    display: flex;
+    flex-wrap: wrap;
+}
+.light_wrap
+{
+    width: 33.3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 70px;  
+}
+.light_p{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #666;
+    margin-top: 40px;
+}
+
+
+.light_model
+{
+    padding-top: .5rem;
+    padding-left: .8rem;
+    visibility: hidden;
+}
+.light_figure
+{
+    display: inline-block;
+
+    margin-left: .66rem;
+
+    text-align: center;
+}
+.light_figure img
+{
+    width: 1.25rem;
+}
+.light_figure figcaption
+{
+    font-size: .34rem;
+
+    margin-top: .14rem;
+
+    color: #fff;
+}
+.class_title
+{
+    font-size: .3rem;
+
+    position: absolute;
+    top: 50%;
+    left: 0;
+
+    width: 3.7rem;
+    height: .6rem;
+    margin-top: -.3rem;
+    padding: 0 .2rem;
+
+    transform-origin: 100% 50%;
+    text-indent: .2rem;
+
+    color: #eee;
+}
+.class_title_active
+{
+    font-size: .38rem;
+
+    color: #fff;
+}
+.lights
+{
+    width: 33.3%;
+}
+
+:global(.lights_ON) > div
+{
+    background: url(../../assets/imgs/light/主灯_ON.png)no-repeat  0 .2rem;
+    background-size: .7rem .646rem;
+}
+:global(.lights_ON) > p
+{
+    color: #fb7346!important;
+}
+:global(.lights) img
+{
+    width: .52rem;
+    margin-top: 20px;
+}
+
+:global(.light_img)
+{
+    width: .7rem;
+    height: .646rem;
+    margin: 0 auto;
+    padding-top: 20px;
+
+    background: url(../../assets/imgs/light/主灯.png)no-repeat 0 .2rem;
+    background-size: .7rem .646rem;
+}
+
+:global(.主灯) img
+{
+    width: .52rem;
+}
+:global(.卫浴灯_OFF) > div
+{
+    background: url(../../assets/imgs/light/卫浴灯.png)no-repeat no-repeat 0 .2rem;
+    background-size: .68rem .64rem;
+}
+:global(.卫浴灯_ON) > div
+{
+    background: url(../../assets/imgs/light/卫浴灯_ON.png)no-repeat no-repeat 0 .2rem;
+    background-size: .68rem .64rem;
+}

@@ -1,0 +1,38 @@
+.readLight_wrap {
+  height: 100%;
+  background: url(../../assets/imgs/light/readLight_bg.png)no-repeat;
+  background-size: 100% 100%;
+}
+@media screen and (min-width: 500px)
+{
+    .readLight_wrap
+    {
+        height: 12.05rem;
+    }
+}
+.blank1 {
+  height: .9rem;
+}
+.blank2 {
+  height: 0.5rem
+}
+.blank3 {
+  height: .9rem
+}
+.switch {
+  box-sizing: border-box;
+  height: 1.4rem;
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 0.3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1Px solid #d8d8d8;
+}
+.switch_label {
+  font-size: 0.3rem;
+}
+.switch_img {
+  width: 0.8rem;
+  height: 0.8rem;
+}

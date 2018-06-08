@@ -1,0 +1,53 @@
+.service_bg{
+  height: 100%;
+  background: url(../../assets/imgs/service/service_bg.png);
+  background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center
+}
+@media screen and (min-width: 500px)
+{
+    .service_bg
+    {
+        min-height: 12.05rem;
+        height: auto;
+    }
+}
+
+.rect{
+  width: 6.5rem;
+  height: 3.5rem;
+  background: url('../../assets/imgs/service/rect.png');
+  background-size: 100% 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.service_item{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 2rem;
+  align-items: center;
+}
+.swape{
+  width: 0.98rem;
+}
+.ring{
+  width: 0.99rem;
+}
+.content{
+  font-size: 0.3rem;
+  color: #fff;
+}
+.selectedlight{
+  width: 0.8rem;
+}
+.unselectedlight{
+  width: 0.72rem;
+}
+.active .content{
+  color: inherit
+}
