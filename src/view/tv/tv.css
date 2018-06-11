@@ -1,8 +1,8 @@
 .tv_bg {
     height: 100%;
     background: url(../../assets/imgs/tv/tv_bg.png);
-    background-size: 100%;
-
+    background-size: 100% 100%;
+    overflow: hidden;
 }
 
 @media screen and (min-width: 500px) {
@@ -13,13 +13,43 @@
 
 .tv_wrap,
 .tvwrap {
+    width: 100%;
     height: 100%;
-    transition: transform 1s ease-in;
-    position: relative;
+    overflow: auto;
+    padding-bottom: 40px;
 }
 
 .tv_wrap {
     float: left;
+}
+
+.tv_section{
+    margin-top: 50px;
+    margin-left: 60px;
+    margin-right: 60px;
+    padding: 30px 40px;
+    border-radius: 20px;
+    background-color: #f4f4f4
+}
+.tv_flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+.tv_flex + .tv_flex {
+    margin-top: 20px;
+}
+.section_title{
+    color: #333;
+    font-size: 36px;
+}
+
+
+
+
+.tv_section img{
+    padding: 20px;
+    width: 50px
 }
 .tv_switch{
     width: 1.2rem;
@@ -48,7 +78,38 @@
     /*background: url(../../assets/imgs/tv/btn_bg.png);
     background-size: 100% 100%;*/
 }
-
+.flexdirection_cloumn{
+    flex-direction: column;
+}
+.av_btns {
+    margin-top: 0!important;
+    justify-content: center;
+}
+.av_btns div {
+    width: 100%;
+    height: 52px;
+    padding-top: 20px;
+}
+.av_btns > span {
+    color: #333;
+    margin-top: 20px;
+}
+.back_bg{
+    background: url('../../assets//imgs/tv/back.png') no-repeat center center;
+    background-size: 46px 37px;
+}
+.resee_bg{
+    background: url('../../assets//imgs/tv/back_play.png')no-repeat center center;
+    background-size: 50px 52px;
+}
+.mute_bg{
+    background: url('../../assets//imgs/tv/mute.png')no-repeat center center;
+    background-size: 43px 52px;
+}
+.replay_bg{
+    background: url('../../assets/imgs/tv/replay.png')no-repeat center center;
+    background-size: 74px 70px;
+}
 .tv_ON .btn_img {
     width: 100%;
     height: 100%;
@@ -154,29 +215,39 @@
 }
 
 .channel_voice {
-    width: 0.9rem;
-    height: 3.5rem;
-    border-radius: 0.45rem;
-    border: 0.02rem solid #6095f0;
+    width: 88px;
+    height: 288px;
+    border-radius: 44px;
+    border: 1px solid #fafafa;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    background-color: #fff
+}
+.channel_voice img{
+    width: 36px
 }
 
 .arr_common {
     display: inline-block;
-    width: 0.9rem;
-    height: 0.9rem;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
     position: relative;
 }
 
 .arr_title {
     text-align: center;
-    color: #6095f0;
-    font-size: 0.4rem;
+    color: #666;
+    font-size: 28px;
 }
-
+.round_wrap {
+    width: 288px;
+    height: 288px;
+    border-radius: 50%;
+    background-color: #fff;
+    position: relative;
+}
 .arr_up {
     composes: arr_common;
     background: url(../../assets/imgs/tv/arr_top.png) no-repeat center center;
@@ -238,27 +309,31 @@
 }
 
 .arr_center {
-    width: 1.8rem;
-    line-height: 1.8rem;
-    border: 0.02rem solid #6095f0;
+    width: 110px;
+    line-height: 110px;
     border-radius: 50%;
     position: absolute;
     left: 50%;
     top: 50%;
-    margin-left: -.9rem;
-    margin-top: -.9rem;
+    margin-left: -55px;
+    margin-top: -55px;
     text-align: center;
+    background-color: #fb7346
 }
 
 .arr_ok {
-    width: 1.2rem;
-    line-height: 1.2rem;
+    width: 110px;
+    line-height: 110px;
     border-radius: 50%;
-    background-color: #6095f0;
-    display: inline-block;
-    vertical-align: middle;
-    color: #fefeff;
-    font-size: 0.48rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -55px;
+    margin-top: -55px;
+    text-align: center;
+    background-color: #fb7346;
+    color: #fff;
+    font-size: 34px;
 }
 
 .review_tv {
@@ -285,15 +360,15 @@
 }
 
 .tv_num {
-    width: 5.84rem;
-    margin: 0 auto;
-    border-top: 1px solid #6095f0;
+    color: #999;
+    margin-top: 70px;
 }
 
 .num_item {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    border-bottom: 1px solid #ccc
 }
 .home_btn{
     width: 1rem;
@@ -308,12 +383,10 @@
     opacity: 0.5;
 }
 .num {
-    margin: 0.1rem 0;
-    width: 1.0rem;
-    line-height: 1rem;
+    width: 25%;
+    line-height: 100px;
     text-align: center;
-    color: #fff;
-    font-size: 0.5rem;
+    font-size: 50px;
     font-weight: 200
 }
 
@@ -323,8 +396,7 @@
 }
 
 .num_item_last {
-    width: 100%;
-    text-align: center;
+    border-bottom: none
 }
 
 .clearfix:after {

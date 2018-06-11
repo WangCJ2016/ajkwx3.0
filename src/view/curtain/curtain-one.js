@@ -3,7 +3,7 @@ import CSSModules from 'react-css-modules'
 import classNames from 'classnames'
 
 import styles from './curtain.css'
-import InputRange from '../../components/inputRange/inputRange'
+
 
 @CSSModules(styles, { allowMultiple: true })
 class CurtainOne extends React.PureComponent {
@@ -58,35 +58,28 @@ class CurtainOne extends React.PureComponent {
   curtainTpe0Render(ways, type) {
     return ways?ways.map(way => {
               return (
-                <div key={way.id}>
-                   <p styleName="curtain_name">{way.name}</p>
-                   <div styleName="curtain_group">
-                    {this.btnRender(way, type)}
-                  </div>
-                  <InputRange touchStart={this.touchStart.bind(this)} touchMove={this.touchMove.bind(this)} touchEnd={this.rangeChange.bind(this,way.wayId)}/>       
+                <div styleName='curtain_list' key={way.id}>
+                   <div styleName='curtain_key'>
+                     {
+                       way.name.indexOf('窗帘') > -1 ? 
+                       <img src={require('../../assets/imgs/curtain/chuanglian.png')} alt=""/>:
+                       <img src={require('../../assets/imgs/curtain/shalian.png')} alt=""/>
+                     }
+                     <span styleName="curtain_name">{way.name}</span>
+                   </div>
+                    {this.btnRender(way, type)}       
                 </div>
               )
             }):null
   }
-   curtainTpe1Render(ways, type) {
-     return ways?ways.map(way => {
-              return (
-                <div key={way.id}>
-                   <p styleName="curtain_name">{way.name}</p>
-                   <div styleName="curtain_group">
-                    {this.btnRender(way, type)}
-                  </div>
-                </div>
-              )
-            }):null
-  }
+
   render(){
     const ways  = this.props.curtain
     const type = this.props.type
     return(
       <div styleName="curtain_wrap" style={{width:this.props.width}}>
           {
-            type === 0 ? this.curtainTpe0Render(ways, type) : this.curtainTpe1Render(ways, type)
+            this.curtainTpe0Render(ways, type)
           }
       </div>
     )

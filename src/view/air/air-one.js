@@ -136,37 +136,43 @@ class AirOne extends React.PureComponent {
           </div>
           <div styleName="air_box">
             <div styleName="air_display_box">
-              <span styleName='air_display_title'>当前</span>
+              <span styleName='air_display_title'>当前温度</span>
               <div styleName="tem">20℃</div> 
             </div>
             <div styleName="air_display_box air_box_down">
-              <span styleName='air_display_title'>设置</span>
+              <span styleName='air_display_title'>设置温度</span>
               <div styleName="tem">{switchKey==='OFF'?(currentTemArray?deviceType === 'VIRTUAL_CENTRAL_AIR_REMOTE' ? currentTemArray[temIndex]+'℃':currentTemArray[temIndex].slice(-2)+'℃':'25℃'):''}</div>
             </div>
           </div>
         </div>
         <div styleName="air_round">
-          <div styleName="middle_round" onClick={this.switchClick.bind(this,deviceId)}>
-            {switchKey}
+          <figure styleName='air_figure' onClick={this.temChange.bind(this,'minus',deviceId)}>
+            <div styleName="air_figure_img">
+            <img styleName='btn_tmp' src={require('../../assets/imgs/air/c-.png')} alt=""/>
+            </div>
+            <figcaption style={{color:'#fff'}}>温度-</figcaption>
+          </figure>
+          <div styleName="middle_round"  style={{background: switchKey!=='ON'?'#6095f0':'#666'}}>
+          {switchKey==='OFF'?(currentTemArray?deviceType === 'VIRTUAL_CENTRAL_AIR_REMOTE' ? currentTemArray[temIndex]:currentTemArray[temIndex].slice(-2):'25'):''}
+            {
+              switchKey!=='ON'?null:25
+            }
+            <sup>℃</sup>
           </div>
-          <span styleName="small_round up"></span>
-          <span styleName="small_round down"></span>
-          <span styleName="small_round left"></span>
-          <span styleName="small_round right"></span>
-        </div>
-        <div styleName="air_btn">
           <figure styleName='air_figure' onClick={this.temChange.bind(this,'plus',deviceId)} >
             <div styleName="air_figure_img">
-              <img styleName='btn_tmp' src={require('../../assets/imgs/air/plus.png')} alt=""/>
+              <img styleName='btn_tmp' src={require('../../assets/imgs/air/c+.png')} alt=""/>
             </div>
-            <figcaption>温度+</figcaption>
+            <figcaption style={{color:'#fff'}}>温度+</figcaption>
           </figure>
-           <figure styleName='air_figure' onClick={this.temChange.bind(this,'minus',deviceId)}>
-            <div styleName="air_figure_img">
-             <img styleName='btn_tmp' src={require('../../assets/imgs/air/minus.png')} alt=""/>
-            </div>
-            <figcaption>温度-</figcaption>
-          </figure>
+        </div>
+        <div styleName="air_btn">  
+            <figure styleName='air_figure' onClick={this.switchClick.bind(this,deviceId)}>
+              <div styleName="air_figure_img">
+                <img styleName='btn_speed' src={require(`../../assets/imgs/air/switch_${switchKey}.png`)} alt=""/>
+              </div>
+              <figcaption style={{color: switchKey!=='ON'?'#6095f0':'#666'}}>开关</figcaption>
+            </figure>
            <figure styleName='air_figure' onClick={this.speedChange.bind(this,deviceId,deviceId)}>
             <div styleName="air_figure_img">
               <img styleName='btn_speed' src={require('../../assets/imgs/air/speed.png')} alt=""/>

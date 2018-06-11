@@ -153,7 +153,14 @@
     background: url(../../assets/imgs/light/主灯.png)no-repeat 0 .2rem;
     background-size: .7rem .646rem;
 }
-
+/* :global(.卧室背景灯_ON) >div {
+    background: url(../../assets/imgs/light/beijingdeng_on.png)no-repeat no-repeat 0 .2rem;
+    background-size: .68rem .64rem;
+}
+:global(.卧室背景灯_OFF) >div {
+    background: url(../../assets/imgs/light/beijingdeng_off.png)no-repeat no-repeat 0 .2rem;
+    background-size: .68rem .64rem;
+} */
 :global(.主灯) img
 {
     width: .52rem;

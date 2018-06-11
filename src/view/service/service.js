@@ -19,9 +19,9 @@ class Service extends React.PureComponent {
   constructor() {
     super()
     this.state = {
-    clean:'CLOSE',
-    disturb:'CLOSE',
-    checkoutStatus: 'CLOSE'
+      status: '',
+      clean: 'CLOSE',
+      disturb: 'CLOSE'
     }
   }
   componentDidMount(){
@@ -29,27 +29,21 @@ class Service extends React.PureComponent {
     this.props.serviceActions.initailState()
   }
   submitService(type){
-    const { lights } = this.props.serviceState 
-    const status = this.state[type]==='CLOSE'?'OPEN':'CLOSE'
-    let antherTpye = ''
-    if (status === 'OPEN') {
-      if (type === 'clean') {
-        antherTpye = 'disturb'
-      }else{
-        antherTpye = 'clean'
-      }
-    }
+    const { lights } = this.props.serviceState     
     this.setState({
-      [type]:status,
-      [antherTpye]:'CLOSE'
+      status:type,
     },function(){
+      const status = this.state[this.state.status] === 'CLOSE' ? 'OPEN' : 'CLOSE'
+      this.setState({
+        [this.state.status]: status
+      })
       if (type==='clean') {
         const cleanlight = lights.filter(light => light.name === "请即清理")
-        this.props.serviceActions.submitService(cleanlight[0].wayId,this.state[type])
+        this.props.serviceActions.submitService(cleanlight[0].wayId,status)
       }
       if (type==='disturb') {
         const cleanlight = lights.filter(light => light.name === "请勿打扰")
-        this.props.serviceActions.submitService(cleanlight[0].wayId,this.state[type])
+        this.props.serviceActions.submitService(cleanlight[0].wayId,status)
       }
     })
   }
@@ -61,7 +55,7 @@ class Service extends React.PureComponent {
       [query.subOrderCode?'subOrderCode':'recordId']: query.subOrderCode?query.subOrderCode:query.recordId
     })
     this.setState({
-      checkoutStatus: this.state.checkoutStatus === 'CLOSE'?'OPEN':'CLOSE'
+      status: 'checkout'
     })
   }
   propmtVisit = ()=> {
@@ -74,33 +68,46 @@ class Service extends React.PureComponent {
     
     const cleanStyle = classNames({
       service_item:true,
-      active:this.state.clean==='CLOSE'?false:true
+      active:(this.state.status==='clean'&&this.state.clean==='OPEN')?true:false
     })
      const disturbStyle = classNames({
       service_item:true,
-      active:this.state.disturb==='CLOSE'?false:true
+      active:(this.state.status==='disturb'&&this.state.disturb==='OPEN')?true:false
     })
     const checkoutStyle = classNames({
       service_item:true,
-      active:this.state.checkoutStatus==='CLOSE'?false:true
+      active:this.state.status!=='checkout'?false:true
     })
     return (
       <div styleName='service_bg'>
+       <div styleName='title'>
+         <h3>HOTEL SERVICE</h3>
+         <h4>酒店一站式服务</h4>
+       </div>
         <div styleName='rect' >
-          <div styleName={cleanStyle} style={{color:'#63a0cb'}} onClick={this.submitService.bind(this,'clean')}>
-            <img src={require('../../assets/imgs/service/swape.png')} alt="" styleName='swape'/>
+          <div styleName={cleanStyle}  onClick={this.submitService.bind(this,'clean')}>
+            {
+              this.state.status==='clean'&&this.state.clean==='OPEN'?
+              <img src={require('../../assets/imgs/service/swape.png')} alt="" styleName='swape'/>:
+              <img src={require('../../assets/imgs/service/swape_off.png')} alt="" styleName='swape'/>
+            }
             <p styleName='content'>请即清理</p>
            
           </div>
-          <div styleName={disturbStyle} style={{color:'#ffb097'}} onClick={this.submitService.bind(this,'disturb')}>
-            <img src={require('../../assets/imgs/service/ring.png')} alt="" styleName='ring'/>
+          <div styleName={disturbStyle} onClick={this.submitService.bind(this,'disturb')}>
+            {
+              this.state.status==='disturb'&&this.state.disturb==='OPEN'?
+              <img src={require('../../assets/imgs/service/ring.png')} alt="" styleName='ring'/>:
+              <img src={require('../../assets/imgs/service/ring_off.png')} alt="" styleName='ring'/>
+            }
             <p styleName='content'>请勿打扰</p>
-           
           </div>
-        </div>
-        <div styleName='rect'>
-          <div styleName={checkoutStyle} style={{color:'#21aa89'}} onClick={this.propmtVisit}>
-            <img src={require('../../assets/imgs/service/checkout_icon.png')} alt="" styleName='swape'/>
+          <div styleName={checkoutStyle}  onClick={this.propmtVisit}>
+            {
+              this.state.status === 'checkout'?
+              <img src={require('../../assets/imgs/service/checkout.png')} alt="" styleName='swape'/>:
+              <img src={require('../../assets/imgs/service/checkout_off.png')} alt="" styleName='swape'/>
+            }
             <p styleName='content'>退房</p>
           </div>
         </div>

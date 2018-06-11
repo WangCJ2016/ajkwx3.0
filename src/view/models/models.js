@@ -37,29 +37,24 @@ import * as modelActions from '../../actions/model-actions'
     const scenes = modelArray.filter((scence) => scence.name.indexOf('情景') === 0)
 
     return scenes.map((model,index) => {
-          let stylename 
-           if (index%2 === 1) {
-             stylename = classNames({
-                img_wrap:true,
+          let stylename = classNames({
+                figure:true,
                 [model.name.replace('情景', '')]:true,
                 active:index === this.state.model_activeIndex,
-                second: true
+                
              })
-           } else {
-             stylename = classNames({
-            img_wrap:true,
-            [model.name.replace('情景', '')]:true,
-            active:index === this.state.model_activeIndex
-           })
-           }
             return( 
-              <figure styleName='figure' key={model.name} >
-                  <div styleName={stylename} onClick={this.changeModel.bind(this,index, model.sceneId)}>
-                    <div styleName='img_getup' alt=""/>
+              <figure styleName={stylename} key={model.name} onClick={this.changeModel.bind(this,index, model.sceneId)}>
+                  <div  >
+                    
                   </div>
                   <figcaption styleName='figcaption'>
                     {model.name.replace('情景', '')}
                   </figcaption>
+                  {
+                    index === this.state.model_activeIndex?
+                    <img styleName='checked' src={require('../../assets/imgs/models/checked.png')} alt=""/>:null
+                  }
               </figure>
               )
           })
@@ -86,9 +81,9 @@ import * as modelActions from '../../actions/model-actions'
            }
           
             return( 
-              <figure styleName='figure' key={model.id} >
-                  <div styleName={stylename} onClick={this.changeModel.bind(this,index,model.sceneId)}>
-                    <div styleName='img_getup' alt=""/>
+              <figure styleName='figure' key={model.id} onClick={this.changeModel.bind(this,index,model.sceneId)}>
+                  <div styleName={stylename} >
+                    <div />
                   </div>
                   <figcaption styleName='figcaption'>
                     { model.name.indexOf('模式') > -1 ? model.name.slice(0, -2): model.name }

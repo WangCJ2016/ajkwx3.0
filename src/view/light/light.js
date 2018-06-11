@@ -63,11 +63,7 @@ class Light extends React.PureComponent {
   }
 
   render() {
-    const {lights, middleRoundStatus} = this.props.lightStore
-    console.log(this.props.lightStore)
-    const serveId = this.props.idStore.serveId ||sessionStorage.getItem('serveId')
-    const houseId =  this.props.location.query.houseId
-    const {lightsClick,getLightsWays, dengdaiClick} = this.props.lightActions
+    const { middleRoundStatus} = this.props.lightStore
     return (
       <div styleName='light_bg' >
         <LightTab 

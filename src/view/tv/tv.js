@@ -2,12 +2,15 @@ import React from 'react'
 import CSSModules from 'react-css-modules'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { Tabs } from 'antd-mobile'
 
 import styles from './tv.css'
 import * as tvActions from '../../actions/tv-actions'
-import SlidePot from '../../components/slidePot/slide-pot'
+
 import TvOne from './tv-one'
 import SwipeType from '../../components/swipeTypeHoc/SwipeType'
+
+const TabPane = Tabs.TabPane
 
 @connect(
   state => ({tvState:state.toObject().tvStore}),
@@ -54,37 +57,22 @@ class Tv extends React.PureComponent {
   render(){
 
     const { tvs } = this.props.tvState
-    const wrapWidth = tvs.length*100 + '%'
-    const tvWidth = 1/tvs.length *100 + '%'
-    let translateX = 0
-    if(this.props.state.count - this.count === 1){
-      if(this.countActive<tvs.length-1){
-        this.countActive = this.countActive + 1
-      }else{
-        this.countActive = tvs.length - 1
-      }
-      translateX = -this.countActive*this.props.state.winWidth
-      this.count = this.props.state.count
-    }
-    if(this.props.state.count - this.count === -1){
-      if(this.countActive>0){
-        this.countActive = this.countActive - 1
-      }else{
-        this.countActive = 0
-      }
-      translateX = -this.countActive*this.props.state.winWidth
-      this.count = this.props.state.count
-    }
-    if(this.props.state.count - this.count === 0){
-      translateX = -this.countActive*this.props.state.winWidth
-    }
+    console.log(tvs)
     return (
       <div styleName='tv_bg'>
-        <SlidePot num={tvs.length} activeIndex={this.countActive} />
-        <div styleName="tvwrap clearfix" style={{width:wrapWidth,transform:`translateX(${translateX}px)`,WebkitTransform:`translateX(${translateX}px)`}} 
-        onTouchStart={this.props.touchstart} onTouchMove={this.props.touchmove} onTouchEnd={this.props.touchend} onTouchCancel={this.props.touchcancel}>
+        <div styleName="tvwrap clearfix"  
+          >
           {
-            tvs.length?tvs.map((tv,index) => <TvOne width={tvWidth} tvSwitch={this.props.tvState.tvSwitch}  tv={tv} actions={this.props.tvActions} key={index}/>):null
+            tvs.length===1?tvs.map((tv,index) => <TvOne  tvSwitch={this.props.tvState.tvSwitch}  tv={tv} actions={this.props.tvActions} key={index}/>):
+            <Tabs>
+            {
+              tvs.map((tv)=> (
+                <TabPane tab={Object.keys(tv)[0]} key={tv.deviceId} >
+                  <TvOne  tvSwitch={this.props.tvState.tvSwitch}  tv={tv} actions={this.props.tvActions}/>
+                </TabPane>
+            ))
+            }
+            </Tabs>
           }
         </div>
       </div>
