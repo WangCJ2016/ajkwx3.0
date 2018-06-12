@@ -73,56 +73,8 @@
 }
 
 
-.light_model
-{
-    padding-top: .5rem;
-    padding-left: .8rem;
-    visibility: hidden;
-}
-.light_figure
-{
-    display: inline-block;
 
-    margin-left: .66rem;
 
-    text-align: center;
-}
-.light_figure img
-{
-    width: 1.25rem;
-}
-.light_figure figcaption
-{
-    font-size: .34rem;
-
-    margin-top: .14rem;
-
-    color: #fff;
-}
-.class_title
-{
-    font-size: .3rem;
-
-    position: absolute;
-    top: 50%;
-    left: 0;
-
-    width: 3.7rem;
-    height: .6rem;
-    margin-top: -.3rem;
-    padding: 0 .2rem;
-
-    transform-origin: 100% 50%;
-    text-indent: .2rem;
-
-    color: #eee;
-}
-.class_title_active
-{
-    font-size: .38rem;
-
-    color: #fff;
-}
 .lights
 {
     width: 33.3%;
@@ -130,8 +82,8 @@
 
 :global(.lights_ON) > div
 {
-    background: url(../../assets/imgs/light/主灯_ON.png)no-repeat  0 .2rem;
-    background-size: .7rem .646rem;
+    background: url(../../assets/imgs/light/主灯_ON.png)no-repeat  0 20px;
+    background-size: 70px 64.6px;
 }
 :global(.lights_ON) > p
 {
@@ -139,39 +91,73 @@
 }
 :global(.lights) img
 {
-    width: .52rem;
+    width: 52px;
     margin-top: 20px;
 }
 
 :global(.light_img)
 {
-    width: .7rem;
-    height: .646rem;
+    width: 70px;
+    height: 64.6px;
     margin: 0 auto;
     padding-top: 20px;
 
-    background: url(../../assets/imgs/light/主灯.png)no-repeat 0 .2rem;
-    background-size: .7rem .646rem;
+    background: url(../../assets/imgs/light/主灯.png)no-repeat 0 20px;
+    background-size: 70px 64.6px;
 }
-/* :global(.卧室背景灯_ON) >div {
-    background: url(../../assets/imgs/light/beijingdeng_on.png)no-repeat no-repeat 0 .2rem;
+:global(.卧室背景灯_ON) >div {
+    background: url(../../assets/imgs/light/beijingdeng_on.png)no-repeat no-repeat 0 20px;
     background-size: .68rem .64rem;
 }
 :global(.卧室背景灯_OFF) >div {
-    background: url(../../assets/imgs/light/beijingdeng_off.png)no-repeat no-repeat 0 .2rem;
-    background-size: .68rem .64rem;
-} */
-:global(.主灯) img
-{
-    width: .52rem;
-}
-:global(.卫浴灯_OFF) > div
-{
-    background: url(../../assets/imgs/light/卫浴灯.png)no-repeat no-repeat 0 .2rem;
+    background: url(../../assets/imgs/light/beijingdeng_off.png)no-repeat no-repeat 0 20px;
     background-size: .68rem .64rem;
 }
-:global(.卫浴灯_ON) > div
-{
-    background: url(../../assets/imgs/light/卫浴灯_ON.png)no-repeat no-repeat 0 .2rem;
+:global(.卧室床头灯_ON) >div {
+    background: url(../../assets/imgs/light/chuangtou_on.png)no-repeat no-repeat 0 20px;
     background-size: .68rem .64rem;
 }
+:global(.卧室床头灯_OFF) >div {
+    background: url(../../assets/imgs/light/chuangtou_off.png)no-repeat no-repeat 0 20px;
+    background-size: .68rem .64rem;
+} 
+:global(.卧室镜前灯_ON) >div {
+    background: url(../../assets/imgs/light/jingqian_on.png)no-repeat no-repeat center center;
+    background-size: contain;
+}
+:global(.卧室镜前灯_OFF) >div {
+    background: url(../../assets/imgs/light/jingqian_off.png)no-repeat no-repeat center center;
+    background-size: contain;
+} 
+:global(.卧室廊灯_ON) >div {
+    background: url(../../assets/imgs/light/langdeng_on.png)no-repeat no-repeat 0 20px;
+    background-size: contain;
+}
+:global(.卧室廊灯_OFF) >div {
+    background: url(../../assets/imgs/light/langdeng_off.png)no-repeat no-repeat 0 20px;
+    background-size: contain;
+} 
+:global(.卧室夜灯_ON) >div {
+    background: url(../../assets/imgs/light/yedeng_on.png)no-repeat no-repeat center center;
+    background-size: contain;
+}
+:global(.卧室夜灯_OFF) >div {
+    background: url(../../assets/imgs/light/yedeng_off.png)no-repeat no-repeat center center;
+    background-size: contain;
+} 
+:global(.卧室射灯_ON) >div {
+    background: url(../../assets/imgs/light/shedeng_on.png)no-repeat no-repeat 0 20px;
+    background-size: contain;
+}
+:global(.卧室射灯_OFF) >div {
+    background: url(../../assets/imgs/light/shedeng_off.png)no-repeat no-repeat 0 20px;
+    background-size: contain;
+} 
+:global(.卫生间淋浴灯_ON) >div {
+    background: url(../../assets/imgs/light/linyudeng_on.png)no-repeat no-repeat 0 20px;
+    background-size: contain;
+}
+:global(.卫生间淋浴灯_OFF) >div {
+    background: url(../../assets/imgs/light/linyudeng_off.png)no-repeat no-repeat 0 20px;
+    background-size: contain;
+} 

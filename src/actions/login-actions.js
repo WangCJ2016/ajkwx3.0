@@ -27,7 +27,9 @@ export function goHome(username, password, isRemenber) {
                     sessionStorage.setItem('customerId',encode64(res.dataObject.id.toString()))
                     sessionStorage.setItem('token', res.dataObject.token)
                     dispatch(saveTokenHouseId(res.dataObject.token, encode64(res.dataObject.id.toString())))
-                    hashHistory.push('/selectHome')
+                    //hashHistory.push('selectHome')
+                    console.log(encode64(res.dataObject.id.toString()))
+                    goRouter(encode64(res.dataObject.id.toString()))
                     if (isRemenber) {
                         localStorage.setItem('userName', username)
                         localStorage.setItem('password', password)
@@ -46,6 +48,33 @@ export function goHome(username, password, isRemenber) {
     };
 }
 
+function goRouter(id) {
+    request.get(config.api.base + config.api.queryHotelHouses ,{customerId: id})
+    .then(res => {
+        let roomNum = 0
+        let rooms = []
+        for(const i in res.dataObject) {
+            roomNum = roomNum + res.dataObject[i].length 
+            rooms = [...rooms, ...res.dataObject[i]] 
+        }
+        if(roomNum > 1) {
+            hashHistory.push('selectHome')
+        }else{
+            if(rooms[0].subOrderCode) {
+                const room = rooms[0]
+                const basement = room.basement ? room.basement : 0
+                const floor = room.hotelHouse.floor + basement
+                hashHistory.push(`/home?name=${room.hotelHouse.name}&houseId=${room.houseId}&floor=${floor}&hotelId=${room.hotelHouse.hotelId}&subOrderCode=${room.subOrderCode}`)
+              }else{
+                const room = rooms[0]
+                const basement = room.basement ? room.basement : 0
+                const floor = room.hotelHouse.floor + basement
+                hashHistory.push(`/home?name=${room.hotelHouse.name}&houseId=${room.houseId}&floor=${floor}&hotelId=${room.hotelHouse.hotelId}&recordId=${room.id}`)
+              }
+        }
+    })
+ 
+}
 
 
 export function changeUserAndPassword(name, value) {

@@ -7,6 +7,7 @@ import { Toast } from 'antd-mobile'
 import styles  from './login.css'
 import * as actions from '../../actions/login-actions'
 
+
 import LoginLogo from './components/login-logo/LoginLogo'
 import LoginForm from './components/login-form/LoginForm'
 
@@ -28,6 +29,7 @@ class Login extends React.PureComponent {
     this.login = this.login.bind(this)
     this.checkboxChange = this.checkboxChange.bind(this)
   }
+ 
   componentWillUnmount() {
     if(this.timer) clearInterval(this.timer)
   }

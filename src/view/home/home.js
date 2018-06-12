@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { bindActionCreators } from 'redux'
 
+
 import styles from './home.css'
 import * as homeActions from '../../actions/home-actions'
 import HomeEnvir from './components/home-envir/home-envir'
@@ -22,7 +23,8 @@ class Home extends React.PureComponent {
   constructor(){
     super()
     this.state = {
-      activeIndex:-1
+      activeIndex:-1,
+      ifFirst: true
     }
   }
   componentDidMount(){
@@ -63,6 +65,11 @@ class Home extends React.PureComponent {
       activeIndex:index
     })
   }
+  modalClick = () => {
+    this.setState({
+      ifFirst: false
+    })
+  }
   render(){
     const {temp, pm, hum} = this.props.idState.envir 
     return(
@@ -75,6 +82,13 @@ class Home extends React.PureComponent {
           this.figuresRender()
         }
         </div>
+        {
+          this.state.ifFirst?
+          <div styleName='first_modal' onClick={this.modalClick}>
+            <img src={require('../../assets/imgs/home/first_modal.png')} alt=""/>
+          </div>:null
+        }
+        
       </div>
     )
   }

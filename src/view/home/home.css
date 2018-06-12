@@ -7,9 +7,7 @@
   overflow: hidden;
 }
 
-.curtain_title{
-  font-size: 0.36rem;
-}
+
 .home_name{
   margin-left: 80px;
   margin-top: 100px
@@ -76,11 +74,9 @@
   border-bottom: 1px solid #fafafa;
   border-left: 1px solid #fafafa;
 }
-.home_figure>img{
-  padding-top: 0.1rem
-}
+
 .home_figure>figcaption{
-  color: #ababab;
+  color: #666;
   font-size: 36px;
   margin-top: 20px;
 }
@@ -112,12 +108,43 @@
 
 
 .home_envir_play {
-  font-size: 0.28rem;
-  color: rgb(227, 228, 228);
+  font-size: 40px;
+  color: #ff7c1d;
   position: absolute;
-  top: .8rem;
-  right: 0.3rem;
+  top: 100px;
+  right: 50px;
 }
-.home_envir_play p{
-  margin-top: 0.2rem
+.home_envir_item {
+  padding: 10px 20px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center
+}
+.home_envir_item>span{
+  margin-left: 40px
+}
+.home_envir_item:last-child>span{
+  margin-left: 20px
+}
+.home_envir_item_left{
+  text-align: center
+}
+.home_envir_item_left > span{
+  display: block;
+  font-size:24px;
+  color: #333
+}
+
+.first_modal{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.first_modal > img {
+  width: 100%;
+  height: 100%;
 }

@@ -2,7 +2,6 @@ import React from 'react'
 import CSSModules from 'react-css-modules'
 
 import styles from './tv.css'
-import TvButton from './TvButton'
 
 @CSSModules(styles, { allowMultiple: true })
 class TvOne extends React.PureComponent {
@@ -55,91 +54,106 @@ class TvOne extends React.PureComponent {
     }
   }
   render(){
-    const {width} = this.props
+    console.log(this.props)
     return (
-      <div styleName="tv_wrap" style={{width:width}}>
+      <div styleName="tv_wrap" >
         <section styleName='tv_section'>
           <div styleName='tv_flex'>
             <span styleName='section_title'>电视控制区</span>
-            <img src={require('../../assets/imgs/tv/switch_icon.png')} onClick={this.tvCtrl.bind(this,this.state.tv)} alt=""/>
+            {
+              this.state.tv === 'ON'?
+              <img  src={require('../../assets/imgs/tv/switch_on.png')} onClick={this.tvCtrl.bind(this,this.state.tv)} alt=""/>:
+              <img  src={require('../../assets/imgs/tv/switch_icon.png')} onClick={this.tvCtrl.bind(this,this.state.tv)} alt=""/>
+            }
           </div>
           <div styleName='tv_flex'>
             <span style={{color:'#666'}}>TV/AV</span>
-            <img src={require('../../assets/imgs/tv/voice-.png')} onClick={this.tvCtrl.bind(this,'VOL_SUB')} alt=""/>
-            <img src={require('../../assets/imgs/tv/voice+.png')} onClick={this.tvCtrl.bind(this,'VOL_PLUS')} alt=""/>
+            <img styleName='pressActive' src={require('../../assets/imgs/tv/voice-.png')} onClick={this.tvCtrl.bind(this,'VOL_SUB')} alt=""/>
+            <img styleName='pressActive' src={require('../../assets/imgs/tv/voice+.png')} onClick={this.tvCtrl.bind(this,'VOL_PLUS')} alt=""/>
           </div>
         </section>
 
         <section styleName='tv_section'>
            <div styleName="tv_flex">
-             <img src={require('../../assets/imgs/tv/home.png')} onClick={this.tvBoxCtrl.bind(this,'HOME')} alt=""/>
+             <img styleName='pressActive' src={require('../../assets/imgs/tv/home.png')} onClick={this.tvBoxCtrl.bind(this,'HOME')} alt=""/>
              <span styleName='section_title'>机顶盒</span>
-             <img src={require('../../assets/imgs/tv/switch_on.png')} onClick={this.tvBoxCtrl.bind(this,this.state.tvBox)} alt=""/>
+             {
+              this.state.tvBox === 'ON'?
+              <img  src={require('../../assets/imgs/tv/switch_on.png')} onClick={this.tvBoxCtrl.bind(this,this.state.tvBox)} alt=""/>:
+              <img  src={require('../../assets/imgs/tv/switch_icon.png')} onClick={this.tvBoxCtrl.bind(this,this.state.tvBox)} alt=""/>
+            }
            </div>
            <div styleName='tv_flex'>
             <div styleName="tv_flex channel_voice">
-                <span  onClick={this.tvBoxCtrl.bind(this,'VOL_PLUS')}>
+                <span styleName='pressActive'  onClick={this.tvBoxCtrl.bind(this,'VOL_PLUS')}>
                   <img src={require('../../assets/imgs/tv/plus.png')} alt=""/>
                 </span>
                 <span styleName="arr_title">音量</span>
-                <span  onClick={this.tvBoxCtrl.bind(this,'VOL_SUB')}>
+                <span styleName='pressActive'  onClick={this.tvBoxCtrl.bind(this,'VOL_SUB')}>
                   <img src={require('../../assets/imgs/tv/munis.png')} alt=""/>
                 </span>
             </div>
             <div styleName='round_wrap'>
-              <span styleName="round_up round" data-key='up' onClick={this.tvBoxCtrl.bind(this,'UP')}>
+              <span styleName="pressActive round" data-key='up' onClick={this.tvBoxCtrl.bind(this,'UP')}>
+                <img src={require('../../assets/imgs/tv/arr_top.png')} alt=""/>
               </span>
-              <span styleName="round_down round" onClick={this.tvBoxCtrl.bind(this,'DOWN')}></span>
-              <span styleName="round_left round" onClick={this.tvBoxCtrl.bind(this,'LEFT')}></span>
-              <span styleName="round_right round" onClick={this.tvBoxCtrl.bind(this,'RIGHT')}></span>
+              <span styleName="pressActive round" onClick={this.tvBoxCtrl.bind(this,'DOWN')}>
+                <img style={{width:'13px'}} src={require('../../assets/imgs/tv/arr_right.png')} alt=""/>
+              </span>
+              <span styleName="pressActive round" onClick={this.tvBoxCtrl.bind(this,'LEFT')}>
+                <img style={{width:'13px'}} src={require('../../assets/imgs/tv/arr_left.png')} alt=""/>
+              </span>
+              <span styleName="pressActive round" onClick={this.tvBoxCtrl.bind(this,'RIGHT')}>
+                <img src={require('../../assets/imgs/tv/arr_down.png')} alt=""/>
+              </span>
                 <div styleName="arr_ok" onClick={this.tvBoxCtrl.bind(this,'OK')}>
                   ok
                 </div>
             </div>
             <div styleName="tv_flex channel_voice">
-                <span  onClick={this.tvBoxCtrl.bind(this,'VOL_PLUS')}>
+                <span styleName='pressActive'  onClick={this.tvBoxCtrl.bind(this,'VOL_PLUS')}>
                   <img src={require('../../assets/imgs/tv/plus.png')} alt=""/>
                 </span>
                 <span styleName="arr_title">频道</span>
-                <span  onClick={this.tvBoxCtrl.bind(this,'VOL_SUB')}>
+                <span styleName='pressActive'  onClick={this.tvBoxCtrl.bind(this,'VOL_SUB')}>
                   <img src={require('../../assets/imgs/tv/munis.png')} alt=""/>
                 </span>
               </div>
            </div>
            <div styleName='tv_flex'>
-             <div styleName='tv_flex flexdirection_cloumn av_btns' onClick={this.tvBoxCtrl.bind(this,'RETURN')}>
+             <div styleName='tv_flex flexdirection_cloumn av_btns pressActiveTwo' onClick={this.tvBoxCtrl.bind(this,'RETURN')}>
                <div styleName='back_bg'></div>
                <span>返回</span>
              </div>
-             <div styleName='tv_flex flexdirection_cloumn av_btns' onClick={this.tvBoxCtrl.bind(this,'PLAY')}>
+             <div styleName='tv_flex flexdirection_cloumn av_btns pressActiveTwo' onClick={this.tvBoxCtrl.bind(this,'PLAY')}>
                <div styleName='resee_bg'></div>
                <span>回看</span>
              </div>
-             <div styleName='tv_flex flexdirection_cloumn av_btns' onClick={this.tvBoxCtrl.bind(this,'MUTE')}>
+             <div styleName='tv_flex flexdirection_cloumn av_btns pressActiveTwo' onClick={this.tvBoxCtrl.bind(this,'MUTE')}>
               <div styleName='mute_bg'></div>
                <span>静音</span>
              </div>
-             <div styleName='tv_flex flexdirection_cloumn  av_btns' onClick={this.tvBoxCtrl.bind(this,'STOP')}>
+             <div styleName='tv_flex flexdirection_cloumn  av_btns pressActiveTwo' onClick={this.tvBoxCtrl.bind(this,'STOP')}>
                <div styleName='replay_bg'></div>
                <span>点播</span>
              </div>
            </div>
            <div styleName="tv_num" onClick={this.numClick.bind(this,'tv')}>
             <div styleName="num_item">
-              <span styleName="num" data-key='1'>1</span>
-              <span styleName="num" data-key='2'>2</span>
-              <span styleName="num" data-key='3'>3</span>
-              <span styleName="num" data-key='4'>4</span>
+              <span styleName="num pressActive" data-key='1'>1</span>
+              <span styleName="num pressActive" data-key='2'>2</span>
+              <span styleName="num pressActive" data-key='3'>3</span>
+              <span styleName="num pressActive" data-key='4'>4</span>
             </div>
             <div styleName="num_item">
-              <span styleName="num" data-key='5'>5</span>
-              <span styleName="num" data-key='6'>6</span>
-              <span styleName="num" data-key='7'>7</span>
-              <span styleName="num" data-key='8'>8</span>
+              <span styleName="num pressActive" data-key='5'>5</span>
+              <span styleName="num pressActive" data-key='6'>6</span>
+              <span styleName="num pressActive" data-key='7'>7</span>
+              <span styleName="num pressActive" data-key='8'>8</span>
             </div>
             <div styleName="num_item num_item_last">
-              <span styleName="num" data-key='9'>9</span>
-              <span styleName="num" data-key='0'>0</span>
+              <span styleName="num pressActive" data-key='9'>9</span>
+              <span styleName="num pressActive" data-key='0'>0</span>
             </div>
           </div>
         </section>

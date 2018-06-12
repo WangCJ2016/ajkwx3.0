@@ -34,8 +34,10 @@ class Service extends React.PureComponent {
       status:type,
     },function(){
       const status = this.state[this.state.status] === 'CLOSE' ? 'OPEN' : 'CLOSE'
+      const ohtherStatus = type === 'clean' ? 'disturb' : 'clean' 
       this.setState({
-        [this.state.status]: status
+        [this.state.status]: status,
+        [ohtherStatus]: 'CLOSE'
       })
       if (type==='clean') {
         const cleanlight = lights.filter(light => light.name === "请即清理")
@@ -85,13 +87,13 @@ class Service extends React.PureComponent {
          <h4>酒店一站式服务</h4>
        </div>
         <div styleName='rect' >
-          <div styleName={cleanStyle}  onClick={this.submitService.bind(this,'clean')}>
+          <div styleName={cleanStyle}  onClick={this.submitService.bind(this,'clean')} >
             {
               this.state.status==='clean'&&this.state.clean==='OPEN'?
               <img src={require('../../assets/imgs/service/swape.png')} alt="" styleName='swape'/>:
               <img src={require('../../assets/imgs/service/swape_off.png')} alt="" styleName='swape'/>
             }
-            <p styleName='content'>请即清理</p>
+            <p styleName='content' style={{color:this.state.status==='clean'&&this.state.clean==='OPEN'?'#63a0cb':'#666'}}>请即清理</p>
            
           </div>
           <div styleName={disturbStyle} onClick={this.submitService.bind(this,'disturb')}>
@@ -100,7 +102,7 @@ class Service extends React.PureComponent {
               <img src={require('../../assets/imgs/service/ring.png')} alt="" styleName='ring'/>:
               <img src={require('../../assets/imgs/service/ring_off.png')} alt="" styleName='ring'/>
             }
-            <p styleName='content'>请勿打扰</p>
+            <p styleName='content' style={{color:this.state.status==='disturb'&&this.state.disturb==='OPEN'?'#f6b354':'#666'}}>请勿打扰</p>
           </div>
           <div styleName={checkoutStyle}  onClick={this.propmtVisit}>
             {
@@ -108,7 +110,7 @@ class Service extends React.PureComponent {
               <img src={require('../../assets/imgs/service/checkout.png')} alt="" styleName='swape'/>:
               <img src={require('../../assets/imgs/service/checkout_off.png')} alt="" styleName='swape'/>
             }
-            <p styleName='content'>退房</p>
+            <p styleName='content' style={{color:this.state.status === 'checkout'?'#87b221':'#666'}}>退房</p>
           </div>
         </div>
       </div>

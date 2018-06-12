@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
-const eslintFormatter = require('react-dev-utils/eslintFormatter');
+
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
@@ -205,7 +205,6 @@ module.exports = {
       // in development "style" loader enables hot editing of CSS.
       {
         test: /\.css$/,
-        exclude: path.resolve(__dirname, 'src/assets'),
         use: [
           require.resolve('style-loader'),
           {
@@ -270,9 +269,12 @@ module.exports = {
             options: {
               ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
               plugins: () => [
+                require('postcss-flexbugs-fixes'),
                 autoprefixer({
                   browsers: ['last 2 versions', 'Firefox ESR', '> 1%', 'ie >= 8', 'iOS >= 8', 'Android >= 4'],
+                  flexbox: 'no-2009',
                 }),
+
                 postcssAspectRatioMini({}),
                 postcssPxToViewport({
                   viewportWidth: 750, // (Number) The width of the viewport. 
@@ -293,16 +295,18 @@ module.exports = {
                   autoprefixer: false,
                   "postcss-zindex": false
                 })
+                
               ],
             },
           },
           {
             loader: require.resolve('less-loader'),
             options: {
-              modifyVars: {
-                "@primary-color": "#1DA57A"
-              },
-            },
+              "modifyVars":{
+                "@primary-color":"#006f6b",
+                //"@icon-url": JSON.stringify('http://localhost:3000/iconfont/iconfont')
+              }
+            }
           },
         ],
       }
