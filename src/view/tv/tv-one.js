@@ -97,13 +97,13 @@ class TvOne extends React.PureComponent {
               <span styleName="pressActive round" data-key='up' onClick={this.tvBoxCtrl.bind(this,'UP')}>
                 <img src={require('../../assets/imgs/tv/arr_top.png')} alt=""/>
               </span>
-              <span styleName="pressActive round" onClick={this.tvBoxCtrl.bind(this,'DOWN')}>
+              <span styleName="pressActive round" onClick={this.tvBoxCtrl.bind(this,'RIGHT')}>
                 <img style={{width:'13px'}} src={require('../../assets/imgs/tv/arr_right.png')} alt=""/>
               </span>
               <span styleName="pressActive round" onClick={this.tvBoxCtrl.bind(this,'LEFT')}>
                 <img style={{width:'13px'}} src={require('../../assets/imgs/tv/arr_left.png')} alt=""/>
               </span>
-              <span styleName="pressActive round" onClick={this.tvBoxCtrl.bind(this,'RIGHT')}>
+              <span styleName="pressActive round" onClick={this.tvBoxCtrl.bind(this,'DOWN')}>
                 <img src={require('../../assets/imgs/tv/arr_down.png')} alt=""/>
               </span>
                 <div styleName="arr_ok" onClick={this.tvBoxCtrl.bind(this,'OK')}>
@@ -111,11 +111,11 @@ class TvOne extends React.PureComponent {
                 </div>
             </div>
             <div styleName="tv_flex channel_voice">
-                <span styleName='pressActive'  onClick={this.tvBoxCtrl.bind(this,'VOL_PLUS')}>
+                <span styleName='pressActive'  onClick={this.tvBoxCtrl.bind(this,'UP')}>
                   <img src={require('../../assets/imgs/tv/plus.png')} alt=""/>
                 </span>
                 <span styleName="arr_title">频道</span>
-                <span styleName='pressActive'  onClick={this.tvBoxCtrl.bind(this,'VOL_SUB')}>
+                <span styleName='pressActive'  onClick={this.tvBoxCtrl.bind(this,'DOWN')}>
                   <img src={require('../../assets/imgs/tv/munis.png')} alt=""/>
                 </span>
               </div>

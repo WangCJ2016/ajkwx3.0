@@ -197,7 +197,15 @@
     font-size: 34px;
     transform: rotate(-45deg)
 }
-
+.arr_ok:active
+{
+    transform:rotate(-45deg) scale(.83);
+}
+.arr_ok:active:after
+{
+    content: '';
+    animation: sonarEffect 1.3s ease-out 75ms ;
+}
 
 .tv_num {
     color: #999;

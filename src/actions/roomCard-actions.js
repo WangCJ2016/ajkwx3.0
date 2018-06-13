@@ -22,7 +22,7 @@ export function initialState() {
     const houseId = houseId_session || getStore().toObject().idStore.houseId
     request.get(config.api.base + config.api.queryHostDeviceByType, { houseId: houseId, token: token, deviceType: deviceType })
       .then(res => {
-       
+         console.log(res)
         if (res && res.success) {
          
           if (res && res.success && res.dataObject.devices.length > 0)
@@ -39,7 +39,7 @@ export function initail(deviceId) {
   }
 }
 // 开门
-export function openTheDoor(deviceId) {
+export function openTheDoor(deviceId,cb) {
   return (dispatch, getStore) => {
     const token = token_session || getStore().toObject().idStore.token
     const houseId = houseId_session || getStore().toObject().idStore.houseId
@@ -62,9 +62,7 @@ export function openTheDoor(deviceId) {
             .then(res => {
               
             })
-          setTimeout(() => {
-            hashHistory.goBack()
-          }, 2000)
+      
         }
       })
   }

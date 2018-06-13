@@ -97,9 +97,7 @@ import * as modelActions from '../../actions/model-actions'
     const { type } = this.props.modelState.models
     return(
       <div styleName='models_bg'>
-        <div styleName='model_item'>
           { type === 0 ? this.modelRender_type1() : this.modelRender_type2() }
-        </div>
       </div>
     )
   }

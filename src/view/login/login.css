@@ -1,3 +1,5 @@
+
+
 .logo_bg{
   height: 100%;
   background: url(../../assets/imgs/login/login_bg.png);
@@ -38,7 +40,8 @@
   line-height: 120px;
   display: flex;
   margin-bottom: 1px;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid transparent; 
+  border-image: url('../../assets/imgs/login/border.png') 0 0 2 0  stretch;
 }
 .form_group label{
   display: inline-block;

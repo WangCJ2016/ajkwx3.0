@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from '../light.css'
-import { Switch } from 'antd-mobile'
+import { Switch, Button } from 'antd-mobile'
 import classNames from 'classnames'
 import { hashHistory } from "react-router"
 import CSSModules from 'react-css-modules'
@@ -55,16 +55,21 @@ class LightCard extends React.Component {
     })
   }
   render() {
+
     return (
       <div className={styles.light_card}>
         <div styleName='ligths_wrap'>
           {this.lightRender()}
         </div>
-        <div className={styles.switch_toggle}>
-          <span>全关</span>
-          <Switch></Switch>
-          <span>全开</span>
-        </div>
+        {
+          this.props.type === '卫生间'?
+          <div className={styles.switch_toggle}>
+            <span>全关</span>
+            <Switch checked={this.props.switchStatus} onChange={this.props.switchChange}></Switch>
+            <span>全开</span>
+          </div>:null
+        }
+        
     </div>
     )
   }

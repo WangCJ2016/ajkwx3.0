@@ -8,6 +8,7 @@ import Immutable from 'immutable'
 import configureStore from './store'
 import routes from './routes'
 import './assets/normalize.css'
+import './app.css'
 
 const initialState = Immutable.Map();
 

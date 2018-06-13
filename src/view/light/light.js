@@ -24,7 +24,7 @@ class Light extends React.PureComponent {
     super(props)
     this.state = {
     modelActiveIndex:-1,
-    
+    switchStatus: false
     //largeRoundShouldReset: false
     } 
   }
@@ -61,7 +61,19 @@ class Light extends React.PureComponent {
     return lights
     .filter((light) => light.name&&light.name.indexOf(middleRoundStatus) > -1)
   }
-
+  switchChange = (e) =>  {
+    console.log(e)
+    this.setState({
+      switchStatus: !this.state.switchStatus
+    })
+    const {lights,middleRoundStatus} = this.props.lightStore
+     lights
+    .filter((light) => light.name&&light.name.indexOf(middleRoundStatus) > -1)
+    .forEach(light => {
+      console.log(light)
+      this.props.lightActions.lightsClick(light.id, e?'OFF':'ON')
+    })
+  }
   render() {
     const { middleRoundStatus} = this.props.lightStore
     return (
@@ -71,7 +83,10 @@ class Light extends React.PureComponent {
           middelRoundClick={this.middelRoundClick}
         />
         <LightCard 
+          type={middleRoundStatus}
           lights={this.lightSelector()}
+          switchChange={this.switchChange}
+          switchStatus={this.state.switchStatus}
         />
       </div>
    )
