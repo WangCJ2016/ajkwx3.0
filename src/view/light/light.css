@@ -13,6 +13,18 @@
         height: auto;
     }
 }
+.tablists{
+    position: relative;
+}
+.inkBar {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    height: 4px;
+    background-color: #fb7346;
+    z-index: 1;
+  }
 .tabs{
    display: flex;
    margin-left: 96px;
@@ -23,11 +35,11 @@
 }
 .tabs > li{
   width: 110px;
-  line-height: 40px;
+  line-height: 50px;
   list-style: none;
   text-align: center;
-  border-radius: 20px;
-  font-size: 28px;
+  border-radius: 25px;
+  font-size: 34px;
   color: #fff;
 }
 .type_active{
@@ -64,6 +76,23 @@
     align-items: center;
     margin-bottom: 70px;  
 }
+
+.blank_wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center
+}
+.blank_wrap > span {
+    font-size: 30px;
+    color: #fb7346;
+    margin-top: 60px;
+}
+.blank_img {
+    width: 267px;
+    height: 235px;
+}
 .light_p{
     white-space: nowrap;
     overflow: hidden;
@@ -82,7 +111,7 @@
 
 :global(.lights_ON) > div
 {
-    background: url(../../assets/imgs/light/主灯_ON.png)no-repeat  0 20px;
+    background: url(../../assets/imgs/light/tonyong_on.png)no-repeat  0 20px;
     background-size: 70px 64.6px;
 }
 :global(.lights_ON) > p
@@ -105,8 +134,16 @@
     margin: 0 auto;
     padding-top: 20px;
 
-    background: url(../../assets/imgs/light/主灯.png)no-repeat 0 20px;
+    background: url(../../assets/imgs/light/tonyong_off.png)no-repeat 0 20px;
     background-size: 70px 64.6px;
+}
+:global(.卧室主灯_ON) >div {
+    background: url(../../assets/imgs/light/zhudeng_ON.png)no-repeat no-repeat 0 20px;
+    background-size: .68rem .64rem;
+}
+:global(.卧室主灯_OFF) >div {
+    background: url(../../assets/imgs/light/zhudeng_off.png)no-repeat no-repeat 0 20px;
+    background-size: .68rem .64rem;
 }
 :global(.卧室背景灯_ON) >div {
     background: url(../../assets/imgs/light/beijingdeng_on.png)no-repeat no-repeat 0 20px;
@@ -162,5 +199,13 @@
 }
 :global(.卫生间淋浴灯_OFF) >div {
     background: url(../../assets/imgs/light/linyudeng_off.png)no-repeat no-repeat 0 20px;
+    background-size: contain;
+} 
+:global(.卫生间顶灯_ON) >div {
+    background: url(../../assets/imgs/light/dingdeng_on.png)no-repeat no-repeat center center;
+    background-size: contain;
+}
+:global(.卫生间顶灯_OFF) >div {
+    background: url(../../assets/imgs/light/dingdeng_off.png)no-repeat no-repeat center center;
     background-size: contain;
 } 

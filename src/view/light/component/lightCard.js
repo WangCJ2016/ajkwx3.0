@@ -19,23 +19,31 @@ import * as actions from '../../../actions/light-actions'
 @CSSModules(styles, { allowMultiple: true })
 class LightCard extends React.Component {
   lightRender=() => {
-    return this.props.lights.map(light => {
-      const status = light.status
-      const stylename = classNames({
-        lights:true,
-        ['lights_'+status]:true,
-        [light.name+'_'+status]:true
+    if(this.props.lights.length === 0) {
+      return <div styleName="blank_wrap">
+         <img styleName='blank_img' src={require('../../../assets/imgs/light/nolight.png')} alt=""/>
+      <span>无此类型的灯</span>
+      </div>
+      
+    } else {
+      return this.props.lights.map(light => {
+        const status = light.status
+        const stylename = classNames({
+          lights:true,
+          ['lights_'+status]:true,
+          [light.name+'_'+status]:true
+        })
+        return (
+          <div styleName='light_wrap'  key={light.id}>
+                  <div className={stylename} 
+                     onClick={this.lightsClick.bind(this, light.id, status, light.name, light.deviceId)}>
+                    <div className="light_img"></div>
+                    <p styleName='light_p'>{light.name.replace(this.props.lightStore.middleRoundStatus, '')}</p>
+                  </div>
+               </div>
+        )
       })
-      return (
-        <div styleName='light_wrap'  key={light.id}>
-                <div className={stylename} 
-                   onClick={this.lightsClick.bind(this, light.id, status, light.name, light.deviceId)}>
-                  <div className="light_img"></div>
-                  <p styleName='light_p'>{light.name.replace(this.props.lightStore.middleRoundStatus, '')}</p>
-                </div>
-             </div>
-      )
-    })
+    }
   }
   lightsClick = (wayId, status, name, deviceId) => {
     const { lights } = this.props

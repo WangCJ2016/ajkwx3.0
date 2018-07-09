@@ -22,6 +22,8 @@ export function initialAirCondition() {
                                         let airInfo = {},
                                             coolWays, warmWays
                                         if (air.ways) {
+                                            let coolName =  ''
+                                            let warmName = ''
                                             coolWays = air.ways.filter(way => {
                                                 if (way.remoteKey.indexOf('COOL') > -1) {
                                                     return way;
@@ -29,8 +31,9 @@ export function initialAirCondition() {
                                                     return null
                                                 }
                                             }).map(way => {
-                                                return way.remoteKey;
-                                            })
+                                                coolName = way.remoteKey.slice(0,-2)
+                                                return way.remoteKey.slice(-2);
+                                            }).sort((a,b)=>a-b).map(way => coolName + way)
                                             warmWays = air.ways.filter(way => {
                                                 if (way.remoteKey.indexOf('WARM') > -1) {
                                                     return way;
@@ -38,8 +41,9 @@ export function initialAirCondition() {
                                                     return null
                                                 }
                                             }).map(way => {
-                                                return way.remoteKey;
-                                            });
+                                                warmName = way.remoteKey.slice(0, -2)
+                                                return way.remoteKey.slice(-2);
+                                            }).sort((a,b)=>a-b).map(way => warmName + way);
                                         }
                                         airInfo.deviceId = air.deviceId
                                         airInfo.coolWays = coolWays

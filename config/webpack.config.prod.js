@@ -71,7 +71,7 @@ module.exports = {
     filename: 'static/js/[name].[chunkhash:8].js',
     chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
     // We inferred the "public path" (such as / or /my-project) from homepage.
-    publicPath: 'http://47.100.123.83/wechatx/', // http://www.live-ctrl.com/wechatx
+    publicPath: 'http://47.100.123.83/wechatv/', // http://www.live-ctrl.com/wechatx
     // Point sourcemap entries to original disk location (format as URL on Windows)
     devtoolModuleFilenameTemplate: info =>
       path

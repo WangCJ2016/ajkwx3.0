@@ -22,6 +22,7 @@ class AirOne extends React.PureComponent {
       currentTemArray:this.props.air.coolWays
     })
   }
+ 
   //开关
   switchClick(deviceId){
     const key = this.state.switchKey === 'ON'?'OFF':'ON'
@@ -75,12 +76,7 @@ class AirOne extends React.PureComponent {
       this.props.actions.centerchangeTem(this.state.currentTemArray[this.state.temIndex],deviceId,this.state.model,this.state.speed)
     })
   }
-  speedRender(){
-    const arry = numToarray(this.state.speed)
-    return arry.map((speed,index) => {
-      return <img key={index} styleName='speed_img' src={require(`../../assets/imgs/air/speed_${index}.png`)} alt=""/>
-    })
-  }
+ 
   //模式改变
   modelChange(deviceId){
     if(this.state.switchKey==='ON') return
@@ -107,64 +103,45 @@ class AirOne extends React.PureComponent {
     }
     
   }
- 
+   
   render(){
     const { deviceId } = this.props.air
     const { switchKey,temIndex,model,currentTemArray} = this.state
     const { deviceType }  = this.props
-   
-    return(
+
+      return(
         <div styleName='air_wrap' style={{width:this.props.width}}>
-          <div styleName="air_display">
-           <div styleName="air_box">
-            <div styleName="air_display_box">
-              <span styleName='air_display_title'>风速</span>
-              <div styleName="air_speed">
-                {this.speedRender()}
+        <div styleName="air_card_wrap">
+          <div styleName="air_round">
+            <figure styleName='air_figure' onClick={this.temChange.bind(this,'minus',deviceId)}>
+              <div styleName="air_figure_img">
+              <img styleName='btn_tmp' src={require('../../assets/imgs/air/c-.png')} alt=""/>
+              </div>
+              <figcaption style={{color:'#666'}}>温度-</figcaption>
+            </figure>
+            <div styleName="middle_round"  >
+            <img src={switchKey!=='ON'?require('../../assets/imgs/air/round_bg.png'):require('../../assets/imgs/air/round_bg_OFF.png')} alt=""/>
+            {switchKey==='OFF'?(currentTemArray?deviceType === 'VIRTUAL_CENTRAL_AIR_REMOTE' ? currentTemArray[temIndex]:currentTemArray[temIndex].slice(-2):'25'):''}
+              <div styleName='middle_round_content'>
+                <div>
+                  {
+                  <span styleName='middle_round_tem'>{switchKey!=='ON'?currentTemArray[temIndex].slice(-2):25}</span>
+                  }
+                  <sup>℃</sup> 
+                </div>
+                <span>当前的温度</span>
               </div>
             </div>
-            <div styleName="air_display_box air_box_down">
-              <span styleName='air_display_title'>模式</span>
-              <div styleName="air_model">
-                <img src={require(`../../assets/imgs/air/${model}.png`)} alt=""/>
-                <span>{model==='cold'?'制冷':'制热'}</span>
+            <figure styleName='air_figure' onClick={this.temChange.bind(this,'plus',deviceId)} >
+              <div styleName="air_figure_img">
+                <img styleName='btn_tmp' src={require('../../assets/imgs/air/c+.png')} alt=""/>
               </div>
-            </div>
-          </div>
-          <div styleName="air_divide">
-            <p></p>
-          </div>
-          <div styleName="air_box">
-            <div styleName="air_display_box">
-              <span styleName='air_display_title'>当前温度</span>
-              <div styleName="tem">20℃</div> 
-            </div>
-            <div styleName="air_display_box air_box_down">
-              <span styleName='air_display_title'>设置温度</span>
-              <div styleName="tem">{switchKey==='OFF'?(currentTemArray?deviceType === 'VIRTUAL_CENTRAL_AIR_REMOTE' ? currentTemArray[temIndex]+'℃':currentTemArray[temIndex].slice(-2)+'℃':'25℃'):''}</div>
-            </div>
-          </div>
+              <figcaption style={{color:'#666'}}>温度+</figcaption>
+            </figure>
         </div>
-        <div styleName="air_round">
-          <figure styleName='air_figure' onClick={this.temChange.bind(this,'minus',deviceId)}>
-            <div styleName="air_figure_img">
-            <img styleName='btn_tmp' src={require('../../assets/imgs/air/c-.png')} alt=""/>
-            </div>
-            <figcaption style={{color:'#fff'}}>温度-</figcaption>
-          </figure>
-          <div styleName="middle_round"  style={{background: switchKey!=='ON'?'#6095f0':'#666'}}>
-          {switchKey==='OFF'?(currentTemArray?deviceType === 'VIRTUAL_CENTRAL_AIR_REMOTE' ? currentTemArray[temIndex]:currentTemArray[temIndex].slice(-2):'25'):''}
-            {
-              switchKey!=='ON'?null:25
-            }
-            <sup>℃</sup>
-          </div>
-          <figure styleName='air_figure' onClick={this.temChange.bind(this,'plus',deviceId)} >
-            <div styleName="air_figure_img">
-              <img styleName='btn_tmp' src={require('../../assets/imgs/air/c+.png')} alt=""/>
-            </div>
-            <figcaption style={{color:'#fff'}}>温度+</figcaption>
-          </figure>
+        <div styleName="set_tem_wrap">
+          <span>预设温度</span>
+          <span>20℃</span>
         </div>
         <div styleName="air_btn">  
             <figure styleName='air_figure' onClick={this.switchClick.bind(this,deviceId)}>
@@ -175,17 +152,20 @@ class AirOne extends React.PureComponent {
             </figure>
            <figure styleName='air_figure' onClick={this.speedChange.bind(this,deviceId,deviceId)}>
             <div styleName="air_figure_img">
-              <img styleName='btn_speed' src={require('../../assets/imgs/air/speed.png')} alt=""/>
+              <img styleName='btn_speed' src={require(`../../assets/imgs/air/speed_${this.state.speed}.png`)} alt=""/>
             </div>
             <figcaption>风速</figcaption>
           </figure>
-           <figure styleName='air_figure' onClick={this.modelChange.bind(this,deviceId)}>
+          <figure styleName='air_figure' onClick={this.modelChange.bind(this,deviceId)}>
             <div styleName="air_figure_img">
-              <img styleName='btn_speed' src={require('../../assets/imgs/air/air_model.png')} alt=""/>
+              <img styleName='btn_speed' src={require(`../../assets/imgs/air/${model}.png`)} alt=""/>
             </div>
             <figcaption>模式</figcaption>
           </figure>
-        </div>
+         </div>
+       </div>
+       
+       
         </div>
     )
   }

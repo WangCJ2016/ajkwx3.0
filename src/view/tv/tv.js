@@ -57,7 +57,6 @@ class Tv extends React.PureComponent {
   render(){
 
     const { tvs } = this.props.tvState
-    console.log(tvs)
     return (
       <div styleName='tv_bg'>
         <div styleName="tvwrap clearfix"  

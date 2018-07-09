@@ -67,7 +67,7 @@ class TvOne extends React.PureComponent {
             }
           </div>
           <div styleName='tv_flex'>
-            <span style={{color:'#666'}}>TV/AV</span>
+            <span styleName='pressActive menu' onClick={this.tvCtrl.bind(this,'MENU')} style={{color:'#666'}}>TV/AV</span>
             <img styleName='pressActive' src={require('../../assets/imgs/tv/voice-.png')} onClick={this.tvCtrl.bind(this,'VOL_SUB')} alt=""/>
             <img styleName='pressActive' src={require('../../assets/imgs/tv/voice+.png')} onClick={this.tvCtrl.bind(this,'VOL_PLUS')} alt=""/>
           </div>

@@ -16,12 +16,12 @@
   align-items: center;
   background-size: 100% 100%!important;
   position: relative;
-  background: url('../../assets/imgs/models/getup_bg.png') no-repeat;
+  background: url('../../assets/imgs/models/tongyong_bg.png') no-repeat;
 }
 .figure > div{
   width: 71px;
   height: 75px;
-  background: url('../../assets/imgs/models/getup.png') no-repeat;
+  background: url('../../assets/imgs/models/tongyong.png') no-repeat;
   background-size: contain!important;
 }
 .checked{

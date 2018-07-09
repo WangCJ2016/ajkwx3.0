@@ -206,7 +206,10 @@
     content: '';
     animation: sonarEffect 1.3s ease-out 75ms ;
 }
-
+.menu {
+    padding: 20px;
+    border-radius: 5px;
+}
 .tv_num {
     color: #999;
     margin-top: 70px;
