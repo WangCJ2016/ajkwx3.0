@@ -26,12 +26,20 @@ import * as modelActions from '../../actions/model-actions'
     this.props.modelActions.initialModel()
   }
   changeModel(index, scenceId){
+    if(this.state.model_activeIndex === index && this.delayIf) {
+       return
+    }
     this.setState({
       model_activeIndex:index
-    })
-    this.props.modelActions.changeModel(scenceId)
+    })  
+    this.props.modelActions.changeModel(scenceId, this.delayClick)
   }
-
+  delayClick = () => {
+    this.delayIf = true
+    setTimeout(()=>{
+      this.delayIf = false
+    }, 2000)
+  }
   modelRender_type1(){
     const modelArray = this.props.modelState.models.scenes
     const scenes = modelArray.filter((scence) => scence.name.indexOf('情景') === 0)

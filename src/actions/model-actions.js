@@ -22,7 +22,7 @@ function initialState(data){
   };
 }
  
-export function changeModel(scenceId){
+export function changeModel(scenceId, cb){
   return (dispatch,getState) => {
     const token =  token_session || getState().toObject().idStore.token
     const houseId =  houseId_session || getState().toObject().idStore.houseId
@@ -33,7 +33,9 @@ export function changeModel(scenceId){
       deviceType:deviceType
     })
     .then(res => {
-      
+      if(res.success) {
+        cb?cb():null
+      }
     })
   }
 }

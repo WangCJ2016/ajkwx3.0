@@ -108,14 +108,18 @@ class AirOne extends React.PureComponent {
     const { deviceId } = this.props.air
     const { switchKey,temIndex,model,currentTemArray} = this.state
     const { deviceType }  = this.props
-
+    console.log(switchKey)
       return(
         <div styleName='air_wrap' style={{width:this.props.width}}>
         <div styleName="air_card_wrap">
           <div styleName="air_round">
             <figure styleName='air_figure' onClick={this.temChange.bind(this,'minus',deviceId)}>
-              <div styleName="air_figure_img">
+              <div styleName="air_figure_img no_bg">
+              {
+               switchKey === 'ON'? 
+              <img styleName='btn_tmp' src={require('../../assets/imgs/air/c-_off.png')} alt=""/>:
               <img styleName='btn_tmp' src={require('../../assets/imgs/air/c-.png')} alt=""/>
+              }
               </div>
               <figcaption style={{color:'#666'}}>温度-</figcaption>
             </figure>
@@ -129,20 +133,24 @@ class AirOne extends React.PureComponent {
                   }
                   <sup>℃</sup> 
                 </div>
-                <span>当前的温度</span>
+                <span>预设的温度</span>
               </div>
             </div>
             <figure styleName='air_figure' onClick={this.temChange.bind(this,'plus',deviceId)} >
-              <div styleName="air_figure_img">
+              <div styleName="air_figure_img no_bg">
+              {
+               switchKey === 'ON' ?
+                <img styleName='btn_tmp' src={require('../../assets/imgs/air/c+_off.png')} alt=""/>:
                 <img styleName='btn_tmp' src={require('../../assets/imgs/air/c+.png')} alt=""/>
+              }
               </div>
               <figcaption style={{color:'#666'}}>温度+</figcaption>
             </figure>
         </div>
-        <div styleName="set_tem_wrap">
+        {/* <div styleName="set_tem_wrap">
           <span>预设温度</span>
           <span>20℃</span>
-        </div>
+        </div> */}
         <div styleName="air_btn">  
             <figure styleName='air_figure' onClick={this.switchClick.bind(this,deviceId)}>
               <div styleName="air_figure_img">
@@ -152,15 +160,23 @@ class AirOne extends React.PureComponent {
             </figure>
            <figure styleName='air_figure' onClick={this.speedChange.bind(this,deviceId,deviceId)}>
             <div styleName="air_figure_img">
+            {
+               switchKey === 'ON' ?
+              <img styleName='btn_speed' src={require(`../../assets/imgs/air/speed_0.png`)} alt=""/>:
               <img styleName='btn_speed' src={require(`../../assets/imgs/air/speed_${this.state.speed}.png`)} alt=""/>
+              }
             </div>
-            <figcaption>风速</figcaption>
+            <figcaption style={{color: switchKey!=='ON'?'#6095f0':'#666'}}>风速</figcaption>
           </figure>
           <figure styleName='air_figure' onClick={this.modelChange.bind(this,deviceId)}>
             <div styleName="air_figure_img">
+            {
+             switchKey === 'ON' ? 
+              <img styleName='btn_speed' src={require(`../../assets/imgs/air/cold_off.png`)} alt=""/>:
               <img styleName='btn_speed' src={require(`../../assets/imgs/air/${model}.png`)} alt=""/>
+            }
             </div>
-            <figcaption>模式</figcaption>
+            <figcaption style={{color: switchKey!=='ON'?'#6095f0':'#666'}}>模式</figcaption>
           </figure>
          </div>
        </div>

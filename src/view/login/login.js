@@ -4,6 +4,8 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Toast } from 'antd-mobile'
 
+import { decode64 } from '../../utlis/index'
+
 import styles  from './login.css'
 import * as actions from '../../actions/login-actions'
 
@@ -29,7 +31,16 @@ class Login extends React.PureComponent {
     this.login = this.login.bind(this)
     this.checkboxChange = this.checkboxChange.bind(this)
   }
- 
+  componentDidMount() {
+    const query = this.props.location.query
+    if(query.key) {
+      const userInfo = {
+        userName: decode64(query.key),
+        password: decode64(query.sign)
+      } 
+    this.props.loginActions.dataSuccess(userInfo)
+    } 
+  }
   componentWillUnmount() {
     if(this.timer) clearInterval(this.timer)
   }

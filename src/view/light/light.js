@@ -29,18 +29,17 @@ class Light extends React.PureComponent {
     } 
   }
   componentDidMount(){
+    console.log(this.props.location.query.serveId)
     document.title = '灯'
     this.props.lightActions.initialLights({serverId: this.props.location.query.serveId})
     this.props.lightActions.yuedudeng()
    
-    this.websocket = new WebSocket(`ws://${config.api.websocket}/stServlet.st?serverId=` + this.props.serveId) 
+    this.websocket = new WebSocket(`ws://${config.api.websocket}/stServlet.st?serverId=` + this.props.location.query.serveId) 
     this.websocket.onopen = () => {
       console.log('websocket已链接')
     }
     this.websocket.onmessage = (event) => {
-      
-      console.log(event.data)
-      let lights = this.props.lights
+      let lights = this.props.lightStore.lights
       const lightNow = event.data.split('.WAY.')
       const changelihts = lights.map((light, index) => {
         if(light.id === lightNow[0]) {
@@ -49,7 +48,7 @@ class Light extends React.PureComponent {
           return light
         }
       })
-      this.props.getLightsWays(changelihts)
+      this.props.lightActions.getLightsWays(changelihts)
      }
   }
   
@@ -62,7 +61,6 @@ class Light extends React.PureComponent {
     .filter((light) => light.name&&light.name.indexOf(middleRoundStatus) > -1)
   }
   switchChange = (e) =>  {
-    console.log(e)
     this.setState({
       switchStatus: !this.state.switchStatus
     })
@@ -70,7 +68,6 @@ class Light extends React.PureComponent {
      lights
     .filter((light) => light.name&&light.name.indexOf(middleRoundStatus) > -1)
     .forEach(light => {
-      console.log(light)
       this.props.lightActions.lightsClick(light.id, e?'OFF':'ON')
     })
   }

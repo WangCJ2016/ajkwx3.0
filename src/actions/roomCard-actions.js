@@ -52,16 +52,15 @@ export function openTheDoor(deviceId,cb) {
         customerId: customerId
       })
       .then(res => {
-        
+        Toast.info('开锁成功') 
         if (res && res.success) {
-          Toast.info('开锁成功')
-          request.get(config.api.base + config.api.powerControl, {
-              hostId: sessionStorage.getItem('powerHostId'),
-              action: 'jdqoff'
-            })
-            .then(res => {
+          // request.get(config.api.base + config.api.powerControl, {
+          //     hostId: sessionStorage.getItem('powerHostId'),
+          //     action: 'jdqoff'
+          //   })
+          //   .then(res => {
               
-            })
+          //   })
       
         }
       })

@@ -92,6 +92,7 @@ class Home extends React.PureComponent {
   }
   render(){
     const {temp, pm, hum} = this.props.idState.envir 
+    console.log(this.state.second_modal_if)
     return(
       <div styleName='home_bg'>
         <div styleName='top_item'>
@@ -100,19 +101,17 @@ class Home extends React.PureComponent {
         <HomeEnvir temp={temp} pm={pm} hum={hum} />
        
         <LockBtn openDoor={this.openDoor}></LockBtn>
-        <div styleName='figure_wrap'>
+        <div styleName='figure_wrap' style={{marginTop: this.props.elevatorIf? '40px': '45px'}}>
         {
           this.figuresRender()
         }
         </div>
         {
           this.state.ifFirst?
-          <div styleName='first_modal' onClick={this.modalClick}>
-            <img src={require('../../assets/imgs/home/tip.png')} alt=""/>
-            <div styleName='modal_wrap'>
-              <LockBtn openDoor={this.openDoor}></LockBtn>
-            </div>
-          </div>:null
+           <div styleName='first_modal' onClick={this.modalClick}>
+             <img style={{width: '50%'}} src={require('../../assets/imgs/home/lock_gif.gif')}/>
+           </div>
+           :null
         }
         
       </div>

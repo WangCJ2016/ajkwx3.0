@@ -12,8 +12,9 @@
 }
 
 .home_name{
-  margin-left: 80px;
-  margin-top: 100px
+  position: absolute;
+  left: 50px;
+  top: 150px;
 }
 .home_title{
   color: #333;
@@ -58,7 +59,7 @@
   display: flex;
   flex-wrap: wrap;
   width: 90%;
-  margin-top: 40px;
+ 
 }
 .figure_wrap > a{
   width: 33.3%;
@@ -143,8 +144,9 @@
   top: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
-
+  display: flex;
   align-items: center;
+  justify-content: center;
   overflow: hidden;
 }
 .modal_wrap {
@@ -155,7 +157,7 @@
 
 }
 
-.first_modal>img{
+.second_modal>img{
   position: absolute;
   right: 100px;
   top: 200px;

@@ -155,7 +155,7 @@
     font-size: 104px!important
 }
 .middle_round span{
-    font-size: 12px;
+    font-size: 30px;
 }
 .middle_round sup {
     font-size: 34px;
@@ -248,6 +248,10 @@
     text-align: center;
     line-height: 120px;
     margin-bottom: 20px
+}
+.no_bg{
+    background-color: transparent;
+    margin-bottom: 0
 }
 .btn_tmp
 {

@@ -99,3 +99,10 @@ export function saveTokenHouseId(token, customerId) {
         customerId:customerId
     };
 }
+
+export function dataSuccess(data) {
+    return {
+        type: "DATASUCCESS",
+        payload: data
+    }
+}
