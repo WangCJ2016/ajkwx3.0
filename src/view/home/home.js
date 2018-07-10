@@ -57,7 +57,6 @@ class Home extends React.PureComponent {
     // {name:'lock',title:'门锁',path:`lock?name=${this.props.location.query.name}&houseId=${this.props.location.query.houseId}&floor=${this.props.location.query.floor}&hotelId=${this.props.location.query.hotelId}`},
     {name:'model',title:'情景',path:`model?houseId=${this.props.location.query.houseId}`},
     {name:'service',title:'服务',path:`service?${this.props.location.search.slice(1)}`},
-    {name:'dianti',title:'电梯',path:`elevtor?hotelId=${this.props.location.query.hotelId}&floor=${this.props.location.query.floor}`},
    ]
    figures = this.props.elevatorIf?[...figures,{name:'dianti',title:'电梯',path:`elevtor?hotelId=${this.props.location.query.hotelId}&floor=${this.props.location.query.floor}`}]: figures
    figures =  Array.from(new Set(figures))

@@ -54,7 +54,6 @@ class TvOne extends React.PureComponent {
     }
   }
   render(){
-    console.log(this.props)
     return (
       <div styleName="tv_wrap" >
         <section styleName='tv_section'>
@@ -121,19 +120,19 @@ class TvOne extends React.PureComponent {
               </div>
            </div>
            <div styleName='tv_flex'>
-             <div styleName='tv_flex flexdirection_cloumn av_btns pressActiveTwo' onClick={this.tvBoxCtrl.bind(this,'RETURN')}>
+             <div styleName='tv_flex flexdirection_cloumn av_btns pressActive' onClick={this.tvBoxCtrl.bind(this,'RETURN')}>
                <div styleName='back_bg'></div>
                <span>返回</span>
              </div>
-             <div styleName='tv_flex flexdirection_cloumn av_btns pressActiveTwo' onClick={this.tvBoxCtrl.bind(this,'PLAY')}>
+             <div styleName='tv_flex flexdirection_cloumn av_btns pressActive' onClick={this.tvBoxCtrl.bind(this,'PLAY')}>
                <div styleName='resee_bg'></div>
                <span>回看</span>
              </div>
-             <div styleName='tv_flex flexdirection_cloumn av_btns pressActiveTwo' onClick={this.tvBoxCtrl.bind(this,'MUTE')}>
+             <div styleName='tv_flex flexdirection_cloumn av_btns pressActive' onClick={this.tvBoxCtrl.bind(this,'MUTE')}>
               <div styleName='mute_bg'></div>
                <span>静音</span>
              </div>
-             <div styleName='tv_flex flexdirection_cloumn  av_btns pressActiveTwo' onClick={this.tvBoxCtrl.bind(this,'STOP')}>
+             <div styleName='tv_flex flexdirection_cloumn  av_btns pressActive' onClick={this.tvBoxCtrl.bind(this,'STOP')}>
                <div styleName='replay_bg'></div>
                <span>点播</span>
              </div>

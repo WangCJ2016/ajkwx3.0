@@ -34,7 +34,9 @@
 .tv_flex {
     display: flex;
     justify-content: space-between;
-    align-items: center
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
 }
 .tv_flex + .tv_flex {
     margin-top: 20px;

@@ -1,6 +1,7 @@
 import React from 'react'
 import CSSModules from 'react-css-modules'
 import classNames from 'classnames'
+import InputRange from '../../components/inputRange/inputRange'
 
 import styles from './curtain.css'
 
@@ -58,21 +59,31 @@ class CurtainOne extends React.PureComponent {
   curtainTpe0Render(ways, type) {
     return ways?ways.map(way => {
               return (
-                <div styleName='curtain_list' key={way.id}>
-                   <div styleName='curtain_key'>
-                     {
-                       way.name.indexOf('窗帘') > -1 ? 
-                       <img src={require('../../assets/imgs/curtain/chuanglian.png')} alt=""/>:
-                       <img src={require('../../assets/imgs/curtain/shalian.png')} alt=""/>
-                     }
-                     <span styleName="curtain_name">{way.name}</span>
+                <div>
+                  <div styleName='curtain_list' key={way.id}>
+                    <div styleName='curtain_key'>
+                      {
+                        way.name.indexOf('窗帘') > -1 ? 
+                        <img src={require('../../assets/imgs/curtain/chuanglian.png')} alt=""/>:
+                        <img src={require('../../assets/imgs/curtain/shalian.png')} alt=""/>
+                      }
+                      <span styleName="curtain_name">{way.name}</span>
+                    </div>
+                      {this.btnRender(way, type)}       
                    </div>
-                    {this.btnRender(way, type)}       
-                </div>
+                   <InputRange touchStart={this.touchStart.bind(this)} touchMove={this.touchMove.bind(this)} touchEnd={this.rangeChange.bind(this,way.wayId)}/>       
+                </div>   
               )
             }):null
   }
-
+  touchStart(e){
+    e.stopPropagation() 
+    e.preventDefault()
+  }
+  touchMove(e){
+    e.stopPropagation() 
+    e.preventDefault()
+  }
   render(){
     const ways  = this.props.curtain
     const type = this.props.type
