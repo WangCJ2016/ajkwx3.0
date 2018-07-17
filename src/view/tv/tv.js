@@ -39,7 +39,6 @@ class Tv extends React.PureComponent {
       }
     }
     window.addEventListener("orientationchange", function (e) {
-      console.log(e)
       e.preventDefault();
 
   }, false);
@@ -65,8 +64,8 @@ class Tv extends React.PureComponent {
             tvs.length===1?tvs.map((tv,index) => <TvOne  tvSwitch={this.props.tvState.tvSwitch}  tv={tv} actions={this.props.tvActions} key={index}/>):
             <Tabs>
             {
-              tvs.map((tv)=> (
-                <TabPane tab={Object.keys(tv)[0]} key={tv.deviceId} >
+              tvs.map((tv, index)=> (
+                <TabPane tab={Object.keys(tv)[0]} key={index} >
                   <TvOne  tvSwitch={this.props.tvState.tvSwitch}  tv={tv} actions={this.props.tvActions}/>
                 </TabPane>
             ))

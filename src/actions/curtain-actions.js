@@ -10,14 +10,13 @@ export function initialCurtain() {
     const houseId =  houseId_session || getState().toObject().idStore.houseId
     request.get(config.api.base + config.api.queryCurtains,{houseId:houseId,token:token,deviceType:deviceType})
     .then(res => {
-    
       if(res&&res.success){
         let curtainsArray = []
         for(let i in res.dataObject.curtains) {
-          curtainsArray.push(res.dataObject.curtains[i])
+          curtainsArray = [...curtainsArray,...res.dataObject.curtains[i]]
         }
-      
-        dispatch(initialState(curtainsArray))
+        
+        dispatch(initialState(curtainArrCount(curtainsArray)))
         dispatch(initialStateType(res.dataObject.type))
       }
     })
@@ -48,4 +47,14 @@ function initialStateType(data){
     type:'INITIALSTATETYPE',
     data:data
   };
+}
+
+function  curtainArrCount(arr) {
+  let newArr = []
+  arr.forEach((item, index) => {
+    if(index % 2 === 0) {
+      newArr = [...newArr, [arr[index], arr[index + 1]]]
+    }
+  })
+  return newArr
 }

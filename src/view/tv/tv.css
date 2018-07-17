@@ -38,6 +38,9 @@
     padding: 10px;
     border-radius: 10px;
 }
+.no-padding {
+    padding: 0
+}
 .tv_flex + .tv_flex {
     margin-top: 20px;
 }

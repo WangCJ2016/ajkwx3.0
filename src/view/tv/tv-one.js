@@ -83,7 +83,7 @@ class TvOne extends React.PureComponent {
             }
            </div>
            <div styleName='tv_flex'>
-            <div styleName="tv_flex channel_voice">
+            <div styleName="tv_flex channel_voice no-padding">
                 <span styleName='pressActive'  onClick={this.tvBoxCtrl.bind(this,'VOL_PLUS')}>
                   <img src={require('../../assets/imgs/tv/plus.png')} alt=""/>
                 </span>
@@ -109,7 +109,7 @@ class TvOne extends React.PureComponent {
                   ok
                 </div>
             </div>
-            <div styleName="tv_flex channel_voice">
+            <div styleName="tv_flex channel_voice no-padding">
                 <span styleName='pressActive'  onClick={this.tvBoxCtrl.bind(this,'UP')}>
                   <img src={require('../../assets/imgs/tv/plus.png')} alt=""/>
                 </span>
@@ -137,7 +137,7 @@ class TvOne extends React.PureComponent {
                <span>点播</span>
              </div>
            </div>
-           <div styleName="tv_num" onClick={this.numClick.bind(this,'tv')}>
+           <div styleName="tv_num" onClick={this.numClick.bind(this,'tvbox')}>
             <div styleName="num_item">
               <span styleName="num pressActive" data-key='1'>1</span>
               <span styleName="num pressActive" data-key='2'>2</span>

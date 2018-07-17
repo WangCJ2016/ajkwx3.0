@@ -148,6 +148,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  flex-direction: column;
 }
 .modal_wrap {
   position: absolute;
@@ -157,9 +158,4 @@
 
 }
 
-.second_modal>img{
-  position: absolute;
-  right: 100px;
-  top: 200px;
-  width: 400px;
-}
+

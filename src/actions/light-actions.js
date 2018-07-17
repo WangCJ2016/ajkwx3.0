@@ -8,10 +8,10 @@ export function initialLights(info) {
   return function(dispatch, getState) {
     const token = token_session || getState().toObject().idStore.token
     const houseId = houseId_session || getState().toObject().idStore.houseId
-    request.get(config.api.base + config.api.queryHostScenes, { houseId: houseId, token: token })
-      .then(res => {
-        dispatch(getModelScens(res.dataObject))
-      })
+    // request.get(config.api.base + config.api.queryHostScenes, { houseId: houseId, token: token })
+    //   .then(res => {
+    //     dispatch(getModelScens(res.dataObject))
+    //   })
     //灯
     request.get(config.api.base + config.api.queryLightsStatus, { ...info,token: token, deviceType: 'SWITCH' })
       .then(res => {

@@ -15,109 +15,27 @@
 
 .air_wrap
 {
-    height: 80%;
     width: 100%;
     flex-direction: column;
     justify-content: space-around;
     overflow: hidden;
 }
-.tabPane_span {
-    width: 100%;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    text-align: center
-}
-.air_display
-{
-    display: flex;
-    height: 200px;
-    margin: 54px;
-    padding-top: 54px;
-
-    justify-content: space-between;
-}
-.air_box
-{
-    width: 100px;
-    height: 100px;
-
-    flex-grow: 1;
-}
-.air_divide
-{
-    position: relative;
-
-    width: 80px;
-    height: 100%;
-
-    background-color: transparent;
-}
-.air_divide p
-{
-    position: absolute;
-    top: 0;
-    left: 50%;
-
-    width: 2px;
-    height: 100%;
-    margin-left: -1px;
-
-    background-color: #5b97fd;
-}
-.air_display_box
-{
-    display: flex;
-
-    height: 100px;
-
-    border-bottom: 1px solid #5b97fd;
-
-    justify-content: space-between;
-}
-.air_display_box:nth-child(2){
-    border-bottom: none
-}
-.air_box_down
-{
-    align-items: flex-end;
-}
-.air_display_title
-{
-    font-size: 34px;
-    font-weight: 200;
-    color: #fff;
-}
-.tem
-{
-    font-size: 48px;
-    color: #6095f0;
-}
-.air_model{
-    flex: 1;
-    text-align: right
-}
-.air_model > img
-{
-    width: 50px;
-    margin-right: 20px;
-}
-.air_model > span
-{
-    font-size: 28px;
-
-    color: #fff;
-
-    writing-mode: vertical-lr;
-}
-.air_speed
-{
-    width: 102px;
-}
 .speed_img
 {
     width: 8px;
     margin-right: 20px;
+}
+.speed0 {
+    width: 60px; 
+}
+.speed1{
+    width: 14px; 
+}
+.speed2{
+    width: 40px; 
+}
+.speed3{
+    width: 60px;
 }
 .air_round
 {
@@ -270,8 +188,8 @@
 
 .air_card_wrap{
     margin-top: 100px;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: 60px;
+    margin-right: 60px;
     background-color: #f4f4f4;
     border-radius: 20px;
     padding: 90px 0;
@@ -289,4 +207,10 @@
     color: #5b97fd;
     vertical-align: middle;
     margin-left: 10px
+}
+.divider{
+    margin: 50px 35px;
+    height: 2px;
+    border-bottom: 1px solid transparent; 
+    border-image: url('../../assets/imgs/login/border.png') 0 0 2 0  stretch
 }

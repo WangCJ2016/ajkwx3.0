@@ -29,7 +29,6 @@ class Light extends React.PureComponent {
     } 
   }
   componentDidMount(){
-    console.log(this.props.location.query.serveId)
     document.title = '灯'
     this.props.lightActions.initialLights({serverId: this.props.location.query.serveId})
     this.props.lightActions.yuedudeng()

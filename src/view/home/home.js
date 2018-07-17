@@ -33,7 +33,8 @@ class Home extends React.PureComponent {
     super()
     this.state = {
       activeIndex:-1,
-      ifFirst: !localStorage.getItem('ifFirst')
+      ifFirst: !localStorage.getItem('ifFirst'),
+      modalVisible: false
     }
   }
   componentDidMount(){
@@ -83,17 +84,24 @@ class Home extends React.PureComponent {
   }
   modalClick = () => {
     this.setState({
-      ifFirst: false
+      ifFirst: false,
+      modalVisible: false
     })
     localStorage.setItem('ifFirst',1)
+    this.props.roomCardActions.openTheDoor(this.props.deviceId)
   }
   openDoor = () => {
+    if(this.state.ifFirst) {
+      this.setState({
+        modalVisible: true
+      })
+    }else {
     this.props.roomCardActions.openTheDoor(this.props.deviceId)
+    }
   }
   render(){
     const {temp, pm, hum} = this.props.idState.envir 
-    console.log(this.state.second_modal_if)
-    return(
+    return(  
       <div styleName='home_bg'>
         <div styleName='top_item'>
           <HomeName name={this.props.location.query.name}/>
@@ -107,9 +115,10 @@ class Home extends React.PureComponent {
         }
         </div>
         {
-          this.state.ifFirst?
+          this.state.modalVisible?
            <div styleName='first_modal' onClick={this.modalClick}>
-             <img style={{width: '50%'}} src={require('../../assets/imgs/home/lock_gif.gif')}/>
+             <img style={{width: '74.6%'}} src={require('../../assets/imgs/home/lock_gif.gif')}/>
+             <img onClick={this.modalClick} style={{marginTop: '30px', width: '40px'}} src={require('../../assets/imgs/home/close_icon.png')} alt=""/>
            </div>
            :null
         }

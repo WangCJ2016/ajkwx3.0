@@ -22,7 +22,6 @@ export function initialState() {
     const houseId = houseId_session || getStore().toObject().idStore.houseId
     request.get(config.api.base + config.api.queryHostDeviceByType, { houseId: houseId, token: token, deviceType: deviceType })
       .then(res => {
-         console.log(res)
         if (res && res.success) {
          
           if (res && res.success && res.dataObject.devices.length > 0)

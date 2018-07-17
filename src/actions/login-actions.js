@@ -28,7 +28,6 @@ export function goHome(username, password, isRemenber) {
                     sessionStorage.setItem('token', res.dataObject.token)
                     dispatch(saveTokenHouseId(res.dataObject.token, encode64(res.dataObject.id.toString())))
                     //hashHistory.push('selectHome')
-                    console.log(encode64(res.dataObject.id.toString()))
                     goRouter(encode64(res.dataObject.id.toString()))
                     if (isRemenber) {
                         localStorage.setItem('userName', username)

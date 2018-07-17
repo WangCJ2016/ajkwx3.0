@@ -2,10 +2,18 @@ import React from 'react'
 import CSSModules from 'react-css-modules'
 import classNames from 'classnames'
 import InputRange from '../../components/inputRange/inputRange'
+import * as curtainActions from '../../actions/curtain-actions'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
 import styles from './curtain.css'
 
-
+@connect(
+  state => ({curtainState:state.toObject().curtainStore}),
+  dispatch => ({
+    actions: bindActionCreators(curtainActions, dispatch),
+  })
+)
 @CSSModules(styles, { allowMultiple: true })
 class CurtainOne extends React.PureComponent {
   constructor() {
@@ -59,7 +67,7 @@ class CurtainOne extends React.PureComponent {
   curtainTpe0Render(ways, type) {
     return ways?ways.map(way => {
               return (
-                <div>
+                <div key={way.id}>
                   <div styleName='curtain_list' key={way.id}>
                     <div styleName='curtain_key'>
                       {

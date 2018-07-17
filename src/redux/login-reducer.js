@@ -10,7 +10,7 @@ if(localStorage.getItem('deleteTime')>= new Date().getTime()){
    initialState = {
       userName:'',
       password:'',
-      isRemenber:false,
+      isRemenber: true,
       deleteTime:''
   }
 }
@@ -19,7 +19,6 @@ if(localStorage.getItem('deleteTime')>= new Date().getTime()){
 export default (state = initialState, action)=>{
   switch (action.type) {
     case 'DATASUCCESS': {
-      console.log(action.payload)
       return {...state, ...action.payload}
     }
     case 'CHANGEUSERANDPASSWORD':

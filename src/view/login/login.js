@@ -32,14 +32,18 @@ class Login extends React.PureComponent {
     this.checkboxChange = this.checkboxChange.bind(this)
   }
   componentDidMount() {
-    const query = this.props.location.query
-    if(query.key) {
-      const userInfo = {
-        userName: decode64(query.key),
-        password: decode64(query.sign)
-      } 
+    const searchArr = window.location.search.slice(1).split('&') 
+    if(searchArr.length < 2) return 
+    let query = {}
+    searchArr.forEach((item) => {
+      const _item = item.split('=')
+      query[_item[0]] = _item[1]
+    })
+    const userInfo = {
+      userName: decode64(query.key),
+      password: decode64(query.sign)
+    }
     this.props.loginActions.dataSuccess(userInfo)
-    } 
   }
   componentWillUnmount() {
     if(this.timer) clearInterval(this.timer)
@@ -91,7 +95,7 @@ class Login extends React.PureComponent {
       Toast.info('手机号码不能为空',2);
       return;
     }
-    if (!(/^1[34578]\d{9}$/.test(userName))) {
+    if (!(/^1[34578]\d{9}$/.test(parseInt(userName)))) {
       Toast.info('请输入正确的手机号',2);
       return;
     }
@@ -111,7 +115,6 @@ class Login extends React.PureComponent {
     this.props.loginActions.changeRemember(!isRemenber);
   }
   render() {
-    
     return (
       <div styleName='logo_bg'>
         <LoginLogo />

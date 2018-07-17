@@ -36,8 +36,6 @@ class LargeRound extends React.PureComponent {
       console.log('websocket已链接')
     }
     this.websocket.onmessage = (event) => {
-      
-      console.log(event.data)
       let lights = this.props.lights
       const lightNow = event.data.split('.WAY.')
       const changelihts = lights.map((light, index) => {

@@ -6,11 +6,11 @@
 
 .curtain_wrap,.curtainwrap{
   height: 100%;
-  transition: transform 1s ease-in;
   overflow: hidden;
 }
 .curtain_wrap{
-  float: left;
+  padding-left: 30px;
+  padding-right: 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-around

@@ -3,7 +3,7 @@ import CSSModules from 'react-css-modules'
 
 
 import styles from './air.css'
-import { numToarray } from '../../utlis'
+
 
 @CSSModules(styles, { allowMultiple: true })
 class AirOne extends React.PureComponent {
@@ -108,7 +108,7 @@ class AirOne extends React.PureComponent {
     const { deviceId } = this.props.air
     const { switchKey,temIndex,model,currentTemArray} = this.state
     const { deviceType }  = this.props
-    console.log(switchKey)
+    console.log(this.state.speed)
       return(
         <div styleName='air_wrap' style={{width:this.props.width}}>
         <div styleName="air_card_wrap">
@@ -129,7 +129,7 @@ class AirOne extends React.PureComponent {
               <div styleName='middle_round_content'>
                 <div>
                   {
-                  <span styleName='middle_round_tem'>{switchKey!=='ON'?currentTemArray[temIndex].slice(-2):25}</span>
+                  <span styleName='middle_round_tem'>{switchKey!=='ON'? (deviceType === 'VIRTUAL_CENTRAL_AIR_REMOTE' ? currentTemArray[temIndex]:currentTemArray[temIndex].slice(-2)):25}</span>
                   }
                   <sup>℃</sup> 
                 </div>
@@ -151,6 +151,7 @@ class AirOne extends React.PureComponent {
           <span>预设温度</span>
           <span>20℃</span>
         </div> */}
+        <div styleName="divider"></div>
         <div styleName="air_btn">  
             <figure styleName='air_figure' onClick={this.switchClick.bind(this,deviceId)}>
               <div styleName="air_figure_img">
@@ -163,10 +164,10 @@ class AirOne extends React.PureComponent {
             {
                switchKey === 'ON' ?
               <img styleName='btn_speed' src={require(`../../assets/imgs/air/speed_0.png`)} alt=""/>:
-              <img styleName='btn_speed' src={require(`../../assets/imgs/air/speed_${this.state.speed}.png`)} alt=""/>
+              <img styleName={'speed' + this.state.speed} src={require(`../../assets/imgs/air/speed_${this.state.speed}.png`)} alt=""/>
               }
             </div>
-            <figcaption style={{color: switchKey!=='ON'?'#6095f0':'#666'}}>风速</figcaption>
+            <figcaption style={{color: switchKey!=='ON'&& this.state.speed !== 0?'#6095f0':'#666'}}>风速</figcaption>
           </figure>
           <figure styleName='air_figure' onClick={this.modelChange.bind(this,deviceId)}>
             <div styleName="air_figure_img">
