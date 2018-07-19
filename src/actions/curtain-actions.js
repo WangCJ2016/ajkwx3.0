@@ -6,17 +6,12 @@ const deviceType = 'CURTAIN'
 
 export function initialCurtain() {
   return (dispatch,getState)=> {
-    const token =  token_session || getState().toObject().idStore.token
-    const houseId =  houseId_session || getState().toObject().idStore.houseId
+    const token =  getState().toObject().idStore.token || token_session
+    const houseId =  getState().toObject().idStore.houseId || houseId_session
     request.get(config.api.base + config.api.queryCurtains,{houseId:houseId,token:token,deviceType:deviceType})
     .then(res => {
       if(res&&res.success){
-        let curtainsArray = []
-        for(let i in res.dataObject.curtains) {
-          curtainsArray = [...curtainsArray,...res.dataObject.curtains[i]]
-        }
-        
-        dispatch(initialState(curtainArrCount(curtainsArray)))
+        dispatch(initialState(res.dataObject.curtains))
         dispatch(initialStateType(res.dataObject.type))
       }
     })
@@ -24,8 +19,9 @@ export function initialCurtain() {
 }
 export function changeCurtainStatus(wayId,key,brightness){
   return (dispatch,getState)=>{
-    const token =  token_session || getState().toObject().idStore.token
-    const houseId =  houseId_session || getState().toObject().idStore.houseId
+    const token =   getState().toObject().idStore.token || token_session 
+    const houseId =  getState().toObject().idStore.houseId || houseId_session 
+  
     request.get(config.api.base + config.api.smartHostControl,{token:token,houseId:houseId,deviceType:deviceType,wayId:wayId,actionType:key,brightness:brightness})
     .then(res => {
       
@@ -37,7 +33,7 @@ export function changeCurtainStatus(wayId,key,brightness){
 
 function initialState(data){
   return {
-    type:'INITIALSTATE',
+    type:'CURTAIN-INITIALSTATE',
     data:data
   };
 }
@@ -49,12 +45,19 @@ function initialStateType(data){
   };
 }
 
-function  curtainArrCount(arr) {
-  let newArr = []
-  arr.forEach((item, index) => {
-    if(index % 2 === 0) {
-      newArr = [...newArr, [arr[index], arr[index + 1]]]
-    }
-  })
-  return newArr
-}
+// function  curtainArrCount(arr) {
+//   if(arr.lenght > 2) {
+//     let arrType = arr.map((item, index) => 
+//       item.name.slice(-2)
+//     )
+//     arrType = Array.from(new Set(arrType))
+//     let newArr = []
+//     arrType.forEach(type => {
+//       const typeArr = arr.filter(item => item.name.includes(type))
+//       newArr = [...newArr, typeArr]
+//     })
+//   return newArr
+//   } else {
+//     return [arr]
+//   }
+// }

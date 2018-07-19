@@ -54,7 +54,6 @@ import * as modelActions from '../../actions/model-actions'
             return( 
               <figure styleName={stylename} key={model.name} onClick={this.changeModel.bind(this,index, model.sceneId)}>
                   <div  >
-                    
                   </div>
                   <figcaption styleName='figcaption'>
                     {model.name.replace('情景', '')}
@@ -68,39 +67,31 @@ import * as modelActions from '../../actions/model-actions'
           })
       }
     //东方君悦模式
-    modelRender_type2() {
-      const { scenes } = this.props.modelState.models
-      if (scenes) {
-       return scenes.map((model,index) => {
-         let stylename 
-           if (index%2 === 1) {
-             stylename = classNames({
-            img_wrap:true,
-            [model.name]:true,
-            active:index === this.state.model_activeIndex,
-            second: true
-           })
-           } else {
-             stylename = classNames({
-            img_wrap:true,
-            [model.name]:true,
-            active:index === this.state.model_activeIndex
-           })
-           }
-          
-            return( 
-              <figure styleName='figure' key={model.id} onClick={this.changeModel.bind(this,index,model.sceneId)}>
-                  <div styleName={stylename} >
-                    <div />
-                  </div>
-                  <figcaption styleName='figcaption'>
-                    { model.name.indexOf('模式') > -1 ? model.name.slice(0, -2): model.name }
-                  </figcaption>
-              </figure>
-              )
+  modelRender_type2() {
+    const { scenes } = this.props.modelState.models
+    if (scenes) {
+      return scenes.map((model,index) => {
+        let stylename = classNames({
+          figure:true,
+          [model.name.replace('情景', '')]:true,
+          active:index === this.state.model_activeIndex,
           })
-      }
+          return( 
+            <figure styleName={stylename} key={model.id} onClick={this.changeModel.bind(this,index,model.sceneId)}>
+                <div>
+                </div>
+                <figcaption styleName='figcaption'>
+                  { model.name.indexOf('模式') > -1 ? model.name.slice(0, -2): model.name }
+                </figcaption>
+                {
+                  index === this.state.model_activeIndex?
+                  <img styleName='checked' src={require('../../assets/imgs/models/checked.png')} alt=""/>:null
+                }
+            </figure>
+            )
+        })
     }
+  }
   render(){
     const { type } = this.props.modelState.models
     return(

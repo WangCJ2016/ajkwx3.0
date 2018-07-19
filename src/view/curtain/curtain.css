@@ -6,14 +6,16 @@
 
 .curtain_wrap,.curtainwrap{
   height: 100%;
-  overflow: hidden;
 }
 .curtain_wrap{
   padding-left: 30px;
   padding-right: 30px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around
+ 
+}
+.curtain_wrap > div {
+  margin-top: 200px
 }
 .curtain_list{
   display: flex;

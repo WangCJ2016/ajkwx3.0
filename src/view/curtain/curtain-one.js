@@ -68,7 +68,7 @@ class CurtainOne extends React.PureComponent {
     return ways?ways.map(way => {
               return (
                 <div key={way.id}>
-                  <div styleName='curtain_list' key={way.id}>
+                  <div styleName='curtain_list' >
                     <div styleName='curtain_key'>
                       {
                         way.name.indexOf('窗帘') > -1 ? 

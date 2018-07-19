@@ -6,13 +6,9 @@ const token_session = sessionStorage.getItem('token')
 export function initialLights(info) {
 
   return function(dispatch, getState) {
-    const token = token_session || getState().toObject().idStore.token
-    const houseId = houseId_session || getState().toObject().idStore.houseId
-    // request.get(config.api.base + config.api.queryHostScenes, { houseId: houseId, token: token })
-    //   .then(res => {
-    //     dispatch(getModelScens(res.dataObject))
-    //   })
-    //灯
+    const token =  getState().toObject().idStore.token || token_session
+    const houseId = getState().toObject().idStore.houseId || houseId_session
+  
     request.get(config.api.base + config.api.queryLightsStatus, { ...info,token: token, deviceType: 'SWITCH' })
       .then(res => {
        
@@ -62,8 +58,8 @@ export function initialLights(info) {
 // 判断是否有阅读灯
 export function yuedudeng() {
   return (dispatch, getState) => {
-    const token = token_session || getState().toObject().idStore.token
-    const houseId = houseId_session || getState().toObject().idStore.houseId
+    const token = getState().toObject().idStore.token || token_session
+    const houseId = getState().toObject().idStore.houseId || houseId_session
     request.get(config.api.base + config.api.queryHostDeviceByType, { houseId: houseId, token: token, deviceType: 'VIRTUAL_RGB_REMOTE' })
       .then(res => {
        
@@ -91,8 +87,8 @@ export function getServeId(data) {
 }
 export function modelsClick(sceneId) {
   return function(dispatch, getState) {
-    const token = token_session || getState().toObject().idStore.token
-    const houseId = houseId_session || getState().toObject().idStore.houseId
+    const token = getState().toObject().idStore.token || token_session
+    const houseId = getState().toObject().idStore.houseId || houseId_session
     request.get(config.api.base + config.api.smartHostControl, {
         houseId: houseId,
         deviceType: 'SCENE',
@@ -109,8 +105,8 @@ export function lightsClick(wayId, status, index) {
   const actionType = status === 'ON' ? 'CLOSE' : 'OPEN'
   const status_on = status === 'ON' ? 'OFF' : 'ON'
   return function(dispatch, getState) {
-    const token = token_session || getState().toObject().idStore.token
-    const houseId = houseId_session || getState().toObject().idStore.houseId
+    const token = getState().toObject().idStore.token || token_session
+    const houseId = getState().toObject().idStore.houseId || houseId_session
     dispatch(changelightstatus(wayId, status_on))
     request.get(config.api.base + config.api.smartHostControl, {
         houseId: houseId,
@@ -131,8 +127,8 @@ export function lightsClick(wayId, status, index) {
 export function dengdaiClick(deviceId, status, index) {
   const status_on = status === 'ON' ? 'OFF' : 'ON'
   return (dispatch, getState) => {
-    const token = token_session || getState().toObject().idStore.token
-    const houseId = houseId_session || getState().toObject().idStore.houseId
+    const token = getState().toObject().idStore.token || token_session
+    const houseId = getState().toObject().idStore.houseId || houseId_session
     request.get(config.api.base + config.api.smartHostControl, 
       { 
         token: token, 

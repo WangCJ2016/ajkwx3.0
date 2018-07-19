@@ -18,8 +18,8 @@ export function dataSuccess(data) {
 export function initialState() {
   
   return (dispatch, getStore) => {
-    const token = token_session || getStore().toObject().idStore.token
-    const houseId = houseId_session || getStore().toObject().idStore.houseId
+    const token =  getStore().toObject().idStore.token || token_session
+    const houseId =  getStore().toObject().idStore.houseId || houseId_session
     request.get(config.api.base + config.api.queryHostDeviceByType, { houseId: houseId, token: token, deviceType: deviceType })
       .then(res => {
         if (res && res.success) {
@@ -40,9 +40,9 @@ export function initail(deviceId) {
 // 开门
 export function openTheDoor(deviceId,cb) {
   return (dispatch, getStore) => {
-    const token = token_session || getStore().toObject().idStore.token
-    const houseId = houseId_session || getStore().toObject().idStore.houseId
-    const customerId = customerId_session || getStore().toObject().idStore.customerId
+    const token = getStore().toObject().idStore.token || token_session
+    const houseId = getStore().toObject().idStore.houseId || houseId_session
+    const customerId = getStore().toObject().idStore.customerId || customerId_session
     request.get(config.api.base + config.api.smartHostControl, {
         token: token,
         houseId: houseId,
@@ -68,7 +68,7 @@ export function openTheDoor(deviceId,cb) {
 // 梯控
 export function elevator({floor, hotelId}) {
   return (dispatch, getState) => {
-    const token = token_session || getState().toObject().idStore.token
+    const token = getState().toObject().idStore.token || token_session
     request.get(config.api.base + config.api.queryElevatorHost, {
         token: token,
         hotelId: hotelId,
@@ -84,7 +84,7 @@ export function elevator({floor, hotelId}) {
 
 export function smartHostControl(info,cb) {
   return (dispatch,getState) => {
-    const token = token_session || getState().toObject().idStore.token
+    const token =  getState().toObject().idStore.token|| token_session
     request.get(config.api.base + config.api.smartHostControl, {
               token: token,
               ...info

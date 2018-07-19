@@ -6,11 +6,11 @@ const deviceType = 'SCENE';
 
 export function initialModel(){
   return (dispatch,getState)=>{
-    const token =  token_session || getState().toObject().idStore.token
-    const houseId =  houseId_session || getState().toObject().idStore.houseId
+    const token =  getState().toObject().idStore.token || token_session
+    const houseId = getState().toObject().idStore.houseId || houseId_session
     request.get(config.api.base + config.api.queryHostScenes, { houseId: houseId, token: token })
          .then(res => {
-          
+           console.log(res)
           dispatch(initialState(res.dataObject))
          })
   };
@@ -24,8 +24,8 @@ function initialState(data){
  
 export function changeModel(scenceId, cb){
   return (dispatch,getState) => {
-    const token =  token_session || getState().toObject().idStore.token
-    const houseId =  houseId_session || getState().toObject().idStore.houseId
+    const token =   getState().toObject().idStore.token || token_session
+    const houseId =  getState().toObject().idStore.houseId || houseId_session
     request.get(config.api.base + config.api.smartHostControl, {
       token:token,
       houseId:houseId,

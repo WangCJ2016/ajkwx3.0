@@ -6,8 +6,8 @@ const deviceType = 'VIRTUAL_TV_DVD_REMOTE';
 
 export function initialTv() {
   return function(dispatch,getState){
-    const token =  token_session || getState().toObject().idStore.token
-    const houseId =  houseId_session || getState().toObject().idStore.houseId
+    const token =  getState().toObject().idStore.token || token_session
+    const houseId =  getState().toObject().idStore.houseId || houseId_session
     request.get(config.api.base + config.api.queryTvDevices,{houseId:houseId,token:token})
     .then(res => {
       
@@ -23,8 +23,8 @@ export function initialTv() {
 }
 export function tvCtrl(key,deviceId){
   return (dispatch,getState)=>{
-    const token =  token_session || getState().toObject().idStore.token
-    const houseId =  houseId_session || getState().toObject().idStore.houseId
+    const token =   getState().toObject().idStore.token || token_session
+    const houseId =  getState().toObject().idStore.houseId || houseId_session
     request.get(config.api.base + config.api.smartHostControl,{houseId:houseId,token:token,deviceType:deviceType,deviceId:deviceId,key:key})
     .then(res => {
   

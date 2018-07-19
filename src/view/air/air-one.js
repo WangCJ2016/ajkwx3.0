@@ -108,7 +108,6 @@ class AirOne extends React.PureComponent {
     const { deviceId } = this.props.air
     const { switchKey,temIndex,model,currentTemArray} = this.state
     const { deviceType }  = this.props
-    console.log(this.state.speed)
       return(
         <div styleName='air_wrap' style={{width:this.props.width}}>
         <div styleName="air_card_wrap">

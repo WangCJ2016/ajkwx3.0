@@ -27,26 +27,35 @@ class Curtain extends React.PureComponent {
     document.title = '窗'
   }
  
+  curtainRender() {
+    const { curtains, type } = this.props.curtainState
+    console.log(curtains) 
+    const keys = Object.keys(curtains)
+    if( keys.length > 1) {
+      return (
+        <Tabs>
+          {
+            keys.map((key, index)=> (
+              <TabPane tab={key} key={index} >
+                <CurtainOne  curtain={curtains[key]} type={type} />
+              </TabPane>
+            ))
+          }
+         </Tabs>
+      ) 
+    } else {
+      return (
+        <CurtainOne type={type} curtain={curtains[keys[0]]} />
+      ) 
+    }
+  }
+
   render(){
     const { curtains, type } = this.props.curtainState
     console.log(curtains)
     return(
       <div styleName='curtain_bg'>
-         {/* <SlidePot num={curtains.length} activeIndex={this.countActive} /> */}
-         <div styleName="curtainwrap clearfix" >
-          {
-            curtains.length===1?curtains.map((curtain, index) => <CurtainOne  curtain={curtain} key={curtain[0].id}/>):
-            <Tabs>
-            {
-              curtains.map((curtain, index)=> (
-                <TabPane tab={curtain[0].name} key={index} >
-                  <CurtainOne  curtain={curtain} />
-                </TabPane>
-              ))
-            }
-            </Tabs>
-          }
-         </div>
+        {this.curtainRender()}
       </div>
     )
   }
