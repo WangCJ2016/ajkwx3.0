@@ -49,8 +49,32 @@ class Light extends React.PureComponent {
       })
       this.props.lightActions.getLightsWays(changelihts)
      }
+
+     
   }
   
+  componentWillReceiveProps(nextProps) {
+    this.changeToiletSwitchStatus(nextProps) 
+  }
+
+ // 改变卫生间全开全关状态 
+  changeToiletSwitchStatus = (nextProps) => {
+    const {lights,middleRoundStatus} = nextProps.lightStore
+   if(middleRoundStatus === '卫生间') {
+    let allOn = true
+      lights
+      .filter((light) => light.name&&light.name.indexOf(middleRoundStatus) > -1)
+      .forEach(light => {
+        if(light.status === 'OFF') {
+          allOn = false
+        }
+      })
+      this.setState({
+        switchStatus: allOn
+      })
+    } 
+  }
+
   middelRoundClick = (type) => {
     this.props.lightActions.changeMiddleStatus(type)
   }

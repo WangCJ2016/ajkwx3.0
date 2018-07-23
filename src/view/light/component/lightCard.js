@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from '../light.css'
-import { Switch, Button } from 'antd-mobile'
+import { Switch } from 'antd-mobile'
 import classNames from 'classnames'
 import { hashHistory } from "react-router"
 import CSSModules from 'react-css-modules'
@@ -63,7 +63,6 @@ class LightCard extends React.Component {
     })
   }
   render() {
-
     return (
       <div className={styles.light_card}>
         <div styleName='ligths_wrap'>

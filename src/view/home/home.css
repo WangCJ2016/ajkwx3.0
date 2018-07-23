@@ -35,7 +35,7 @@
   width: 210px;
   height: 210px;
   border-radius: 50%;
-  background: url('../../assets/imgs/home/btn_bg.png');
+  background: url('../../assets/imgs/home/door_on.png');
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -44,13 +44,9 @@
   margin: 0 auto;
   margin-top: -130px;
 }
-.btn_wrap>img{
-  width: 58px;
-  margin-bottom: 20px;
-}
-.btn_wrap>span{
-  font-size: 36px;
-  color: #fff;
+.btn_wrap:active {
+  background: url('../../assets/imgs/home/door_off.png');
+  background-size: cover; 
 }
 .figure_wrap{
   position: absolute;

@@ -2,7 +2,6 @@ import {_} from 'lodash'
 import queryString from 'query-string'
 import 'whatwg-fetch'
 import 'es6-promise'
-import { Toast } from 'antd-mobile'
 
 export function encode64(input) {
   var keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789/=";

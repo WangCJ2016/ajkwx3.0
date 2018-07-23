@@ -117,7 +117,7 @@ class Home extends React.PureComponent {
         {
           this.state.modalVisible?
            <div styleName='first_modal' onClick={this.modalClick}>
-             <img style={{width: '74.6%'}} src={require('../../assets/imgs/home/lock_gif.gif')}/>
+             <img style={{width: '74.6%'}} src={require('../../assets/imgs/home/lock_gif.gif')} alt=''/>
              <img onClick={this.modalClick} style={{marginTop: '30px', width: '40px'}} src={require('../../assets/imgs/home/close_icon.png')} alt=""/>
            </div>
            :null

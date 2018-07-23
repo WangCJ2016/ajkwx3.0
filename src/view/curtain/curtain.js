@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Tabs } from 'antd-mobile'
 
+import BlankPage from '../../components/blankPage'
 import styles from './curtain.css'
 import CurtainOne from './curtain-one'
 import * as curtainActions from '../../actions/curtain-actions'
@@ -29,8 +30,10 @@ class Curtain extends React.PureComponent {
  
   curtainRender() {
     const { curtains, type } = this.props.curtainState
-    console.log(curtains) 
     const keys = Object.keys(curtains)
+    if(keys.length === 0) {
+      return  <BlankPage src='curtain' title='无可控窗帘' titleColor='#5f71f1' /> 
+    }
     if( keys.length > 1) {
       return (
         <Tabs>
@@ -51,8 +54,6 @@ class Curtain extends React.PureComponent {
   }
 
   render(){
-    const { curtains, type } = this.props.curtainState
-    console.log(curtains)
     return(
       <div styleName='curtain_bg'>
         {this.curtainRender()}

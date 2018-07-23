@@ -34,7 +34,7 @@ export function changeModel(scenceId, cb){
     })
     .then(res => {
       if(res.success) {
-        cb?cb():null
+        if(cb) cb()
       }
     })
   }

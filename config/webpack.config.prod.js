@@ -1,6 +1,5 @@
 'use strict';
 
-const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -225,15 +224,6 @@ module.exports = {
                   ident: 'postcss',
                   plugins: () => [
                     require('postcss-flexbugs-fixes'),
-                    autoprefixer({
-                      browsers: [
-                        '>1%',
-                        'last 4 versions',
-                        'Firefox ESR',
-                        'not ie < 9', // React doesn't support IE8 anyway
-                      ],
-                      flexbox: 'no-2009',
-                    }),
                     postcssAspectRatioMini({}),
                     postcssPxToViewport({
                       viewportWidth: 750, // (Number) The width of the viewport. 
@@ -251,7 +241,7 @@ module.exports = {
                     postcssViewportUnits({}),
                     cssnano({
                       preset: "advanced",
-                      autoprefixer: false,
+                      autoprefixer: true,
                       "postcss-zindex": false
                     })
                   ],
@@ -274,10 +264,7 @@ module.exports = {
             options: {
               ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
               plugins: () => [
-                autoprefixer({
-                  browsers: ['last 2 versions', 'Firefox ESR', '> 1%', 'ie >= 8', 'iOS >= 8', 'Android >= 4'],
-                }),
-
+               
                 postcssAspectRatioMini({}),
                 postcssPxToViewport({
                   viewportWidth: 750, // (Number) The width of the viewport. 
@@ -295,7 +282,7 @@ module.exports = {
                 postcssViewportUnits({}),
                 cssnano({
                   preset: "advanced",
-                  autoprefixer: false,
+                  autoprefixer: true,
                   "postcss-zindex": false
                 })
               ],

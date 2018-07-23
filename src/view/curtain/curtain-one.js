@@ -79,16 +79,16 @@ class CurtainOne extends React.PureComponent {
                     </div>
                       {this.btnRender(way, type)}       
                    </div>
-                   <InputRange touchStart={this.touchStart.bind(this)} touchMove={this.touchMove.bind(this)} touchEnd={this.rangeChange.bind(this,way.wayId)}/>       
+                   <InputRange touchStart={this._touchStart.bind(this)} touchMove={this._touchMove.bind(this)} touchEnd={this.rangeChange.bind(this,way.wayId)}/>       
                 </div>   
               )
             }):null
   }
-  touchStart(e){
+  _touchStart(e){
     e.stopPropagation() 
     e.preventDefault()
   }
-  touchMove(e){
+  _touchMove(e){
     e.stopPropagation() 
     e.preventDefault()
   }

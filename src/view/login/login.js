@@ -95,7 +95,7 @@ class Login extends React.PureComponent {
       Toast.info('手机号码不能为空',2);
       return;
     }
-    if (!(/^1[34578]\d{9}$/.test(parseInt(userName)))) {
+    if (!(/^1[34578]\d{9}$/.test(parseInt(userName, 10)))) {
       Toast.info('请输入正确的手机号',2);
       return;
     }
