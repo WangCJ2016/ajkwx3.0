@@ -16,13 +16,13 @@ export function initialState(houseId) {
      }
     })
 
-    request.get(config.api.base + config.api.queryEnvDatas, 
-         { hostId: sessionStorage.getItem('powerHostId')})
-      .then(res => {
-          if (res&& res.success) {
-            dispatch(saveEnvir(res.dataObject))
-          }
-        })
+    // request.get(config.api.base + config.api.queryEnvDatas, 
+    //      { hostId: sessionStorage.getItem('powerHostId')})
+    //   .then(res => {
+    //       if (res&& res.success) {
+    //         dispatch(saveEnvir(res.dataObject))
+    //       }
+    //     })
 
   }
 }

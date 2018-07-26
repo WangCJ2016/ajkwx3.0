@@ -2,6 +2,7 @@ import {_} from 'lodash'
 import queryString from 'query-string'
 import 'whatwg-fetch'
 import 'es6-promise'
+import { Toast } from 'antd-mobile'
 
 export function encode64(input) {
   var keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789/=";
@@ -118,6 +119,14 @@ export const request = {
     }
     return fetch(url)
     .then((res)=>res.json())
+    .then(res => {
+      if(res.success) {
+        return res
+      } else {
+        Toast.info(res.msg)
+      }
+      return res
+    })
   },
   post(url,body){
     const options = _.extend(config.header,{

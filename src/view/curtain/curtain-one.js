@@ -1,10 +1,11 @@
 import React from 'react'
 import CSSModules from 'react-css-modules'
 import classNames from 'classnames'
-import InputRange from '../../components/inputRange/inputRange'
+
 import * as curtainActions from '../../actions/curtain-actions'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { Slider } from 'antd-mobile'
 
 import styles from './curtain.css'
 
@@ -31,18 +32,9 @@ class CurtainOne extends React.PureComponent {
     this.props.actions.changeCurtainStatus(wayId,key,100)
   }
   rangeChange(wayId,e){
-    e.stopPropagation() 
-    e.preventDefault()
-    this.props.actions.changeCurtainStatus(wayId,'OPEN',e.target.value)
+     this.props.actions.changeCurtainStatus(wayId,'OPEN',e)
   }
-  touchStart(e){
-    e.stopPropagation() 
-    e.preventDefault()
-  }
-  touchMove(e){
-    e.stopPropagation() 
-    e.preventDefault()
-  }
+ 
   btnRender(way, curtainType){
     let activeIndex,type
     if (way.name.indexOf('窗帘')>-1) {
@@ -79,19 +71,19 @@ class CurtainOne extends React.PureComponent {
                     </div>
                       {this.btnRender(way, type)}       
                    </div>
-                   <InputRange touchStart={this._touchStart.bind(this)} touchMove={this._touchMove.bind(this)} touchEnd={this.rangeChange.bind(this,way.wayId)}/>       
+                   
+                   <Slider
+                     trackStyle={{height: '7px',backgroundColor: '#7487f5', borderRadius: '3px'}}
+                     railStyle={{height: '7px', backgroundColor: '#fff', borderRadius: '3px'}}
+                     handleStyle={{width: '24px', height:'24px',borderRadius:'12px', backgroundColor:' #fff',border: 'none', boxShadow: '0 .125em .125em #3b4547'}}
+                     defaultValue={50}
+                     onAfterChange={this.rangeChange.bind(this, way.wayId)}
+                    />
                 </div>   
               )
             }):null
   }
-  _touchStart(e){
-    e.stopPropagation() 
-    e.preventDefault()
-  }
-  _touchMove(e){
-    e.stopPropagation() 
-    e.preventDefault()
-  }
+ 
   render(){
     const ways  = this.props.curtain
     const type = this.props.type
