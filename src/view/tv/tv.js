@@ -32,28 +32,13 @@ class Tv extends React.PureComponent {
     this.props.tvActions.initialTv(houseId)
     this.props.componentDidMount()
     const { tvs } = this.props.tvState
-    if (tvs.length > 0) {
-      if(this.props.tvState.tvSwitch) {
-        document.title = '电视机'
-      }else {
-        document.title = '机顶盒'
-      }
-    }
+    document.title = '电视' 
     window.addEventListener("orientationchange", function (e) {
       e.preventDefault();
 
   }, false);
   }
-  componentDidUpdate() {
-    const { tvs } = this.props.tvState
-    if (tvs.length > 0) {
-      if(this.props.tvState.tvSwitch) {
-        document.title = '电视机'
-      }else {
-        document.title = '机顶盒'
-      }
-    }
-  }
+
 
   tvRender() {
     const { tvs } = this.props.tvState 

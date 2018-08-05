@@ -69,7 +69,7 @@ class LightCard extends React.Component {
           {this.lightRender()}
         </div>
         {
-          this.props.type === '卫生间'?
+          this.props.type === '卫生间' && this.props.lights.length >= 0?
           <div className={styles.switch_toggle}>
             <span>全关</span>
             <Switch checked={this.props.switchStatus} onChange={this.props.switchChange}></Switch>

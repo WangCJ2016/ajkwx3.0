@@ -38,6 +38,7 @@ class Light extends React.PureComponent {
       console.log('websocket已链接')
     }
     this.websocket.onmessage = (event) => {
+      console.log(1)
       let lights = this.props.lightStore.lights
       const lightNow = event.data.split('.WAY.')
       const changelihts = lights.map((light, index) => {

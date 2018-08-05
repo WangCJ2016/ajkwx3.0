@@ -124,8 +124,11 @@
     margin-top: 20px;
 }
 
-:global(.am-switch) input[type=checkbox]:checked+div:after{
+/* :global(.am-switch) input[type=checkbox]:checked+div:after{
     content: '' !important; 
+  } */
+  :global(.checkbox):after{
+    content: '' !important;  
   }
 :global(.light_img)
 {

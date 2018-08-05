@@ -10,7 +10,6 @@ export function initialModel(){
     const houseId = getState().toObject().idStore.houseId || houseId_session
     request.get(config.api.base + config.api.queryHostScenes, { houseId: houseId, token: token })
          .then(res => {
-           console.log(res)
           dispatch(initialState(res.dataObject))
          })
   };
