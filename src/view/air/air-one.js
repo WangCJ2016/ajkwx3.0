@@ -19,7 +19,8 @@ class AirOne extends React.PureComponent {
   }
   componentDidMount(){
     this.setState({
-      currentTemArray:this.props.air.coolWays
+      currentTemArray:this.props.air.coolWays,
+      switchKey: this.props.air.switchStatus
     })
   }
  

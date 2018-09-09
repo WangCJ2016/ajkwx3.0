@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Toast } from 'antd-mobile'
 
-import { decode64 } from '../../utlis/index'
 
 import styles  from './login.css'
 import * as actions from '../../actions/login-actions'
@@ -39,10 +38,12 @@ class Login extends React.PureComponent {
       const _item = item.split('=')
       query[_item[0]] = _item[1]
     })
+    console.log(query)
     const userInfo = {
-      userName: decode64(query.key),
-      password: decode64(query.sign)
+      userName: window.atob(query.key),
+      password: window.atob(query.sign)
     }
+    console.log(userInfo)
     this.props.loginActions.dataSuccess(userInfo)
   }
   componentWillUnmount() {

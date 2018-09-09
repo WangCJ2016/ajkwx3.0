@@ -4,23 +4,45 @@ const houseId_session = sessionStorage.getItem('houseId')
 const token_session = sessionStorage.getItem('token')
 const deviceType = 'VIRTUAL_TV_DVD_REMOTE';
 
-export function initialTv() {
-  return function(dispatch,getState){
+export function initialTv(serverId) {
+  return async function(dispatch,getState){
     const token =  getState().toObject().idStore.token || token_session
     const houseId =  getState().toObject().idStore.houseId || houseId_session
-    request.get(config.api.base + config.api.queryTvDevices,{houseId:houseId,token:token})
-    .then(res => {
-      
-      if (res&&res.success) {
-        let arry = []
-        for(let i in res.dataObject){
-          arry.push(res.dataObject[i])
-        }
-        dispatch(initialState(arry))
+    const response = await request.get(config.api.base + config.api.queryTvDevices,{houseId:houseId,token:token})
+   
+    if (response&&response.success) {
+      let arry = []
+      for(let i in response.dataObject){
+        arry.push({...response.dataObject[i], title: '电视机' + i})
       }
-    })
+      
+      console.log(arry)
+      for(let i in arry){
+        const tvStatus = await getTvAirStatus(serverId, getTvId(arry[i])) 
+        const tvBoxStatus = await getTvAirStatus(serverId, getTvBoxId(arry[i])) 
+        arry[i].tvStatus = tvStatus
+        arry[i].tvBoxStatus = tvBoxStatus
+      }
+      dispatch(initialState(arry))
+    } 
+    
   };
 }
+
+function getTvId (obj) {
+  for(let i in obj) {
+    if(i.indexOf('电视机') > -1) {
+      return obj[i]
+    }
+  }
+}
+function getTvBoxId (obj) {
+  for(let i in obj) {
+    if(i.indexOf('机顶盒') > -1) {
+      return obj[i]
+    }
+  }
+} 
 export function tvCtrl(key,deviceId){
   return (dispatch,getState)=>{
     const token =   getState().toObject().idStore.token || token_session
@@ -31,6 +53,19 @@ export function tvCtrl(key,deviceId){
     })
   };
 }
+
+// 获取 空调 状态
+function  getTvAirStatus(serverId, deviceId) {
+  return request.get(config.api.base + config.api.getTvAirStatus, {
+           serverId: serverId,
+           deviceId: deviceId,
+       })
+       .then(res => {
+           return res.dataObject
+       })
+
+}
+
 export function tvSwitch() {
   return {
     type: 'TVSwitch'

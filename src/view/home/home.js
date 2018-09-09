@@ -39,7 +39,7 @@ class Home extends React.PureComponent {
   }
   componentDidMount(){
     document.title = this.props.location.query.name
-    this.props.homeActions.initialState(this.props.location.query.houseId)
+    //this.props.homeActions.initialState(this.props.location.query.houseId)
     this.props.homeActions.saveHouseId(this.props.location.query.houseId)
 
     const houseId = this.props.location.query.houseId
@@ -51,9 +51,9 @@ class Home extends React.PureComponent {
   }
   figuresRender(){
     let figures = [
-      {name:'light',title:'灯',path:`light?houseId=${this.props.location.query.houseId}&serveId=${this.props.homeState.serveId}`},
-      {name:'air',title:'空调',path:`air?houseId=${this.props.location.query.houseId}`},
-      {name:'tv',title:'电视',path:`tv?houseId=${this.props.location.query.houseId}`},
+      {name:'light',title:'灯',path:`light?houseId=${this.props.location.query.houseId}&serverId=${this.props.location.query.serverId}`},
+      {name:'air',title:'空调',path:`air?houseId=${this.props.location.query.houseId}&serverId=${this.props.location.query.serverId}`},
+      {name:'tv',title:'电视',path:`tv?houseId=${this.props.location.query.houseId}&serverId=${this.props.location.query.serverId}`},
     {name:'curtain',title:'窗帘',path:`curtain?houseId=${this.props.location.query.houseId}`},
     // {name:'lock',title:'门锁',path:`lock?name=${this.props.location.query.name}&houseId=${this.props.location.query.houseId}&floor=${this.props.location.query.floor}&hotelId=${this.props.location.query.hotelId}`},
     {name:'model',title:'情景',path:`model?houseId=${this.props.location.query.houseId}`},

@@ -11,7 +11,7 @@ export function initialLights(info) {
   
     request.get(config.api.base + config.api.queryLightsStatus, { ...info,token: token, deviceType: 'SWITCH' })
       .then(res => {
-       
+        console.log(res) 
         if (res && res.success) {
           dispatch(getServeId(res.dataObject.serverId))
           let lights = []

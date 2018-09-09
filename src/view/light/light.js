@@ -30,15 +30,15 @@ class Light extends React.PureComponent {
   }
   componentDidMount(){
     document.title = '灯'
-    this.props.lightActions.initialLights({serverId: this.props.location.query.serveId})
+    this.props.lightActions.initialLights({serverId: this.props.location.query.serverId})
     this.props.lightActions.yuedudeng()
    
-    this.websocket = new WebSocket(`ws://${config.api.websocket}/stServlet.st?serverId=` + this.props.location.query.serveId) 
-    this.websocket.onopen = () => {
-      console.log('websocket已链接')
+    this.websocketA = new WebSocket(`ws://${config.api.websocketA}/stServlet.st?serverId=` + this.props.location.query.serverId)
+    this.websocketB = new WebSocket(`ws://${config.api.websocketB}/stServlet.st?serverId=` + this.props.location.query.serverId)  
+    this.websocketA.onopen = () => {
+      console.log('websocketA已链接')
     }
-    this.websocket.onmessage = (event) => {
-      console.log(1)
+    this.websocketA.onmessage = (event) => {
       let lights = this.props.lightStore.lights
       const lightNow = event.data.split('.WAY.')
       const changelihts = lights.map((light, index) => {
@@ -50,14 +50,32 @@ class Light extends React.PureComponent {
       })
       this.props.lightActions.getLightsWays(changelihts)
      }
-
+     // webcoketB
+     this.websocketB.onopen = () => {
+      console.log('websocketB已链接')
+    }
+    this.websocketB.onmessage = (event) => {
+      let lights = this.props.lightStore.lights
+      const lightNow = event.data.split('.WAY.')
+      const changelihts = lights.map((light, index) => {
+        if(light.id === lightNow[0]) {
+          return {...light, status: lightNow[1]}
+        }else {
+          return light
+        }
+      })
+      this.props.lightActions.getLightsWays(changelihts)
+     }
      
   }
   
   componentWillReceiveProps(nextProps) {
     this.changeToiletSwitchStatus(nextProps) 
   }
-
+  
+  componentWillUnmount() {
+    this.websocketA.close()
+  }
  // 改变卫生间全开全关状态 
   changeToiletSwitchStatus = (nextProps) => {
     const {lights,middleRoundStatus} = nextProps.lightStore

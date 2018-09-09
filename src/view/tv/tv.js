@@ -28,8 +28,8 @@ class Tv extends React.PureComponent {
     this.countActive = 0
   }
   componentDidMount(){
-    const houseId = this.props.location.query.houseId
-    this.props.tvActions.initialTv(houseId)
+    const serverId = this.props.location.query.serverId
+    this.props.tvActions.initialTv(serverId)
     this.props.componentDidMount()
     const { tvs } = this.props.tvState
     document.title = '电视' 

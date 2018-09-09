@@ -26,7 +26,7 @@ class Air extends React.PureComponent {
   }
   
   componentDidMount(){
-    this.props.airActions.initialAirCondition() 
+    this.props.airActions.initialAirCondition(this.props.location.query.serverId) 
     const { airs } = this.props.airState
     if (airs.length > 0) {
       document.title = Object.keys(airs[this.countActive])[0].replace(/[0-9$]/g, '')
@@ -35,6 +35,7 @@ class Air extends React.PureComponent {
 
   render(){
     const {airs,deviceType} = this.props.airState
+    
     return(
       <div styleName='air_bg'>
         {

@@ -28,7 +28,7 @@ function initial(rooms) {
   }
 }
 
-export function whetherCanOperate(houseName, houseId, id, type, floor, hotelId, powerHostId) {
+export function whetherCanOperate(houseName, houseId, id, type, floor, hotelId, powerHostId,serverId) {
   let roomsType = ''
   if (type === 'recordId') {
     roomsType = 'offline'  
@@ -43,7 +43,8 @@ export function whetherCanOperate(houseName, houseId, id, type, floor, hotelId, 
         sessionStorage.setItem('hotelId', hotelId)
         sessionStorage.setItem('houseId', houseId)
         sessionStorage.setItem('powerHostId', powerHostId)
-        hashHistory.push(`/home?name=${houseName}&houseId=${houseId}&floor=${floor}&hotelId=${hotelId}&${type}=${id}`)
+        sessionStorage.setItem('serverId', serverId)
+        hashHistory.push(`/home?name=${houseName}&houseId=${houseId}&floor=${floor}&hotelId=${hotelId}&${type}=${id}&serverId=${serverId}`)
       } else {
         Toast.info(res.msg, 2);
       }

@@ -91,7 +91,8 @@ function _utf8_decode (utftext) {
   },
   api: {
     base: 'http://smt.live-ctrl.com/aijukex/', // http://47.100.123.83/aijukex http://www.live-ctrl.com/aijukex
-    websocket: 'www.live-ctrl.com/aijukex',
+    websocketA: 'www.live-ctrl.com/aijukex',
+    websocketB: 'plt.live-ctrl.com/aijukex',
     getLoginCode: 'we/we_generatePassword',
     login: 'we/we_loginx',
     queryHotelHouses: 'we/we_queryHotelHouses', //获取房间
@@ -108,7 +109,8 @@ function _utf8_decode (utftext) {
     queryElevatorHost: 'we/we_queryElevatorHost',
     queryEnvDatas: 'we/we_queryEnvDatas', // 获取房间环境
     powerControl: 'we/we_powerControl',
-    checkout: 'we/we_customerLeave'
+    checkout: 'we/we_customerLeave',
+    getTvAirStatus: 'we/we_queryTvAirStatus' // 获取设备状态
   }
 }
 //get/post请求

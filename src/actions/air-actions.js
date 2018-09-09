@@ -3,80 +3,101 @@ let deviceType
 const houseId_session = sessionStorage.getItem('houseId')
 const token_session = sessionStorage.getItem('token')
 
-export function initialAirCondition() {
-    return function(dispatch, getState) {
+export  function initialAirCondition(serverId) {
+    return async function(dispatch, getState) {
         const token = getState().toObject().idStore.token || token_session
         const houseId =  getState().toObject().idStore.houseId || houseId_session
-        request.get(config.api.base + config.api.queryDeviceType, { token: token, deviceName: encodeURI('空调'), houseId: houseId })
-            .then(res => {
-                if (res && res.success) {
-                    deviceType = res.dataObject
-                    dispatch(initialData(deviceType, 'deviceType'))
-                    request.get(config.api.base + config.api.queryHostDeviceByType, { token: token, houseId: houseId, deviceType: res.dataObject })
-                        .then(res => {
-                            
-                            let airs = []
-                            if (res && res.success) {
-                                if (deviceType === 'VIRTUAL_AIR_REMOTE') {
-                                    res.dataObject.devices.forEach((air) => {
-                                        let airInfo = {},
-                                            coolWays, warmWays
-                                        if (air.ways) {
-                                            let coolName =  ''
-                                            let warmName = ''
-                                            coolWays = air.ways.filter(way => {
-                                                if (way.remoteKey.indexOf('COOL') > -1) {
-                                                    return way;
-                                                }else{
-                                                    return null
-                                                }
-                                            }).map(way => {
-                                                coolName = way.remoteKey.slice(0,-2)
-                                                return way.remoteKey.slice(-2);
-                                            }).sort((a,b)=>a-b).map(way => coolName + way)
-                                            warmWays = air.ways.filter(way => {
-                                                if (way.remoteKey.indexOf('WARM') > -1) {
-                                                    return way;
-                                                }else{
-                                                    return null
-                                                }
-                                            }).map(way => {
-                                                warmName = way.remoteKey.slice(0, -2)
-                                                return way.remoteKey.slice(-2);
-                                            }).sort((a,b)=>a-b).map(way => warmName + way);
-                                        }
-                                        airInfo.deviceId = air.deviceId
-                                        airInfo.coolWays = coolWays
-                                        airInfo.warmWays = warmWays
-                                        airInfo.name = air.name
-                                        
-                                        airs.push(airInfo)
-                                    })
-                                } else {
-                                  
-                                    res.dataObject.devices.forEach((air) => {
-                                        let airInfo = {},
-                                            coolWays, warmWays
-                                        coolWays = [16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 29, 30]
-                                        warmWays = [20, 21, 22, 23, 24, 25, 26, 28, 29, 30]
-                                        airInfo.deviceId = air.deviceId
-                                        airInfo.coolWays = coolWays
-                                        airInfo.warmWays = warmWays
-                                        airInfo.name = air.name
-                                       
-                                        airs.push(airInfo)
-                                    })
-                                }
-                            }
+        const response = await request.get(config.api.base + config.api.queryDeviceType, { token: token, deviceName: encodeURI('空调'), houseId: houseId })
 
-                            dispatch(initialData(airs, 'airs'))
-                        })
+        if(response && response.success) {
+            deviceType = response.dataObject 
+            dispatch(initialData(deviceType, 'deviceType'))
+            const airData = await request.get(config.api.base + config.api.queryHostDeviceByType, { token: token, houseId: houseId, deviceType: deviceType }) 
+            
+           
+            if (airData && airData.success) {
+                let airs = []
+                const data = airData.dataObject.devices
+
+                if (deviceType === 'VIRTUAL_AIR_REMOTE') {
+                    for(let i= 0; i<data.length; i++) {
+                        let air = data[i]
+                    
+                        const switchStatus = await getTvAirStatus(serverId, air.deviceId)
+                                                
+                        let airInfo = {},
+                            coolWays, warmWays
+                        
+                        airInfo.switchStatus = switchStatus
+                        if (air.ways) {
+                            let coolName =  ''
+                            let warmName = ''
+                            coolWays = air.ways.filter(way => {
+                                if (way.remoteKey.indexOf('COOL') > -1) {
+                                    return way;
+                                }else{
+                                    return null
+                                }
+                            }).map(way => {
+                                coolName = way.remoteKey.slice(0,-2)
+                                return way.remoteKey.slice(-2);
+                            }).sort((a,b)=>a-b).map(way => coolName + way)
+                            warmWays = air.ways.filter(way => {
+                                if (way.remoteKey.indexOf('WARM') > -1) {
+                                    return way;
+                                }else{
+                                    return null
+                                }
+                            }).map(way => {
+                                warmName = way.remoteKey.slice(0, -2)
+                                return way.remoteKey.slice(-2);
+                            }).sort((a,b)=>a-b).map(way => warmName + way);
+                        }
+                        airInfo.deviceId = air.deviceId
+                        airInfo.coolWays = coolWays
+                        airInfo.warmWays = warmWays
+                        airInfo.name = air.name
+                        
+                        airs.push(airInfo)
+                 }   
+                             
+                } else {
+                    for(let i=0;i<data.length;i++) {
+                        let air = data[i] 
+                        const switchStatus = await getTvAirStatus(serverId, air.deviceId)
+                        let airInfo = {},
+                        coolWays, warmWays
+                        coolWays = [16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 29, 30]
+                        warmWays = [20, 21, 22, 23, 24, 25, 26, 28, 29, 30]
+                        airInfo.switchStatus = switchStatus
+                        airInfo.deviceId = air.deviceId
+                        airInfo.coolWays = coolWays
+                        airInfo.warmWays = warmWays
+                        airInfo.name = air.name
+                    
+                        airs.push(airInfo)
+                    }
                 }
-            })
+                dispatch(initialData(airs, 'airs'))
+                
+            }
+        }
+                                         
     };
 }
+// 获取 空调 状态
+ function  getTvAirStatus(serverId, deviceId) {
+       return request.get(config.api.base + config.api.getTvAirStatus, {
+                serverId: serverId,
+                deviceId: deviceId,
+            })
+            .then(res => {
+                return res.dataObject
+            })
+    
+}
 
-function initialData(airs, style) {
+ function initialData(airs, style) {
     return {
         type: 'INTIALDATA',
         style: style,

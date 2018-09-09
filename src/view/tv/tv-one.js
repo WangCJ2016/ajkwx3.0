@@ -12,6 +12,14 @@ class TvOne extends React.PureComponent {
       tvBox:'OFF'
     }
   }  
+  componentDidMount() {
+    const { tvStatus, tvBoxStatus } = this.props.tv
+
+    this.setState({
+      tv: tvStatus,
+      tvBox: tvBoxStatus 
+    })
+  }
   numClick(type,e){
     if(type==='tv') {
       this.tvCtrl(e.target.getAttribute('data-key'))
