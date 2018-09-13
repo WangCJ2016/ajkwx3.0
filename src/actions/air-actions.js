@@ -18,7 +18,7 @@ export  function initialAirCondition(serverId) {
             if (airData && airData.success) {
                 let airs = []
                 const data = airData.dataObject.devices
-
+                console.log(data)
                 if (deviceType === 'VIRTUAL_AIR_REMOTE') {
                     for(let i= 0; i<data.length; i++) {
                         let air = data[i]

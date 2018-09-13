@@ -63,12 +63,12 @@ function goRouter(id) {
                 const room = rooms[0]
                 const basement = room.basement ? room.basement : 0
                 const floor = room.hotelHouse.floor + basement
-                hashHistory.push(`/home?name=${room.hotelHouse.name}&houseId=${room.houseId}&floor=${floor}&hotelId=${room.hotelHouse.hotelId}&subOrderCode=${room.subOrderCode}`)
+                hashHistory.push(`/home?name=${room.hotelHouse.name}&houseId=${room.houseId}&floor=${floor}&hotelId=${room.hotelHouse.hotelId}&subOrderCode=${room.subOrderCode}&serverId=${room.serverId}`)
               }else{
                 const room = rooms[0]
                 const basement = room.basement ? room.basement : 0
                 const floor = room.hotelHouse.floor + basement
-                hashHistory.push(`/home?name=${room.hotelHouse.name}&houseId=${room.houseId}&floor=${floor}&hotelId=${room.hotelHouse.hotelId}&recordId=${room.id}`)
+                hashHistory.push(`/home?name=${room.hotelHouse.name}&houseId=${room.houseId}&floor=${floor}&hotelId=${room.hotelHouse.hotelId}&recordId=${room.id}&serverId=${room.serverId}`)
               }
         }
     })

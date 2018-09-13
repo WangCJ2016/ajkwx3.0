@@ -20,7 +20,8 @@ class AirOne extends React.PureComponent {
   componentDidMount(){
     this.setState({
       currentTemArray:this.props.air.coolWays,
-      switchKey: this.props.air.switchStatus
+      switchKey: this.props.air.switchStatus === 'ON' ? 'OFF' : 'ON',
+      temIndex: Math.floor(this.props.air.coolWays.length / 2)
     })
   }
  
