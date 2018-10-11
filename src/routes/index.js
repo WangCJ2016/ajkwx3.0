@@ -16,10 +16,16 @@ import Air from '../view/air/air'
 import SelectHome from '../view/selectHome/selectHome'
 import ElevtorPage from '../view/elevtor/elevtor'
 
+import { getParam } from '../utlis'
+
+const url = window.location.href
+const LOGIN_IF = getParam(url, 'rmno') ? false : true
+window.LOGIN_IF = LOGIN_IF
+
 const routes = history => (
     <Router history={history}>
       <Route path='/' component={Frame}>
-        <IndexRoute component={Login}/>
+        <IndexRoute component={LOGIN_IF ? Login : Home}/>
         <Route path='light'>
             <IndexRoute component={Light}/>
             <Route path='dengdai' component={DengDai} />

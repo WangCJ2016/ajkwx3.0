@@ -13,6 +13,10 @@ import { elevator } from '../../actions/elevtor-actions'
 import HomeEnvir from './components/home-envir/home-envir'
 import HomeName from './components/homeName'
 import LockBtn from './components/lockBtn'
+import Modal from './components/modal'
+
+import { getParam } from '../../utlis'
+
 
 @connect(
   state => ({
@@ -38,28 +42,70 @@ class Home extends React.PureComponent {
     }
   }
   componentDidMount(){
-    document.title = this.props.location.query.name
-    //this.props.homeActions.initialState(this.props.location.query.houseId)
-    this.props.homeActions.saveHouseId(this.props.location.query.houseId)
+    document.title = '爱居客智慧客控'
+    if(window.LOGIN_IF) {
 
-    const houseId = this.props.location.query.houseId
-    this.props.roomCardActions.initialState(houseId)
+      this.props.homeActions.saveHouseId(this.props.location.query.houseId)
+  
+      
+      // this.props.roomCardActions.initialState(houseId)
+  
+      const hotelId = this.props.location.query.hotelId
+      const floor = this.props.location.query.floor
+      this.props.elevator({floor: floor,hotelId: hotelId})
 
-    const hotelId = this.props.location.query.hotelId
-    const floor = this.props.location.query.floor
-    this.props.elevator({floor: floor,hotelId: hotelId})
+      this.setState({
+        name: this.props.location.query.name
+      })
+    } else {
+      const hotelCode = getParam(window.location.href, 'hotelCode')
+      const rmno = getParam(window.location.href, 'rmno')
+      this.props.homeActions.wzjwHouseInfo({
+        hotelCode: hotelCode,
+        rmno: rmno
+      })
+    }
   }
-  figuresRender(){
+
+  componentWillReceiveProps(nextProps) {
+    if(!this.state.name && nextProps.homeState.wzjHouseInfo) {
+      this.setState({
+        name: nextProps.homeState.wzjHouseInfo.name
+      })
+    }
+    const hotelId = getParam(window.location.href, 'hotelId')
+    if(hotelId) return
+    if(nextProps.idState.houseId === '' && nextProps.homeState.wzjHouseInfo) {
+      const {  hotelId, id} = nextProps.homeState.wzjHouseInfo
+      sessionStorage.setItem('houseId', window.btoa(id))
+      sessionStorage.setItem('hotelId', hotelId)
+      sessionStorage.setItem('operate', 'V1ZNeGNVeFhjM1JqTWpGb1kyNVNSR1JJU25NPQ==')
+      nextProps.homeActions.saveHouseId(id)
+      
+    }
+  }
+
+  figuresRender=()=>{
+    let houseId, hotelId,serverId
+    if(this.props.homeState.wzjHouseInfo) {
+       
+      houseId = this.props.homeState.wzjHouseInfo.id
+      hotelId = this.props.homeState.wzjHouseInfo.hotelId
+      serverId = this.props.homeState.wzjHouseInfo.serverId
+    } else {
+       houseId = this.props.location.query.houseId
+       hotelId = this.props.location.query.hotelId
+       serverId = this.props.location.query.serverId
+    }
     let figures = [
-      {name:'light',title:'灯',path:`light?houseId=${this.props.location.query.houseId}&serverId=${this.props.location.query.serverId}`},
-      {name:'air',title:'空调',path:`air?houseId=${this.props.location.query.houseId}&serverId=${this.props.location.query.serverId}`},
-      {name:'tv',title:'电视',path:`tv?houseId=${this.props.location.query.houseId}&serverId=${this.props.location.query.serverId}`},
-    {name:'curtain',title:'窗帘',path:`curtain?houseId=${this.props.location.query.houseId}`},
-    // {name:'lock',title:'门锁',path:`lock?name=${this.props.location.query.name}&houseId=${this.props.location.query.houseId}&floor=${this.props.location.query.floor}&hotelId=${this.props.location.query.hotelId}`},
-    {name:'model',title:'情景',path:`model?houseId=${this.props.location.query.houseId}`},
+      {name:'light',title:'灯',path:`light?houseId=${houseId}&serverId=${serverId}`},
+      {name:'air',title:'空调',path:`air?houseId=${houseId}&serverId=${serverId}`},
+      {name:'tv',title:'电视',path:`tv?houseId=${houseId}&serverId=${serverId}`},
+    {name:'curtain',title:'窗帘',path:`curtain?houseId=${houseId}`},
+    {name:'model',title:'情景',path:`model?houseId=${houseId}`},
     {name:'service',title:'服务',path:`service?${this.props.location.search.slice(1)}`},
    ]
-   figures = this.props.elevatorIf?[...figures,{name:'dianti',title:'电梯',path:`elevtor?hotelId=${this.props.location.query.hotelId}&floor=${this.props.location.query.floor}`}]: figures
+   figures = this.props.elevatorIf?[...figures,{name:'dianti',title:'电梯',path:`elevtor?hotelId=${hotelId}&floor=${this.props.location.query.floor}`}]: figures
    figures =  Array.from(new Set(figures))
    return figures.map((figure,index) => {
       const stylename = classNames({
@@ -100,15 +146,20 @@ class Home extends React.PureComponent {
     }
   }
   render(){
-    const {temp, pm, hum} = this.props.idState.envir 
+    const {temp, pm, hum} = this.props.idState.envir
+    const wzjNoAthority =  this.props.homeState.wzjNoAthority 
+    console.log(wzjNoAthority)
     return(  
       <div styleName='home_bg'>
-        <div styleName='top_item'>
-          <HomeName name={this.props.location.query.name}/>
+        <div styleName={window.LOGIN_IF ? "top_item" :'wzg'}>
+          <HomeName name={ this.state.name }/>
         </div>
         <HomeEnvir temp={temp} pm={pm} hum={hum} />
-       
-        <LockBtn openDoor={this.openDoor}></LockBtn>
+       {
+         window.LOGIN_IF ? 
+         <LockBtn openDoor={this.openDoor}></LockBtn>:
+         null
+       }
         <div styleName='figure_wrap' style={{marginTop: this.props.elevatorIf? '40px': '45px'}}>
         {
           this.figuresRender()
@@ -122,7 +173,11 @@ class Home extends React.PureComponent {
            </div>
            :null
         }
-        
+        {
+          wzjNoAthority ?
+          null :
+          <Modal />
+        }
       </div>
     )
   }

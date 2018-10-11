@@ -20,7 +20,7 @@ export function initialState() {
   return (dispatch, getStore) => {
     const token =  getStore().toObject().idStore.token || token_session
     const houseId =  getStore().toObject().idStore.houseId || houseId_session
-    request.get(config.api.base + config.api.queryHostDeviceByType, { houseId: houseId, token: token, deviceType: deviceType })
+    request.get( config.api.queryHostDeviceByType, { houseId: houseId, token: token, deviceType: deviceType })
       .then(res => {
         if (res && res.success) {
          
@@ -43,17 +43,18 @@ export function openTheDoor(deviceId,cb) {
     const token = getStore().toObject().idStore.token || token_session
     const houseId = getStore().toObject().idStore.houseId || houseId_session
     const customerId = getStore().toObject().idStore.customerId || customerId_session
-    request.get(config.api.base + config.api.smartHostControl, {
+    request.get( config.api.smartHostControl, {
         token: token,
         houseId: houseId,
         deviceType: deviceType,
         deviceId: deviceId,
-        customerId: customerId
+        customerId: customerId,
+        operate: 'V1ZNeGNVeFhjM1JqTWpGb1kyNVNSR1JJU25NPQ=='
       })
       .then(res => {
         Toast.info('开锁成功') 
         if (res && res.success) {
-          // request.get(config.api.base + config.api.powerControl, {
+          // request.get( config.api.powerControl, {
           //     hostId: sessionStorage.getItem('powerHostId'),
           //     action: 'jdqoff'
           //   })
@@ -87,7 +88,8 @@ export function smartHostControl(info,cb) {
     const token =  getState().toObject().idStore.token|| token_session
     request.get(config.api.base + config.api.smartHostControl, {
               token: token,
-              ...info
+              ...info,
+              operate: 'V1ZNeGNVeFhjM1JqTWpGb1kyNVNSR1JJU25NPQ=='
             })
             .then(res => {
               if (res && res.success) {

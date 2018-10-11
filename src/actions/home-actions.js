@@ -1,31 +1,8 @@
-import {request, config ,encode64 } from '../utlis'
+import {request, config } from '../utlis'
+
 const token_session = sessionStorage.getItem('token')
 
-// export function initialState(houseId) {
-//   return (dispatch, getState) => {
-//     const token = getState().toObject().idStore.token || token_session
-//     request.get(config.api.base + config.api.querySmartDeviceWays, 
-//          { houseId: encode64(houseId),
-//           token: token,
-//           deviceType: 'SWITCH' 
-//       })
-//       .then(res => {
-//         if(res&&res.success){
-//         sessionStorage.setItem('serveId',res.dataObject.serverId)
-//         dispatch(saveserverId(res.dataObject.serverId))
-//      }
-//     })
-
-//     // request.get(config.api.base + config.api.queryEnvDatas, 
-//     //      { hostId: sessionStorage.getItem('powerHostId')})
-//     //   .then(res => {
-//     //       if (res&& res.success) {
-//     //         dispatch(saveEnvir(res.dataObject))
-//     //       }
-//     //     })
-
-//   }
-// }
+export const DATASUCCESS = '[HOME] DATASUCCESS'
 
 export function saveEnvir(envir) {
   return {
@@ -35,10 +12,35 @@ export function saveEnvir(envir) {
 }
 
 export function saveHouseId(houseId) {
-  sessionStorage.setItem('houseId', encode64(houseId))
+  sessionStorage.setItem('houseId', window.btoa(houseId))
   return {
     type: 'SAVEHOUSEID',
-    houseId: encode64(houseId)
+    houseId: window.btoa(houseId)
   }
 }
 
+export function dataSuccess(data) {
+  return {
+    type: DATASUCCESS,
+    payload: data
+  }
+}
+
+export function wzjwHouseInfo(info) {
+    return (dispatch, getState) => {
+    const token = getState().toObject().idStore.token || token_session
+    request.get(config.api.wzjwHouseInfo, {
+      ...info,
+      key: 'WkROV05tRkhWblZoYld4c1RGZEdjR0Z1Vm5KYVV6RnlXbGhyUFE9PQ==',
+      token: token
+    })
+      .then(res => {
+        if(res&&res.success){
+          dispatch(dataSuccess({wzjHouseInfo: res.dataObject}))
+        } else {
+          dispatch(dataSuccess({wzjNoAthority: false}))
+        }
+    })
+
+  }
+}

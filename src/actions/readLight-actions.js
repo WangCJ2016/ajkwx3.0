@@ -8,7 +8,7 @@ export function getInitialState() {
   return (dispatch, getState) => {
     const token =  getState().toObject().idStore.token || token_session
     const houseId = getState().toObject().idStore.houseId || houseId_session
-    request.get(config.api.base + config.api.queryHostDeviceByType, { houseId: houseId, token: token, deviceType: 'DIMMER' })
+    request.get(config.api.queryHostDeviceByType, { houseId: houseId, token: token, deviceType: 'DIMMER' })
       .then(res => {
        
         if (res && res.success && res.dataObject.devices.length > 0) {
@@ -38,13 +38,14 @@ export function rangeChange(value, wayId) {
   return (dispatch, getStore) => {
    const token =  getStore().toObject().idStore.token || token_session
     const houseId = getStore().toObject().idStore.houseId || houseId_session
-    request.get(config.api.base + config.api.smartHostControl, {
+    request.get(config.api.smartHostControl, {
         houseId: houseId,
         deviceType: 'SWITCH',
         token: token,
         actionType : 'OPEN',
         wayId : wayId,
-        brightness : value
+        brightness : value,
+        operate: 'V1ZNeGNVeFhjM1JqTWpGb1kyNVNSR1JJU25NPQ=='
       })
       .then(res => {
        
@@ -72,7 +73,7 @@ export function switchClick(actionType) {
 
     function runAsync(wayId){
       setTimeout(function() {
-        request.get(config.api.base + config.api.smartHostControl, {
+        request.get(config.api.smartHostControl, {
         houseId: houseId,
         deviceType: 'SWITCH',
         token: token,

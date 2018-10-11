@@ -8,7 +8,7 @@ export function initialModel(){
   return (dispatch,getState)=>{
     const token =  getState().toObject().idStore.token || token_session
     const houseId = getState().toObject().idStore.houseId || houseId_session
-    request.get(config.api.base + config.api.queryHostScenes, { houseId: houseId, token: token })
+    request.get(config.api.queryHostScenes, { houseId: houseId, token: token })
          .then(res => {
           dispatch(initialState(res.dataObject))
          })
@@ -25,11 +25,12 @@ export function changeModel(scenceId, cb){
   return (dispatch,getState) => {
     const token =   getState().toObject().idStore.token || token_session
     const houseId =  getState().toObject().idStore.houseId || houseId_session
-    request.get(config.api.base + config.api.smartHostControl, {
+    request.get(config.api.smartHostControl, {
       token:token,
       houseId:houseId,
       sceneId:scenceId,
-      deviceType:deviceType
+      deviceType:deviceType,
+      operate: 'V1ZNeGNVeFhjM1JqTWpGb1kyNVNSR1JJU25NPQ=='
     })
     .then(res => {
       if(res.success) {

@@ -4,12 +4,10 @@ const houseId_session = sessionStorage.getItem('houseId')
 const token_session = sessionStorage.getItem('token')
 
 export function initialLights(info) {
-
   return function(dispatch, getState) {
     const token =  getState().toObject().idStore.token || token_session
     const houseId = getState().toObject().idStore.houseId || houseId_session
-  
-    request.get(config.api.base + config.api.queryLightsStatus, { ...info,token: token, deviceType: 'SWITCH' })
+    request.get(config.api.queryLightsStatus, { ...info,token: token, deviceType: 'SWITCH' })
       .then(res => {
         console.log(res) 
         if (res && res.success) {
@@ -22,7 +20,7 @@ export function initialLights(info) {
         }
       })
       .then(lights => {
-        request.get(config.api.base + config.api.queryHostDeviceByType, { houseId: houseId, token: token, deviceType: 'VIRTUAL_RGB_REMOTE' })
+        request.get(config.api.queryHostDeviceByType, { houseId: info.houseId, token: token, deviceType: 'VIRTUAL_RGB_REMOTE' })
           .then(res => {
            
             let allLight = []
@@ -36,7 +34,7 @@ export function initialLights(info) {
             return allLight
           })
           .then(lights => {
-            request.get(config.api.base + config.api.queryHostDeviceByType, { houseId: houseId, token: token, deviceType: 'DIMMER' })
+            request.get(config.api.queryHostDeviceByType, { houseId: info.houseId, token: token, deviceType: 'DIMMER' })
               .then(res => {
                
                 let allLight = []
@@ -56,11 +54,11 @@ export function initialLights(info) {
 
 
 // 判断是否有阅读灯
-export function yuedudeng() {
+export function yuedudeng(info) {
   return (dispatch, getState) => {
     const token = getState().toObject().idStore.token || token_session
     const houseId = getState().toObject().idStore.houseId || houseId_session
-    request.get(config.api.base + config.api.queryHostDeviceByType, { houseId: houseId, token: token, deviceType: 'VIRTUAL_RGB_REMOTE' })
+    request.get(config.api.queryHostDeviceByType, { houseId: info.houseId, token: token, deviceType: 'VIRTUAL_RGB_REMOTE' })
       .then(res => {
        
       })
@@ -89,11 +87,12 @@ export function modelsClick(sceneId) {
   return function(dispatch, getState) {
     const token = getState().toObject().idStore.token || token_session
     const houseId = getState().toObject().idStore.houseId || houseId_session
-    request.get(config.api.base + config.api.smartHostControl, {
+    request.get(config.api.smartHostControl, {
         houseId: houseId,
         deviceType: 'SCENE',
         sceneId: sceneId,
-        token: token
+        token: token,
+        operate: 'V1ZNeGNVeFhjM1JqTWpGb1kyNVNSR1JJU25NPQ=='
       })
       .then((res) => {
        
@@ -108,13 +107,14 @@ export function lightsClick(wayId, status, index) {
     const token = getState().toObject().idStore.token || token_session
     const houseId = getState().toObject().idStore.houseId || houseId_session
     dispatch(changelightstatus(wayId, status_on))
-    request.get(config.api.base + config.api.smartHostControl, {
+    request.get(config.api.smartHostControl, {
         houseId: houseId,
         deviceType: 'SWITCH',
         actionType: actionType,
         wayId: wayId,
         token: token,
-        brightness: 80
+        brightness: 80,
+        operate: 'V1ZNeGNVeFhjM1JqTWpGb1kyNVNSR1JJU25NPQ=='
       })
       .then((res) => {
         if (res && res.success) {
@@ -129,14 +129,15 @@ export function dengdaiClick(deviceId, status, index) {
   return (dispatch, getState) => {
     const token = getState().toObject().idStore.token || token_session
     const houseId = getState().toObject().idStore.houseId || houseId_session
-    request.get(config.api.base + config.api.smartHostControl, 
+    request.get(config.api.smartHostControl, 
       { 
         token: token, 
         deviceType : 'VIRTUAL_RGB_REMOTE', 
         houseId: houseId, 
         deviceId : deviceId,
         key: status_on,
-        rgb : "*"
+        rgb : "*",
+        operate: 'V1ZNeGNVeFhjM1JqTWpGb1kyNVNSR1JJU25NPQ=='
        })
        .then(res => {
         

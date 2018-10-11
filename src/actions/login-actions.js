@@ -6,7 +6,7 @@ import { hashHistory } from 'react-router'
 export function getLoginCode(userName) {
     return function(dispatch) {
         // dispatch(getLoginCodeStart())
-        request.get(config.api.base + config.api.getLoginCode, { telephone: userName })
+        request.get(config.api.getLoginCode, { telephone: userName })
             .then(res => {
                 if (res && res.success) {
                     Toast.info('获取密码成功', 2)
@@ -19,7 +19,7 @@ export function getLoginCode(userName) {
 }
 export function goHome(username, password, isRemenber) {
     return function(dispatch) {
-        request.get(config.api.base + config.api.login, { username: username, password: password })
+        request.get(config.api.login, { username: username, password: password })
             .then(res => {
                  
                 if (res.success) {
@@ -48,7 +48,7 @@ export function goHome(username, password, isRemenber) {
 }
 
 function goRouter(id) {
-    request.get(config.api.base + config.api.queryHotelHouses ,{customerId: id})
+    request.get(config.api.queryHotelHouses ,{customerId: id})
     .then(res => {
         let roomNum = 0
         let rooms = []

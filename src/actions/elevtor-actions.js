@@ -13,7 +13,7 @@ export function dataSuccess(data) {
 export function elevator({floor, hotelId}) {
   return (dispatch, getState) => {
     const token = getState().toObject().idStore.token || token_session
-    request.get(config.api.base + config.api.queryElevatorHost, {
+    request.get(config.api.queryElevatorHost, {
         token: token,
         hotelId: hotelId,
       })
@@ -30,9 +30,10 @@ export function elevator({floor, hotelId}) {
 export function smartHostControl(info,cb) {
   return (dispatch,getState) => {
     const token =  getState().toObject().idStore.token || token_session
-    request.get(config.api.base + config.api.smartHostControl, {
+    request.get(config.api.smartHostControl, {
               token: token,
-              ...info
+              ...info,
+              operate: 'V1ZNeGNVeFhjM1JqTWpGb1kyNVNSR1JJU25NPQ=='
             })
             .then(res => {
               if (res && res.success) {

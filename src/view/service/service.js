@@ -104,14 +104,17 @@ class Service extends React.PureComponent {
             }
             <p styleName='content' style={{color:this.state.status==='disturb'&&this.state.disturb==='OPEN'?'#f6b354':'#666'}}>请勿打扰</p>
           </div>
-          <div styleName={checkoutStyle}  onClick={this.propmtVisit}>
-            {
-              this.state.status === 'checkout'?
-              <img src={require('../../assets/imgs/service/checkout.png')} alt="" styleName='swape'/>:
-              <img src={require('../../assets/imgs/service/checkout_off.png')} alt="" styleName='swape'/>
-            }
-            <p styleName='content' style={{color:this.state.status === 'checkout'?'#87b221':'#666'}}>退房</p>
-          </div>
+          {
+            window.LOGIN_IF ? 
+            <div styleName={checkoutStyle}  onClick={this.propmtVisit}>
+              {
+                this.state.status === 'checkout'?
+                <img src={require('../../assets/imgs/service/checkout.png')} alt="" styleName='swape'/>:
+                <img src={require('../../assets/imgs/service/checkout_off.png')} alt="" styleName='swape'/>
+              }
+              <p styleName='content' style={{color:this.state.status === 'checkout'?'#87b221':'#666'}}>退房</p>
+            </div> : null
+          }
         </div>
       </div>
     )

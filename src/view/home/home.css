@@ -6,7 +6,15 @@
 }
 .top_item{
   height: 50%;
-  background: url(../../assets/imgs/home/home_bg.png) no-repeat;
+  background-image: url(../../assets/imgs/home/home_bg.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+.wzg {
+  height: 50%;
+  background-image: url(../../assets/imgs/home/backgrwz.png);
+  background-repeat: no-repeat;
   background-size: 100% 100%;
   overflow: hidden;
 }
@@ -151,7 +159,17 @@
   left: 50%;
   top: 50%;
   margin-left: -105px;
-
 }
-
+.modal{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff
+}
 

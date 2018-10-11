@@ -81,6 +81,7 @@ function _utf8_decode (utftext) {
 }
 
 //api配置
+
  export const config = {
   header: {
     method: 'POST',
@@ -93,6 +94,41 @@ function _utf8_decode (utftext) {
     base: 'http://smt.live-ctrl.com/aijukex/', // http://47.100.123.83/aijukex http://www.live-ctrl.com/aijukex
     websocketA: 'www.live-ctrl.com/aijukex',
     websocketB: 'plt.live-ctrl.com/aijukex',
+    wzjwHouseInfo: 'op/op_queryHotelHouseInfo',
+    getLoginCode: 'we/we_generatePassword',
+    login: 'we/we_loginx',
+    queryHotelHouses: 'we/we_queryHotelHouses', //获取房间
+    queryHostDeviceByType:"we/we_queryHostDeviceByType",//主机信息
+    queryHostScenes:"we/we_queryHostScenes",
+    queryLightsStatus: "we/we_queryLightsStatus",
+    smartHostControl:"we/we_smartHostControl",//控制
+    querySmartDeviceWays:"we/we_querySmartDeviceWays",//获取路数信息
+    queryDeviceType:"we/we_queryDeviceType",//获取设备类型
+    queryTvDevices:"we/we_queryTvDevices", //获取电视信息
+    modifyWaysStatus:"we/we_modifyWaysStatus", //上传灯的状态
+    queryCurtains: "we/we_queryCurtains", // 获取窗帘数据
+    whetherCanOperate: 'we/we_whetherCanOperate',  // 验证房间是否可以入住
+    queryElevatorHost: 'we/we_queryElevatorHost',
+    queryEnvDatas: 'we/we_queryEnvDatas', // 获取房间环境
+    powerControl: 'we/we_powerControl',
+    checkout: 'we/we_customerLeave',
+    getTvAirStatus: 'we/we_queryTvAirStatus' // 获取设备状态
+  }
+}
+
+export const config_wz = {
+  header: {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  },
+  api: {
+    base: 'https://plt.live-ctrl.com/wzj/', // http://47.100.123.83/aijukex http://www.live-ctrl.com/aijukex
+    websocketA: 'www.live-ctrl.com/wzj',
+    websocketB: 'plt.live-ctrl.com/wzj',
+    wzjwHouseInfo: 'op/op_queryHotelHouseInfo',
     getLoginCode: 'we/we_generatePassword',
     login: 'we/we_loginx',
     queryHotelHouses: 'we/we_queryHotelHouses', //获取房间
@@ -116,8 +152,9 @@ function _utf8_decode (utftext) {
 //get/post请求
 export const request = {
   get(url,params) {
+    const _config = window.LOGIN_IF ? config : config_wz
     if(params) {
-      url += '?' + queryString.stringify(params)
+      url = _config.api.base + url +  '?' + queryString.stringify(params)
     }
     return fetch(url)
     .then((res)=>res.json())
@@ -125,7 +162,9 @@ export const request = {
       if(res.success) {
         return res
       } else {
-        Toast.info(res.msg)
+        if(res.msg) {
+          Toast.info(res.msg)
+        }
       }
       return res
     })
@@ -163,4 +202,16 @@ export function numToarray(num) {
   }
   return arry
 }
+
+export function getParam(url, name) {
+  const _index = url.indexOf('#')
+  const _url = _index>-1 ?  url.slice(0, _index) : url
+  let reg = new RegExp("(^|&|\\?)" + name + "=([^&]*)(&|$)");
+  let r = _url.match(reg);
+  if (r !== null) {
+      return decodeURIComponent(r[2]);
+  }
+  return null;
+}
+
 

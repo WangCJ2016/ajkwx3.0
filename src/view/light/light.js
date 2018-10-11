@@ -8,7 +8,7 @@ import styles from './light.css'
 import * as actions from '../../actions/light-actions'
 import LightTab from './component/ligthTab'
 import LightCard from './component/lightCard'
-import { config } from '../../utlis' 
+import { config, config_wz } from '../../utlis' 
 
 
 @connect(
@@ -30,11 +30,17 @@ class Light extends React.PureComponent {
   }
   componentDidMount(){
     document.title = '灯'
-    this.props.lightActions.initialLights({serverId: this.props.location.query.serverId})
-    this.props.lightActions.yuedudeng()
-   
-    this.websocketA = new WebSocket(`ws://${config.api.websocketA}/stServlet.st?serverId=` + this.props.location.query.serverId)
-    this.websocketB = new WebSocket(`ws://${config.api.websocketB}/stServlet.st?serverId=` + this.props.location.query.serverId)  
+    this.props.lightActions.initialLights({
+      serverId: this.props.location.query.serverId,
+      houseId: this.props.location.query.houseId
+    })
+    this.props.lightActions.yuedudeng({
+      houseId: this.props.location.query.houseId
+    })
+    const _config = window.LOGIN_IF ? config: config_wz
+    const pre = window.LOGIN_IF ? 'ws' : 'wss'
+    this.websocketA = new WebSocket(`${pre}://${_config.api.websocketA}/stServlet.st?serverId=` + this.props.location.query.serverId)
+    this.websocketB = new WebSocket(`${pre}://${_config.api.websocketB}/stServlet.st?serverId=` + this.props.location.query.serverId)  
     this.websocketA.onopen = () => {
       console.log('websocketA已链接')
     }

@@ -7,18 +7,17 @@ export  function initialAirCondition(serverId) {
     return async function(dispatch, getState) {
         const token = getState().toObject().idStore.token || token_session
         const houseId =  getState().toObject().idStore.houseId || houseId_session
-        const response = await request.get(config.api.base + config.api.queryDeviceType, { token: token, deviceName: encodeURI('空调'), houseId: houseId })
+        const response = await request.get( config.api.queryDeviceType, { token: token, deviceName: encodeURI('空调'), houseId: houseId })
 
         if(response && response.success) {
             deviceType = response.dataObject 
             dispatch(initialData(deviceType, 'deviceType'))
-            const airData = await request.get(config.api.base + config.api.queryHostDeviceByType, { token: token, houseId: houseId, deviceType: deviceType }) 
+            const airData = await request.get( config.api.queryHostDeviceByType, { token: token, houseId: houseId, deviceType: deviceType }) 
             
            
             if (airData && airData.success) {
                 let airs = []
                 const data = airData.dataObject.devices
-                console.log(data)
                 if (deviceType === 'VIRTUAL_AIR_REMOTE') {
                     for(let i= 0; i<data.length; i++) {
                         let air = data[i]
@@ -87,7 +86,7 @@ export  function initialAirCondition(serverId) {
 }
 // 获取 空调 状态
  function  getTvAirStatus(serverId, deviceId) {
-       return request.get(config.api.base + config.api.getTvAirStatus, {
+       return request.get( config.api.getTvAirStatus, {
                 serverId: serverId,
                 deviceId: deviceId,
             })
@@ -110,12 +109,13 @@ export function changeTem(key, deviceId) {
     return function(dispatch, getState) {
         const token =  getState().toObject().idStore.token || token_session
     const houseId =   getState().toObject().idStore.houseId || houseId_session
-        request.get(config.api.base + config.api.smartHostControl, {
+        request.get( config.api.smartHostControl, {
                 houseId: houseId,
                 deviceType: deviceType,
                 token: token,
                 deviceId: deviceId,
-                key: key
+                key: key,
+                operate: 'V1ZNeGNVeFhjM1JqTWpGb1kyNVNSR1JJU25NPQ=='
             })
             .then(res => {
                 
@@ -128,14 +128,15 @@ export function centerchangeTem(key, deviceId, model, speed) {
     return function(dispatch,getState) {
         const token =   getState().toObject().idStore.token || token_session
     const houseId =  getState().toObject().idStore.houseId || houseId_session
-        request.get(config.api.base + config.api.smartHostControl, {
+        request.get( config.api.smartHostControl, {
                 houseId: houseId,
                 deviceType: deviceType,
                 token: token,
                 deviceId: deviceId,
                 mode: mode,
                 temp: key,
-                wind: speed
+                wind: speed,
+                operate: 'V1ZNeGNVeFhjM1JqTWpGb1kyNVNSR1JJU25NPQ=='
             })
             .then(res => {
                 
@@ -181,7 +182,7 @@ export function airswitch(key, deviceId) {
                 }
             }
         }
-       request.get(config.api.base + config.api.smartHostControl, data)
+       request.get( config.api.smartHostControl, {...data, operate: 'V1ZNeGNVeFhjM1JqTWpGb1kyNVNSR1JJU25NPQ=='})
             .then(res => {
                 
             })

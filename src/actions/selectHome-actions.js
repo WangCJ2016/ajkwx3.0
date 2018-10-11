@@ -7,7 +7,7 @@ const customerId_session = sessionStorage.getItem('customerId')
 export function initialState(customerId) {
   const _customerId = customerId || customerId_session
   return (dispatch, getState) => {
-    request.get(config.api.base + config.api.queryHotelHouses ,{customerId: _customerId})
+    request.get(config.api.queryHotelHouses ,{customerId: _customerId})
       .then(res => {
         
         if (res && res.dataObject) {
@@ -37,7 +37,7 @@ export function whetherCanOperate(houseName, houseId, id, type, floor, hotelId, 
     roomsType = 'online'  
   }
   return () => {
-    request.get(config.api.base + config.api.whetherCanOperate ,{type: roomsType, [type]: id})
+    request.get(config.api.whetherCanOperate ,{type: roomsType, [type]: id})
     .then((res) => {
       if (res.success) {
         sessionStorage.setItem('hotelId', hotelId)

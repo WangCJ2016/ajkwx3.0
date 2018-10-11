@@ -38,17 +38,19 @@ class Login extends React.PureComponent {
       const _item = item.split('=')
       query[_item[0]] = _item[1]
     })
-    console.log(query)
     const userInfo = {
       userName: window.atob(query.key),
       password: window.atob(query.sign)
     }
-    console.log(userInfo)
+
     this.props.loginActions.dataSuccess(userInfo)
   }
   componentWillUnmount() {
     if(this.timer) clearInterval(this.timer)
   }
+
+  
+
   handleChange(name,e){
     this.props.loginActions.changeUserAndPassword(name,e.target.value)
   }

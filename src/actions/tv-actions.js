@@ -8,7 +8,7 @@ export function initialTv(serverId) {
   return async function(dispatch,getState){
     const token =  getState().toObject().idStore.token || token_session
     const houseId =  getState().toObject().idStore.houseId || houseId_session
-    const response = await request.get(config.api.base + config.api.queryTvDevices,{houseId:houseId,token:token})
+    const response = await request.get( config.api.queryTvDevices,{houseId:houseId,token:token})
    
     if (response&&response.success) {
       let arry = []
@@ -16,7 +16,6 @@ export function initialTv(serverId) {
         arry.push({...response.dataObject[i], title: '电视机' + i})
       }
       
-      console.log(arry)
       for(let i in arry){
         const tvStatus = await getTvAirStatus(serverId, getTvId(arry[i])) 
         const tvBoxStatus = await getTvAirStatus(serverId, getTvBoxId(arry[i])) 
@@ -47,7 +46,14 @@ export function tvCtrl(key,deviceId){
   return (dispatch,getState)=>{
     const token =   getState().toObject().idStore.token || token_session
     const houseId =  getState().toObject().idStore.houseId || houseId_session
-    request.get(config.api.base + config.api.smartHostControl,{houseId:houseId,token:token,deviceType:deviceType,deviceId:deviceId,key:key})
+    request.get( config.api.smartHostControl,{
+      houseId:houseId,
+      token:token,
+      deviceType:deviceType,
+      deviceId:deviceId,
+      key:key,
+      operate: 'V1ZNeGNVeFhjM1JqTWpGb1kyNVNSR1JJU25NPQ=='
+    })
     .then(res => {
   
     })
@@ -56,7 +62,7 @@ export function tvCtrl(key,deviceId){
 
 // 获取 空调 状态
 function  getTvAirStatus(serverId, deviceId) {
-  return request.get(config.api.base + config.api.getTvAirStatus, {
+  return request.get( config.api.getTvAirStatus, {
            serverId: serverId,
            deviceId: deviceId,
        })

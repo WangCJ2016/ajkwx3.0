@@ -8,7 +8,11 @@ export function initialCurtain() {
   return (dispatch,getState)=> {
     const token =  getState().toObject().idStore.token || token_session
     const houseId =  getState().toObject().idStore.houseId || houseId_session
-    request.get(config.api.base + config.api.queryCurtains,{houseId:houseId,token:token,deviceType:deviceType})
+    request.get(config.api.queryCurtains,{
+      houseId:houseId,
+      token:token,
+      deviceType:deviceType,
+      operate: 'V1ZNeGNVeFhjM1JqTWpGb1kyNVNSR1JJU25NPQ=='})
     .then(res => {
       if(res&&res.success){
         dispatch(initialState(res.dataObject.curtains))
@@ -22,7 +26,14 @@ export function changeCurtainStatus(wayId,key,brightness){
     const token =   getState().toObject().idStore.token || token_session 
     const houseId =  getState().toObject().idStore.houseId || houseId_session 
   
-    request.get(config.api.base + config.api.smartHostControl,{token:token,houseId:houseId,deviceType:deviceType,wayId:wayId,actionType:key,brightness:brightness})
+    request.get(config.api.smartHostControl,{
+      token:token,
+      houseId:houseId,
+      deviceType:deviceType,
+      wayId:wayId,
+      actionType:key,
+      brightness:brightness,
+      operate: 'V1ZNeGNVeFhjM1JqTWpGb1kyNVNSR1JJU25NPQ=='})
     .then(res => {
       
     })
