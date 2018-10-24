@@ -1,6 +1,6 @@
 .tv_bg {
     height: 100%;
-    background: url(../../assets/imgs/tv/tv_bg.png);
+    background: url('../../assets/imgs/tv/tv_bg.png');
     background-size: 100% 100%;
     overflow: hidden;
 }
@@ -144,7 +144,7 @@
     overflow: hidden;
 }
 .arr_up {
-    background: url(../../assets/imgs/tv/arr_top.png) no-repeat center center;
+    background: url('../../assets/imgs/tv/arr_top.png') no-repeat center center;
     background-size: 38px 22px;
 }
 .round{

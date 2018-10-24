@@ -67,7 +67,7 @@ class CurtainOne extends React.PureComponent {
                         <img src={require('../../assets/imgs/curtain/chuanglian.png')} alt=""/>:
                         <img src={require('../../assets/imgs/curtain/shalian.png')} alt=""/>
                       }
-                      <span styleName="curtain_name">{way.name}</span>
+                      <div styleName="curtain_name">{way.name}</div>
                     </div>
                       {this.btnRender(way, type)}       
                    </div>

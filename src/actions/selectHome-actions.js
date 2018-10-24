@@ -44,7 +44,7 @@ export function whetherCanOperate(houseName, houseId, id, type, floor, hotelId, 
         sessionStorage.setItem('houseId', houseId)
         sessionStorage.setItem('powerHostId', powerHostId)
         sessionStorage.setItem('serverId', serverId)
-        hashHistory.push(`/home?name=${houseName}&houseId=${houseId}&floor=${floor}&hotelId=${hotelId}&${type}=${id}&serverId=${serverId}`)
+        hashHistory.push(`home?name=${houseName}&houseId=${houseId}&floor=${floor}&hotelId=${hotelId}&${type}=${id}&serverId=${serverId}`)
       } else {
         Toast.info(res.msg, 2);
       }

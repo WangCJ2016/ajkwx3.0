@@ -37,7 +37,7 @@ class LightCard extends React.Component {
           <div styleName='light_wrap'  key={light.id}>
                   <div className={stylename} 
                      onClick={this.lightsClick.bind(this, light.id, status, light.name, light.deviceId)}>
-                    <div className="light_img"></div>
+                    <div styleName="light_img"></div>
                     <p styleName='light_p'>{light.name.replace(this.props.lightStore.middleRoundStatus, '')}</p>
                   </div>
                </div>
@@ -71,9 +71,9 @@ class LightCard extends React.Component {
         {
           this.props.type === '卫生间' && this.props.lights.length >= 0?
           <div className={styles.switch_toggle}>
-            <span>全关</span>
+            <div>全关</div>
             <Switch checked={this.props.switchStatus} onChange={this.props.switchChange}></Switch>
-            <span>全开</span>
+            <div>全开</div>
           </div>:null
         }
         

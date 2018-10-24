@@ -32,7 +32,7 @@ import { getParam } from '../../utlis'
   })
 )
 @CSSModules(styles, { allowMultiple: true, handleNotFoundStyleName: 'ignore' })
-class Home extends React.PureComponent {
+class Home extends React.Component {
   constructor(){
     super()
     this.state = {
@@ -44,11 +44,11 @@ class Home extends React.PureComponent {
   componentDidMount(){
     document.title = '爱居客智慧客控'
     if(window.LOGIN_IF) {
-
-      this.props.homeActions.saveHouseId(this.props.location.query.houseId)
+      const houseId = this.props.location.query.houseId
+      this.props.homeActions.saveHouseId(houseId)
   
       
-      // this.props.roomCardActions.initialState(houseId)
+      this.props.roomCardActions.initialState(houseId)
   
       const hotelId = this.props.location.query.hotelId
       const floor = this.props.location.query.floor
@@ -101,12 +101,14 @@ class Home extends React.PureComponent {
       {name:'light',title:'灯',path:`light?houseId=${houseId}&serverId=${serverId}`},
       {name:'air',title:'空调',path:`air?houseId=${houseId}&serverId=${serverId}`},
       {name:'tv',title:'电视',path:`tv?houseId=${houseId}&serverId=${serverId}`},
-    {name:'curtain',title:'窗帘',path:`curtain?houseId=${houseId}`},
-    {name:'model',title:'情景',path:`model?houseId=${houseId}`},
-    {name:'service',title:'服务',path:`service?${this.props.location.search.slice(1)}`},
+      {name:'curtain',title:'窗帘',path:`curtain?houseId=${houseId}`},
+      {name:'model',title:'情景',path:`model?houseId=${houseId}`},
+      {name:'service',title:'服务',path:`service?${this.props.location.search.slice(1)}`},
+      {name:'temCtrl',title:'温控',path:`temCtrl?serverId=${serverId}&houseId=${houseId}`},
    ]
-   figures = this.props.elevatorIf?[...figures,{name:'dianti',title:'电梯',path:`elevtor?hotelId=${hotelId}&floor=${this.props.location.query.floor}`}]: figures
-   figures =  Array.from(new Set(figures))
+   figures = this.props.elevatorIf ? 
+     [...figures,{name:'dianti',title:'电梯',path:`elevtor?hotelId=${hotelId}&floor=${this.props.location.query.floor}`}]
+     : figures
    return figures.map((figure,index) => {
       const stylename = classNames({
             [figure.name]:true,
@@ -148,7 +150,6 @@ class Home extends React.PureComponent {
   render(){
     const {temp, pm, hum} = this.props.idState.envir
     const wzjNoAthority =  this.props.homeState.wzjNoAthority 
-    console.log(wzjNoAthority)
     return(  
       <div styleName='home_bg'>
         <div styleName={window.LOGIN_IF ? "top_item" :'wzg'}>
@@ -161,9 +162,11 @@ class Home extends React.PureComponent {
          null
        }
         <div styleName='figure_wrap' style={{marginTop: this.props.elevatorIf? '40px': '45px'}}>
-        {
-          this.figuresRender()
-        }
+          <div styleName='figures'>
+            {
+              this.figuresRender()
+            }
+          </div>
         </div>
         {
           this.state.modalVisible?

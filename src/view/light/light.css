@@ -55,6 +55,7 @@
 }
 .switch_toggle{
     display: flex;
+    justify-content: space-between;
     justify-content: space-around;
     align-items: center
 }
@@ -64,12 +65,14 @@
 }
 
 .ligths_wrap{
-    display: flex;
-    flex-wrap: wrap;
+    /* display: flex;
+    flex-wrap: wrap; */
+    overflow: hidden;
 }
 .light_wrap
 {
     width: 33.3%;
+    float: left;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -99,19 +102,21 @@
     text-overflow: ellipsis;
     color: #666;
     margin-top: 40px;
+    width: 100%;
+    text-align: center
 }
 
 
 
 
-.lights
+:global(.lights)
 {
-    width: 33.3%;
+    width: 100%;
 }
 
 :global(.lights_ON) > div
 {
-    background: url(../../assets/imgs/light/tonyong_on.png)no-repeat  0 20px;
+    background: url('../../assets/imgs/light/tonyong_on.png')no-repeat  0 20px;
     background-size: 70px 64.6px;
 }
 :global(.lights_ON) > p
@@ -130,85 +135,84 @@
   :global(.checkbox):after{
     content: '' !important;  
   }
-:global(.light_img)
+.light_img
 {
     width: 70px;
     height: 64.6px;
     margin: 0 auto;
     padding-top: 20px;
-
-    background: url(../../assets/imgs/light/tonyong_off.png)no-repeat 0 20px;
+    background: url('../../assets/imgs/light/tonyong_off.png')no-repeat 0 20px;
     background-size: 70px 64.6px;
 }
 :global(.卧室主灯_ON) >div {
-    background: url(../../assets/imgs/light/zhudeng_ON.png)no-repeat no-repeat 0 20px;
+    background: url('../../assets/imgs/light/zhudeng_ON.png')no-repeat no-repeat 0 20px;
     background-size: .68rem .64rem;
 }
 :global(.卧室主灯_OFF) >div {
-    background: url(../../assets/imgs/light/zhudeng_off.png)no-repeat no-repeat 0 20px;
+    background: url('../../assets/imgs/light/zhudeng_off.png')no-repeat no-repeat 0 20px;
     background-size: .68rem .64rem;
 }
 :global(.卧室背景灯_ON) >div {
-    background: url(../../assets/imgs/light/beijingdeng_on.png)no-repeat no-repeat 0 20px;
+    background: url('../../assets/imgs/light/beijingdeng_on.png')no-repeat no-repeat 0 20px;
     background-size: .68rem .64rem;
 }
 :global(.卧室背景灯_OFF) >div {
-    background: url(../../assets/imgs/light/beijingdeng_off.png)no-repeat no-repeat 0 20px;
+    background: url('../../assets/imgs/light/beijingdeng_off.png')no-repeat no-repeat 0 20px;
     background-size: .68rem .64rem;
 }
 :global(.卧室床头灯_ON) >div {
-    background: url(../../assets/imgs/light/chuangtou_on.png)no-repeat no-repeat 0 20px;
+    background: url('../../assets/imgs/light/chuangtou_on.png')no-repeat no-repeat 0 20px;
     background-size: .68rem .64rem;
 }
 :global(.卧室床头灯_OFF) >div {
-    background: url(../../assets/imgs/light/chuangtou_off.png)no-repeat no-repeat 0 20px;
+    background: url('../../assets/imgs/light/chuangtou_off.png')no-repeat no-repeat 0 20px;
     background-size: .68rem .64rem;
 } 
 :global(.卧室镜前灯_ON) >div {
-    background: url(../../assets/imgs/light/jingqian_on.png)no-repeat no-repeat center center;
+    background: url('../../assets/imgs/light/jingqian_on.png')no-repeat no-repeat center center;
     background-size: contain;
 }
 :global(.卧室镜前灯_OFF) >div {
-    background: url(../../assets/imgs/light/jingqian_off.png)no-repeat no-repeat center center;
+    background: url('../../assets/imgs/light/jingqian_off.png')no-repeat no-repeat center center;
     background-size: contain;
 } 
 :global(.卧室廊灯_ON) >div {
-    background: url(../../assets/imgs/light/langdeng_on.png)no-repeat no-repeat 0 20px;
+    background: url('../../assets/imgs/light/langdeng_on.png')no-repeat no-repeat 0 20px;
     background-size: contain;
 }
 :global(.卧室廊灯_OFF) >div {
-    background: url(../../assets/imgs/light/langdeng_off.png)no-repeat no-repeat 0 20px;
+    background: url('../../assets/imgs/light/langdeng_off.png')no-repeat no-repeat 0 20px;
     background-size: contain;
 } 
 :global(.卧室夜灯_ON) >div {
-    background: url(../../assets/imgs/light/yedeng_on.png)no-repeat no-repeat center center;
+    background: url('../../assets/imgs/light/yedeng_on.png')no-repeat no-repeat center center;
     background-size: contain;
 }
 :global(.卧室夜灯_OFF) >div {
-    background: url(../../assets/imgs/light/yedeng_off.png)no-repeat no-repeat center center;
+    background: url('../../assets/imgs/light/yedeng_off.png')no-repeat no-repeat center center;
     background-size: contain;
 } 
 :global(.卧室射灯_ON) >div {
-    background: url(../../assets/imgs/light/shedeng_on.png)no-repeat no-repeat 0 20px;
+    background: url('../../assets/imgs/light/shedeng_on.png')no-repeat no-repeat 0 20px;
     background-size: contain;
 }
 :global(.卧室射灯_OFF) >div {
-    background: url(../../assets/imgs/light/shedeng_off.png)no-repeat no-repeat 0 20px;
+    background: url('../../assets/imgs/light/shedeng_off.png')no-repeat no-repeat 0 20px;
     background-size: contain;
 } 
 :global(.卫生间淋浴灯_ON) >div {
-    background: url(../../assets/imgs/light/linyudeng_on.png)no-repeat no-repeat 0 20px;
+    background: url('../../assets/imgs/light/linyudeng_on.png')no-repeat no-repeat 0 20px;
     background-size: contain;
 }
 :global(.卫生间淋浴灯_OFF) >div {
-    background: url(../../assets/imgs/light/linyudeng_off.png)no-repeat no-repeat 0 20px;
+    background: url('../../assets/imgs/light/linyudeng_off.png')no-repeat no-repeat 0 20px;
     background-size: contain;
 } 
 :global(.卫生间顶灯_ON) >div {
-    background: url(../../assets/imgs/light/dingdeng_on.png)no-repeat no-repeat center center;
+    background: url('../../assets/imgs/light/dingdeng_on.png')no-repeat no-repeat center center;
     background-size: contain;
 }
 :global(.卫生间顶灯_OFF) >div {
-    background: url(../../assets/imgs/light/dingdeng_off.png)no-repeat no-repeat center center;
+    background: url('../../assets/imgs/light/dingdeng_off.png')no-repeat no-repeat center center;
     background-size: contain;
 } 

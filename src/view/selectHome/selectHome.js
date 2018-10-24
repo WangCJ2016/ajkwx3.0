@@ -2,7 +2,7 @@ import React from 'react'
 import CSSModules from 'react-css-modules'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Link } from 'react-router'
+import { Link, hashHistory } from 'react-router'
 
 import * as selectHomeActions from '../../actions/selectHome-actions'
 import styles from './selectHome.css'
@@ -21,6 +21,7 @@ class SelectHome extends React.Component {
   whetherCanOperate(houseName, houseId, id) {
     this.props.actions.whetherCanOperate(houseName, houseId, id)
   }
+  
   roomRender() {
     const { rooms } = this.props.selectHomeState
    return rooms.map((room) => {
@@ -44,7 +45,7 @@ class SelectHome extends React.Component {
                     <img src={require('../../assets/imgs/selectHome/lock.png')} alt=""/>             
                   </div>
                   <p styleName='room_name'>{room.hotelHouse.name.replace(/[0-9]/ig,"")}</p>
-                  <p styleName='room_name'>{room.hotelHouse.name.replace(/[^0-9]/ig,"")}</p>
+                  <p styleName='room_name'>{room.hotelHouse.name.replace(/[^0-9]/ig,"")||''}</p>
                 </Link>
       }
     })
@@ -55,7 +56,10 @@ class SelectHome extends React.Component {
     return (
       <div styleName='selecthome_bg'>
         <div styleName="rooms">
+          <div>
+
           {this.roomRender()}
+          </div>
         </div>
       </div>
     )

@@ -15,5 +15,20 @@ import selectHomeStore from './selectHome-reducer'
 import readLightStore from './readLight-reducer'
 import homeStore from './home-reducer'
 import elevtorStore from './elevtor-reducer'
+import temCtrlStore from './temCtrl.reducer'
 
-export default combineReducers({loginStore, elevtorStore,selectHomeStore, lightStore,airStore,idStore,roomCardStore,serviceStore,modelStore,tvStore,curtainStore,readLightStore, homeStore})
+export default combineReducers({
+  loginStore, 
+  elevtorStore,
+  selectHomeStore, 
+  lightStore,
+  airStore,
+  idStore,
+  roomCardStore,
+  serviceStore,
+  modelStore,
+  tvStore,
+  curtainStore,
+  readLightStore,
+  temCtrlStore,
+  homeStore})

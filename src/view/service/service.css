@@ -1,6 +1,6 @@
 .service_bg{
   height: 100%;
-  background: url(../../assets/imgs/service/service_bg.png);
+  background: url('../../assets/imgs/service/service_bg.png');
   background-size: 100% 100%;
   overflow: hidden;
 }
@@ -33,7 +33,7 @@
   margin-right: 30px;
   margin-top: 130px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between
 }
 .service_item{
   display: flex;

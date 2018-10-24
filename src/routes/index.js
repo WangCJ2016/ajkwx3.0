@@ -10,11 +10,13 @@ import Service from '../view/service/service'
 import RoomCard from '../view/roomCard/roomCard'
 import Models from '../view/models/models'
 import Home from '../view/home/home'
+//import Home from '../view/home/_home'
 import Curtain from '../view/curtain/curtain'
 import Tv from '../view/tv/tv'
 import Air from '../view/air/air'
 import SelectHome from '../view/selectHome/selectHome'
 import ElevtorPage from '../view/elevtor/elevtor'
+import TemCtrl from '../view/temCtrl'
 
 import { getParam } from '../utlis'
 
@@ -40,6 +42,7 @@ const routes = history => (
         <Route path='/air' component={Air} />
         <Route path='/selectHome' component={ SelectHome } />
         <Route path='/elevtor' component={ ElevtorPage } />
+        <Route path='/temCtrl' component={ TemCtrl } />
       </Route>
     </Router>
   )

@@ -20,7 +20,7 @@
 }
 .elevtor_item{
   position: relative;
-  margin-top: 20px
+  margin-top: 20px,
 }
 .elevtor_item.active > span {
   color: #fff;

@@ -70,7 +70,7 @@ module.exports = {
     filename: 'static/js/[name].[chunkhash:8].js',
     chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
     // We inferred the "public path" (such as / or /my-project) from homepage.
-    publicPath: 'https://plt.live-ctrl.com/wzjw/', // 'https://plt.live-ctrl.com/wzjw/ http://www.live-ctrl.com/wechatx //http://47.100.123.83/wechatv/
+    publicPath: 'http://www.live-ctrl.com/wechatx/', // 'https://plt.live-ctrl.com/wzjw/ http://www.live-ctrl.com/wechatx //http://47.100.123.83/wechatv/
     // Point sourcemap entries to original disk location (format as URL on Windows)
     devtoolModuleFilenameTemplate: info =>
       path
@@ -162,7 +162,7 @@ module.exports = {
         test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
         loader: require.resolve('url-loader'),
         options: {
-          limit: 10000,
+          limit: 1000,
           name: 'static/media/[name].[hash:base64:5].[ext]',
         },
       },
@@ -237,11 +237,13 @@ module.exports = {
                     postcssWriteSvg({
                       utf8: false
                     }),
-                    postcssCssnext({}),
+                    postcssCssnext({
+                      warnForDuplicates: false
+                    }),
                     postcssViewportUnits({}),
                     cssnano({
                       preset: "advanced",
-                      autoprefixer: true,
+                       autoprefixer: true,
                       "postcss-zindex": false
                     })
                   ],
@@ -278,7 +280,9 @@ module.exports = {
                 postcssWriteSvg({
                   utf8: false
                 }),
-                postcssCssnext({}),
+                postcssCssnext({
+                  warnForDuplicates: false
+                }),
                 postcssViewportUnits({}),
                 cssnano({
                   preset: "advanced",

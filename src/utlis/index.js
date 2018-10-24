@@ -112,7 +112,8 @@ function _utf8_decode (utftext) {
     queryEnvDatas: 'we/we_queryEnvDatas', // 获取房间环境
     powerControl: 'we/we_powerControl',
     checkout: 'we/we_customerLeave',
-    getTvAirStatus: 'we/we_queryTvAirStatus' // 获取设备状态
+    getTvAirStatus: 'we/we_queryTvAirStatus', // 获取设备状态
+    queryHeatings: 'we/we_queryHeatings',  // 地暖设备 
   }
 }
 
@@ -146,7 +147,8 @@ export const config_wz = {
     queryEnvDatas: 'we/we_queryEnvDatas', // 获取房间环境
     powerControl: 'we/we_powerControl',
     checkout: 'we/we_customerLeave',
-    getTvAirStatus: 'we/we_queryTvAirStatus' // 获取设备状态
+    getTvAirStatus: 'we/we_queryTvAirStatus', // 获取设备状态
+    queryHeatings: 'we/we_queryHeatings',  // 地暖设备 
   }
 }
 //get/post请求

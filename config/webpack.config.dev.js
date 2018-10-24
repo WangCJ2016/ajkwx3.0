@@ -1,5 +1,6 @@
 'use strict';
 
+// const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -167,7 +168,7 @@ module.exports = {
         test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
         loader: require.resolve('url-loader'),
         options: {
-          limit: 10000,
+          limit: 1000,
           name: 'static/media/[name].[hash:8].[ext]',
         },
       },
@@ -260,6 +261,15 @@ module.exports = {
               ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
               plugins: () => [
                 require('postcss-flexbugs-fixes'),
+                // autoprefixer({
+                //   browsers: [
+                //     '>1%',
+                //     'last 4 versions',
+                //     'Firefox ESR',
+                //     'not ie < 9', // React doesn't support IE8 anyway
+                //   ],
+                //   flexbox: 'no-2009',
+                // }),
                 postcssAspectRatioMini({}),
                 postcssPxToViewport({
                   viewportWidth: 750, // (Number) The width of the viewport. 
