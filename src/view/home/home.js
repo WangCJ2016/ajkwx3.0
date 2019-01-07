@@ -106,6 +106,7 @@ class Home extends React.Component {
       {name:'service',title:'服务',path:`service?${this.props.location.search.slice(1)}`},
       {name:'temCtrl',title:'温控',path:`temCtrl?serverId=${serverId}&houseId=${houseId}`},
    ]
+   !window.LOGIN_IF ? figures : figures.pop()
    figures = this.props.elevatorIf ? 
      [...figures,{name:'dianti',title:'电梯',path:`elevtor?hotelId=${hotelId}&floor=${this.props.location.query.floor}`}]
      : figures

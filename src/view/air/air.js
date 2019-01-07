@@ -36,7 +36,7 @@ class Air extends React.PureComponent {
 
   render(){
     const {airs,deviceType} = this.props.airState
-    
+    console.log(airs)
     return(
       <div styleName='air_bg'>
         {

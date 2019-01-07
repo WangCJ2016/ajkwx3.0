@@ -7,6 +7,8 @@ import CardCom from './components/card'
 import styles from './index.css'
 import { fetchDevice, smartControl } from '../../actions/temCtrl-actions'
 
+
+const TabPane = Tabs.TabPane
 @connect(
     state => ({temCtrlState:state.toObject().temCtrlStore}),
     {
@@ -19,7 +21,7 @@ class TemCtrl extends React.Component {
 
     componentDidMount() {
         const serverId = this.props.location.query.serverId
-        this.props.fetchDevice({serverId: '50E4CA8115D83C3B'})
+        this.props.fetchDevice({serverId: serverId})
     }
 
     deviceRender() {

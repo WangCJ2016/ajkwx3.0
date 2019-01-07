@@ -24,7 +24,7 @@ class CardCom extends React.Component {
         const { ways } = this.props.data
 
         this.props.smartControl({
-            houseId: this.props.houseId,
+            houseId: btoa(this.props.houseId),
             deviceType: 'SWITCH',
             actionType: status,
             wayId: ways[0].wayId,
